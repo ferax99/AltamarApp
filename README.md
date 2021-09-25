@@ -12,3 +12,6 @@ expo init AltamarApp
 # npm start -> app de celular 
 #npm run web -> en la web
 
+#nota -> hay que prender el servidor en el otro git:
+cd Altamar/servidor
+node index.js
