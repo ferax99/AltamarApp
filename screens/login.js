@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react"; 
 import {TouchableOpacity, StyleSheet,Image, Button, View, SafeAreaView, Text,TextInput, Alert,ScrollView } from 'react-native';
 import Axios from "axios";
+import Server from "../serverData";
 
 
 const Login = ({navigation}) =>{
@@ -13,7 +14,7 @@ const Login = ({navigation}) =>{
   const [tex, setTex] = useState('')
   var Value = tex;
   useEffect(() => {
-    Axios.get("http://192.168.0.11:3001/read"
+    Axios.get(Server+"/read"
     ).then((response)=>{
       setListOfProd(response.data);
       //setListOfCar(response.data.publicaciones);
@@ -24,7 +25,7 @@ const Login = ({navigation}) =>{
   }, []);
 
   const verificaUsuario = () =>{
-    Axios.post("http://192.168.0.11:3001/verificarNum", {
+    Axios.post(Server+"/verificarNum", {
       telefono: tex,
     }).then((response) => {console.log(response.data);
     if(response.data == "False"){
