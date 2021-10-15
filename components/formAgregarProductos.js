@@ -58,73 +58,89 @@ const FormAgregarProductos = ({ navigation }) => {
     };
     return (
 
-    //   <View style={styles.row}>
-    //     <View style={styles.inputWrap}>
-    //       <Text style={styles.label}>Expiration date</Text>
-    //       <TextInput style={styles.inputdate} />
-    //     </View>
+        //   <View style={styles.row}>
+        //     <View style={styles.inputWrap}>
+        //       <Text style={styles.label}>CVV</Text>
+        //       <Text style={styles.label}>Expiration date</Text>
+        //     </View>
 
-    //     <View style={styles.inputWrap}>
-    //       <Text style={styles.label}>CVV</Text>
-    //       <TextInput style={styles.inputcvv} maxLength={17} />
-    //     </View>
-    //   </View>
+        //     <View style={styles.inputWrap}>
+        //       <TextInput style={styles.inputcvv} maxLength={17} />
+        //       <TextInput style={styles.inputdate} />
+        //     </View>
+        //   </View>
 
         <SafeAreaView style={styles.container}>
             <View style={styles.formulario}>
-                <Text style={styles.texto}>
-                    Tipo de Producto
-                </Text>
-                <SelectDropdown
-                    data={countries}
-                    onSelect={(selectedItem, index) => {
-                        setTipo(selectedItem)
-                        console.log(selectedItem, index);
-                    }}
-                    defaultButtonText={" "}
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                        return selectedItem;
-                    }}
-                    rowTextForSelection={(item, index) => {
-                        return item;
-                    }}
-                    buttonStyle={styles.dropdown1BtnStyle}
-                    renderDropdownIcon={() => {
-                        return (
-                            <FontAwesome name="chevron-down" color={"#444"} size={18} />
-                        );
-                    }}
-                    dropdownIconPosition={"right"}
-                    dropdownStyle={styles.dropdown1DropdownStyle}
-                    rowStyle={styles.dropdown1RowStyle}
-                    rowTextStyle={styles.dropdown1RowTxtStyle}
-                />
-                <Text style={styles.texto}>
-                    Cantidad
-                </Text>
-                <TextInput
-                    onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
-                    placeholder="00,00"
-                />
-                <Text style={styles.texto}>
-                    Precio x Kilo
-                </Text>
-                <TextInput
-                    onChangeText={(vprecio) => { setPrecio(vprecio) }}
 
-                    placeholder="₡0.000" />
-                <Text style={styles.texto}>
-                    Fecha de pesca
-                </Text>
-                <TextInput
-                    onChangeText={(vfecha) => { setFecha(vfecha) }}
-                    placeholder="dd/mm/aaaa" />
+                <View style={styles.fila}>
+                    <View style={styles.inputWrap}>
 
-                <TextInput
-                    onChangeText={(vubicacion) => { setUbicacion(vubicacion) }}
-                    placeholder="Ubicación de venta" 
-                    placeholderTextColor= {colors.blackText}
-                    fontWeight= 'bold'/>
+                        <Text style={styles.texto}>
+                            Tipo de Producto
+                        </Text>
+                        <Text style={styles.texto}>
+                            Cantidad
+                        </Text>
+                        <Text style={styles.texto}>
+                            Precio x Kilo
+                        </Text>
+
+                        <Text style={styles.texto}>
+                            Fecha de pesca
+                        </Text>
+
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <SelectDropdown
+                            data={countries}
+                            onSelect={(selectedItem, index) => {
+                                setTipo(selectedItem)
+                            }}
+                            buttonTextAfterSelection={(selectedItem, index) => {
+                                return selectedItem;
+                            }}
+                            rowTextForSelection={(item, index) => {
+                                return item;
+                            }}
+                            buttonStyle={styles.dropdown1BtnStyle}
+                            renderDropdownIcon={() => {
+                                return (
+                                    <FontAwesome name="chevron-down" color={"#444"} size={18} />
+                                );
+                            }}
+                            defaultButtonText={" "}
+
+                            dropdownStyle={styles.dropdown1DropdownStyle}
+                            rowStyle={styles.dropdown1RowStyle}
+                            rowTextStyle={styles.dropdown1RowTxtStyle}
+                        />
+
+                        <TextInput
+                            onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
+                            placeholder="00,00"
+                            style={styles.input}
+                        />
+                        <TextInput
+                            onChangeText={(vprecio) => { setPrecio(vprecio) }}
+                            style={styles.input}
+                            placeholder="₡0.000" />
+                        <TextInput
+                            onChangeText={(vfecha) => { setFecha(vfecha) }}
+                            placeholder="dd/mm/aaaa"
+                            style={styles.input} />
+                    </View>
+                </View>
+                <View>
+                    <TextInput
+                        onChangeText={(vubicacion) => { setUbicacion(vubicacion) }}
+                        placeholder="Ubicación de venta"
+                        placeholderTextColor={colors.blackText}
+                        fontWeight='bold'
+                        style={styles.inputUicacion} />
+                        
+                </View>
+
             </View>
 
             <TouchableOpacity style={styles.boton} onPress={() => insertarProducto()} >
@@ -140,32 +156,43 @@ const FormAgregarProductos = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: '100%',
-        justifyContent: "space-between",
-        backgroundColor: colors.blueUI
+        paddingTop: 50,
+        flex: 1,
+        flexDirection: "column",
+        backgroundColor: colors.background
     },
     formulario: {
-        backgroundColor: colors.orangeUI
+        flex: 1,
+        backgroundColor: colors.background
     },
     fila: {
-        flex: 1,
+        //flex: 1,
         flexDirection: 'row',
     },
     inputWrap: {
         flex: 1,
     },
     texto: {
+        //flex:1,
         fontWeight: 'bold',
         fontSize: 14,
         color: colors.blackText,
+        margin: 10
     },
     dropdown1BtnStyle: {
+        //flex:1,
         width: 174,
         height: 26,
-        right: 20,
-        alignSelf: 'flex-end',
+        //right: 20,
+        //alignSelf: 'flex-end',
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 10,
+        backgroundColor: colors.whiteButtons
     },
     boton: {
+        //flex:1,
         backgroundColor: colors.greyText,
         width: 327,
         height: 48,
@@ -178,5 +205,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
 
     },
+    input: {
+        alignSelf: 'center',
+        margin: 5,
+        backgroundColor: colors.whiteButtons
+    },
+    inputUicacion: {
+        margin: 10,
+        backgroundColor: colors.whiteButtons
+    }
 });
 export default FormAgregarProductos

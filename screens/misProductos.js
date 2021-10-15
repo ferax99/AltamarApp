@@ -13,7 +13,6 @@ const MyProducts = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <AddButton navigation={navigation} />
             <SkipButton navigation={navigation} mensaje={mensaje} onPress={() => { navigation.navigate('Info') }} />
-            <Text></Text>
         </SafeAreaView>
 
 
