@@ -9,6 +9,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
+import colors from "../assets/colors/colors";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 const FormAgregarProductos = ({ navigation }) => {
@@ -28,10 +30,10 @@ const FormAgregarProductos = ({ navigation }) => {
     var vubicacion = ubicacion
 
     const insertarProducto = () => {
-        if(Moment(fecha, 'DD/MM/YYYY', true).isValid()==false){
+        if (Moment(fecha, 'DD/MM/YYYY', true).isValid() == false) {
             Alert.alert('El formato de la fecha es incorrecto', 'El formato es: dd/mm/aaaa', [{ text: 'Ta Güeno' }]);
         }
-        else{
+        else {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
@@ -50,20 +52,31 @@ const FormAgregarProductos = ({ navigation }) => {
                 if (response.data == "True") {
                     navigation.navigate('Home')
                 }
-    
+
             });
         }
     };
     return (
+
+    //   <View style={styles.row}>
+    //     <View style={styles.inputWrap}>
+    //       <Text style={styles.label}>Expiration date</Text>
+    //       <TextInput style={styles.inputdate} />
+    //     </View>
+
+    //     <View style={styles.inputWrap}>
+    //       <Text style={styles.label}>CVV</Text>
+    //       <TextInput style={styles.inputcvv} maxLength={17} />
+    //     </View>
+    //   </View>
+
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text>
+            <View style={styles.formulario}>
+                <Text style={styles.texto}>
                     Tipo de Producto
                 </Text>
                 <SelectDropdown
                     data={countries}
-                    // defaultValueByIndex={1}
-                    // defaultValue={'Egypt'}
                     onSelect={(selectedItem, index) => {
                         setTipo(selectedItem)
                         console.log(selectedItem, index);
@@ -76,7 +89,6 @@ const FormAgregarProductos = ({ navigation }) => {
                         return item;
                     }}
                     buttonStyle={styles.dropdown1BtnStyle}
-                    buttonTextStyle={styles.dropdown1BtnTxtStyle}
                     renderDropdownIcon={() => {
                         return (
                             <FontAwesome name="chevron-down" color={"#444"} size={18} />
@@ -87,21 +99,21 @@ const FormAgregarProductos = ({ navigation }) => {
                     rowStyle={styles.dropdown1RowStyle}
                     rowTextStyle={styles.dropdown1RowTxtStyle}
                 />
-                <Text>
+                <Text style={styles.texto}>
                     Cantidad
                 </Text>
                 <TextInput
                     onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
                     placeholder="00,00"
                 />
-                <Text>
+                <Text style={styles.texto}>
                     Precio x Kilo
                 </Text>
                 <TextInput
                     onChangeText={(vprecio) => { setPrecio(vprecio) }}
 
                     placeholder="₡0.000" />
-                <Text>
+                <Text style={styles.texto}>
                     Fecha de pesca
                 </Text>
                 <TextInput
@@ -110,13 +122,16 @@ const FormAgregarProductos = ({ navigation }) => {
 
                 <TextInput
                     onChangeText={(vubicacion) => { setUbicacion(vubicacion) }}
-                    placeholder="Ubicación de venta" />
-                <TouchableOpacity style={styles.boton} onPress={() => insertarProducto()} >
-                    <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
-                        Confirmar
-                    </Text>
-                </TouchableOpacity>
+                    placeholder="Ubicación de venta" 
+                    placeholderTextColor= {colors.blackText}
+                    fontWeight= 'bold'/>
             </View>
+
+            <TouchableOpacity style={styles.boton} onPress={() => insertarProducto()} >
+                <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
+                    Confirmar
+                </Text>
+            </TouchableOpacity>
 
 
         </SafeAreaView>
@@ -127,30 +142,40 @@ const styles = StyleSheet.create({
     container: {
         height: '100%',
         justifyContent: "space-between",
+        backgroundColor: colors.blueUI
     },
-    imagen: {
-        marginBottom: 15,
-        paddingBottom: 15,
-        resizeMode: "contain",
-        width: "20%",
-        left: "40%",
-        top: "50%"
+    formulario: {
+        backgroundColor: colors.orangeUI
+    },
+    fila: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    inputWrap: {
+        flex: 1,
     },
     texto: {
-        marginTop: 15,
-        paddingTop: 15,
-        textAlign: "center",
-        fontSize: 20,
-        color: "#9a999e"
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: colors.blackText,
+    },
+    dropdown1BtnStyle: {
+        width: 174,
+        height: 26,
+        right: 20,
+        alignSelf: 'flex-end',
     },
     boton: {
-        backgroundColor: "#14A2FC",
-        height: 50,
+        backgroundColor: colors.greyText,
+        width: 327,
+        height: 48,
+        bottom: 34,
         alignItems: 'center',
         padding: 15,
         color: "#FFFFFF",
         marginTop: 8,
         borderRadius: 50,
+        alignSelf: 'center'
 
     },
 });

@@ -24,7 +24,7 @@ const HomeStack = createStackNavigator({
   Home: Home,
 },
   {
-    headerMode: 'false',
+    // headerMode: 'false',
     defaultNavigationOptions: { headerTitleAlign: 'center' }
 
   });

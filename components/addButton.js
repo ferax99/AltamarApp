@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ReactDom } from "react-dom";
 import { useNavigation } from '@react-navigation/native' 
 import { TouchableOpacity, StyleSheet, Image, Button, View, SafeAreaView, Text, TextInput, Alert, ScrollView } from 'react-native';
-
+import colors from "../assets/colors/colors";
 
 class AddButton extends Component {
     
@@ -10,7 +10,7 @@ class AddButton extends Component {
         const {navigation} = this.props
         return (
                 <TouchableOpacity
-                    styles={styles.container}
+                    style={styles.agregar}
                     onPress={() => navigation.navigate('Añadir productos')}>
                     <View>
                         <Image
@@ -21,43 +21,30 @@ class AddButton extends Component {
                         Agregá tu primer producto
                     </Text>
                 </TouchableOpacity>
-
         )
     }
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        justifyContent: 'center',
+    agregar: {
         alignItems: 'center',
-        height: '100%',
+        top: "30%"
     },
     imagen: {
         marginBottom: 15,
         paddingBottom: 15,
         resizeMode: "contain",
-        width: "20%",
-        left: "40%",
-        top: "50%"
+        top: 20,
+        width: 66,
+        height: 66,
     },
     texto: {
         marginTop: 15,
         paddingTop: 15,
         textAlign: "center",
         fontSize: 20,
-        color: "#9a999e"
-    },
-    boton: {
-        backgroundColor: "white",
-        height: 50,
-        alignItems: 'center',
-        padding: 15,
-        color: "#FFFFFF",
-        marginTop: 8,
-        borderRadius: 50,
-
+        color: colors.greyText
     },
 });
 export default AddButton
