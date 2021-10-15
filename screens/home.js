@@ -1,14 +1,15 @@
 import React from 'react';
-import {Text,StyleSheet} from 'react-native';
+import {Text,StyleSheet, View} from 'react-native';
 
 const Home = ({navigation}) =>{
     const telefono = navigation.getParam("telefono");
   return(
+    <View style = {styles.container}>
    
-    <Text style = {styles.container}>Felicidades {telefono}, has iniciado sesion de manera exitosa! Home estara disponible proximamente al final de la segunda iteracion 
+    <Text >Felicidades {telefono}, has iniciado sesion de manera exitosa! Home estara disponible proximamente al final de la segunda iteracion 
      </Text>
     
-   
+     </View>
         
   );
 };
