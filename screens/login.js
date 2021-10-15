@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { TouchableOpacity, StyleSheet, Image, Button, View, SafeAreaView, Text, TextInput, Alert, ScrollView } from 'react-native';
 import Axios from "axios";
 import Server from "../serverData";
+import colors from '../assets/colors/colors';
 
 
 const Login = ({ navigation }) => {
@@ -44,20 +45,20 @@ const Login = ({ navigation }) => {
       <SafeAreaView style={styles.logo}>
         <Image
           style={styles.tinyLogo}
-          source={require('../assets/logoVenta.png')}
+          source={require('../assets/img/logoVenta.png')}
         />
       </SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} >
 
         <View style={styles.info}>
 
           <Text style={styles.mainText} >
             Bienvenido!
           </Text >
-          <Text style={{ color: 'rgba(143, 146, 161, 1)', fontSize: 18 }} >
+          <Text style={{ color: colors.greyText, fontSize: 18 }} >
             Mariscos de Costa Rica
           </Text>
-          <Text style={{ fontWeight: "bold", color: 'rgba(30, 31, 32, 1)', fontSize: 18, marginTop: 30 }} >
+          <Text style={{ fontWeight: "bold", color: colors.blackText, fontSize: 18, marginTop: 30 }} >
             Número de teléfono
           </Text>
           <TextInput onChangeText={(Value) => { setTex(Value) }}
@@ -73,7 +74,7 @@ const Login = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.botonC}>
+          <TouchableOpacity style={styles.botonC} onPress={() => navigation.navigate('ChooseRole')}>
             <Text style={{ fontWeight: "bold" }}>
               Crear Cuenta
             </Text>
@@ -84,7 +85,7 @@ const Login = ({ navigation }) => {
 
       <Text style={styles.footer} >
         Al iniciar sesión, aceptas nuestros
-        <Text style={{ color: "blue" }} onPress={() => navigation.navigate('Info')}>
+        <Text style={{ color: colors.blueUI }} onPress={() => navigation.navigate('Info')}>
           - Términos de servicio
         </Text>
       </Text>
@@ -95,7 +96,7 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.background,
     flex: 1,
     justifyContent: 'flex-start',
     fontFamily: "TT Norms",
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   boton: {
-    backgroundColor: "rgba(131, 131, 131, 1)",
+    backgroundColor: colors.greyText,
     height: 50,
     alignItems: 'center',
     padding: 15,
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   botonC: {
 
     borderWidth: 3,
-    borderColor: "rgba(131, 131, 131, 1)",
+    borderColor: colors.greyText,
     height: 50,
     alignItems: 'center',
     padding: 15,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderBottomWidth: 1,
-    borderColor: 'grey',
+    borderColor: colors.greyText,
     padding: 10,
   },
   logo: {
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
 
     fontSize: 44,
     fontWeight: "bold",
-    color: "rgba(46, 48, 52, 1)"
+    color: colors.blackText
   },
   footer: {
     fontSize: 14,

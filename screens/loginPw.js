@@ -46,7 +46,7 @@ const Login = ({navigation}) =>{
     <SafeAreaView style={styles.logo}>
     <Image
         style={styles.tinyLogo}
-        source={require('../assets/logoVenta.png')}
+        source={require('../assets/img/logoVenta.png')}
     />
     </SafeAreaView>
     <ScrollView>
