@@ -37,7 +37,7 @@ const FormAgregarProductos = ({ navigation }) => {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
-                telefono: "1",
+                telefono: "2",
                 tipo: tipo,
                 cantidad: cantidad,
                 precio: precio,
@@ -50,7 +50,7 @@ const FormAgregarProductos = ({ navigation }) => {
                     Alert.alert('La inserción falló', 'Tenemos problemas', [{ text: 'OK' }]);
                 }
                 if (response.data == "True") {
-                    navigation.navigate('Home')
+                    navigation.navigate('Mis productos')
                 }
 
             });
@@ -115,15 +115,21 @@ const FormAgregarProductos = ({ navigation }) => {
                             rowStyle={styles.dropdown1RowStyle}
                             rowTextStyle={styles.dropdown1RowTxtStyle}
                         />
-
-                        <TextInput
-                            onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
-                            placeholder="00,00"
-                            style={styles.input}
-                        />
+                        <View style={styles.fila}>
+                            <View style={styles.inputWrap}></View>
+                            <TextInput
+                                onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
+                                placeholder="00,00"
+                                style={styles.input}
+                            />
+                            <Text style={styles.etiqueta}>
+                                KG
+                            </Text>
+                        </View>
                         <TextInput
                             onChangeText={(vprecio) => { setPrecio(vprecio) }}
                             style={styles.input}
+
                             placeholder="₡0.000" />
                         <TextInput
                             onChangeText={(vfecha) => { setFecha(vfecha) }}
@@ -138,7 +144,7 @@ const FormAgregarProductos = ({ navigation }) => {
                         placeholderTextColor={colors.blackText}
                         fontWeight='bold'
                         style={styles.inputUicacion} />
-                        
+
                 </View>
 
             </View>
@@ -171,6 +177,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         flex: 1,
+        alignContent: "flex-end"
     },
     texto: {
         //flex:1,
@@ -206,13 +213,18 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        alignSelf: 'center',
+        alignSelf: 'flex-end',
         margin: 5,
         backgroundColor: colors.whiteButtons
     },
     inputUicacion: {
         margin: 10,
         backgroundColor: colors.whiteButtons
+    },
+    etiqueta: {
+        color: colors.greyText,
+        alignSelf: 'center',
+        marginRight: 10
     }
 });
 export default FormAgregarProductos
