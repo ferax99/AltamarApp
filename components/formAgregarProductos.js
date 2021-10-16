@@ -10,7 +10,6 @@ import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 const FormAgregarProductos = ({ navigation }) => {
