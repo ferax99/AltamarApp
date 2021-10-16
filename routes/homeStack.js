@@ -9,10 +9,12 @@ import CreateAccountSeller from "../screens/createAccountSeller";
 import CreateAccountBuyer from "../screens/createAccountBuyer";
 import MyProducts from "../screens/misProductos"
 import AddProducts from "../screens/addProducts";
+import Favoritos from "../screens/favoritos";
 import { defineAnimation } from "react-native-reanimated";
 
 
 const HomeStack = createStackNavigator({
+  X:Favoritos,
   "Mis productos": MyProducts,
   Login: Login,
   Info: Info,
