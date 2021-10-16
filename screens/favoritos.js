@@ -41,9 +41,9 @@ const Favoritos = ({navigation}) =>{
     </View>
     <View style = {styles.contenedorLista}>
     <ScrollView >
-        <ProductosF ruta={require('../assets/img/pruebaGay/trout.jpg')} tipo="Trucha" vendedor = "Ruvilo Jr"/>
-        <ProductosF ruta={require('../assets/img/pruebaGay/pargo.jpg')} tipo="Pargo" vendedor = "Fevilo Jr"/>
-        <ProductosF ruta={require('../assets/img/pruebaGay/Salmo.jpg')} tipo="Salmon" vendedor = "Kakudo Jr"/>
+        <ProductosF ruta={require('../assets/img/pecesPrueba/trout.jpg')} tipo="Trucha" vendedor = "Ruvilo Jr"/>
+        <ProductosF ruta={require('../assets/img/pecesPrueba/pargo.jpg')} tipo="Pargo" vendedor = "Fevilo Jr"/>
+        <ProductosF ruta={require('../assets/img/pecesPrueba/Salmo.jpg')} tipo="Salmon" vendedor = "Kakudo Jr"/>
     </ScrollView>
 
     </View>
