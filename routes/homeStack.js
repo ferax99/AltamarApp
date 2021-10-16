@@ -4,12 +4,14 @@ import Login from '../screens/login';
 import Info from "../screens/info";
 import LoginPw from "../screens/loginPw";
 import Home from "../screens/home";
-import MyProducts from "../screens/misProductos"
+import MyProducts from "../screens/misProductos";
 import AddProducts from "../screens/addProducts";
+import Favoritos from "../screens/favoritos";
 import { defineAnimation } from "react-native-reanimated";
 
 
 const HomeStack = createStackNavigator({
+  X:Favoritos,
   "Mis productos": MyProducts,
   "Añadir productos": AddProducts,
   Login: Login,
