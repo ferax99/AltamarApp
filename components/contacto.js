@@ -19,13 +19,14 @@ const Contacto = ({nombre,numero,id}) =>{
        <Text style = {styles.nombre}>{nombre}</Text>
        <Text style = {styles.numero}>{numFormat(numero)}</Text>
        <View style = {styles.row}>
-        <TouchableOpacity>
-            <Image  style = {styles.ima} source={require('../assets/img/call-icon.png')} />
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-            <Image  style = {styles.ima} source={require('../assets/img/opciones.png')} />
-        </TouchableOpacity>
+       <TouchableOpacity>
+       
+        <Image  style = {styles.ima} source={require('../assets/img/call-icon.png')} />
+       </TouchableOpacity>
+       <TouchableOpacity>
+       
+        <Image  style = {styles.ima} source={require('../assets/img/opciones.png')} />
+       </TouchableOpacity>
 
        </View>
        
@@ -39,6 +40,8 @@ const styles = StyleSheet.create({
       
        flexDirection:"column",
       margin:20,
+      
+
     },
     ima:{
         width:30,
@@ -49,12 +52,7 @@ const styles = StyleSheet.create({
         marginTop:-40,
         flexDirection:"row",
         justifyContent: 'flex-end',
-        backgroundColor: "#FFFFFF",
-        
 
-    },
-    button:{
-        
     },
     nombre:{
         color:"#0C1722",

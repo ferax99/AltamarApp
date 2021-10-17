@@ -11,7 +11,6 @@ import { defineAnimation } from "react-native-reanimated";
 
 
 const HomeStack = createStackNavigator({
-  //T:Temporada,
   //X:Favoritos,
   Home: Home,
   "Mis productos": MyProducts,

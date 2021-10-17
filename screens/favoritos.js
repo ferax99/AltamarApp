@@ -3,7 +3,6 @@ import {TouchableOpacity, ListItem,StyleSheet,Image, Button, View, SafeAreaView,
 import SwitchSelector from 'react-native-switch-selector';
 import Contacto from '../components/contacto';
 import ProductosF from '../components/productosF';
-import colors from '../assets/colors/colors.js';
 
 const SwitchOp = [
     {label:'contactos',value:'Contactos'},
@@ -41,9 +40,10 @@ const Favoritos = ({navigation}) =>{
     </View>
     <View style = {styles.contenedorLista}>
     <ScrollView >
-        <ProductosF ruta={require('../assets/img/pecesPrueba/trout.jpg')} tipo="Trucha" vendedor = "Ruvilo Jr"/>
-        <ProductosF ruta={require('../assets/img/pecesPrueba/pargo.jpg')} tipo="Pargo" vendedor = "Fevilo Jr"/>
-        <ProductosF ruta={require('../assets/img/pecesPrueba/Salmo.jpg')} tipo="Salmon" vendedor = "Kakudo Jr"/>
+    {/*<Contacto nombre="Andre Binda S" numero = "45243566"/>
+    <Contacto nombre="Daniel P" numero = "341235345"/>
+  <Contacto nombre="Ruben V" numero = "85647522"/>*/}
+  <ProductosF ruta={require('../assets/img/peces/trucha.png')} tipo="Trucha" vendedor = "Ruvilo Jr"/>
     </ScrollView>
 
     </View>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     container: {
       
       padding:30,
-      backgroundColor: colors.backgroundColor,
+      backgroundColor: '#FFFFFF',
       flex: 1,    
       justifyContent: 'center',
       alignContent:'center'
