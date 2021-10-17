@@ -13,10 +13,7 @@ const AddProducts = ({ navigation }) => {
 
 
   return (
-    <SafeAreaView>
       <FormAgregarProductos navigation={navigation}/>
-      
-    </SafeAreaView>
   )
 
 }
