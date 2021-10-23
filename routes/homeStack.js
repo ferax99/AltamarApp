@@ -15,6 +15,7 @@ import Favoritos from "../screens/favoritos";
 
 
 const HomeStack = createStackNavigator({
+  Favoritos:Favoritos,
   X:Home,
   ChooseRole: ChooseRole,
   "Creando Vendedor": CreateAccountSeller,
@@ -22,7 +23,7 @@ const HomeStack = createStackNavigator({
   Login: Login,
  
   Editor: EditProducts,
-  Favoritos:Favoritos,
+ 
   Info: Info,
   LoginPw: LoginPw,
   
