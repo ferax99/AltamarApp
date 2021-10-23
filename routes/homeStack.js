@@ -22,7 +22,7 @@ const HomeStack = createStackNavigator({
   Login: Login,
  
   Editor: EditProducts,
-  Favoritos:Favoritos,
+ 
   Info: Info,
   LoginPw: LoginPw,
   
