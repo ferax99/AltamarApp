@@ -30,7 +30,7 @@ const FormAgregarProductos = ({ navigation }) => {
 
     const insertarProducto = () => {
         if (Moment(fecha, 'DD/MM/YYYY', true).isValid() == false) {
-            Alert.alert('El formato de la fecha es incorrecto', 'El formato es: dd/mm/aaaa', [{ text: 'Ta Güeno' }]);
+            Alert.alert('El formato de la fecha es incorrecto', 'El formato es: dd/mm/aaaa', [{ text: 'OK' }]);
         }
         else {
 

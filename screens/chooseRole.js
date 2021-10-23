@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import { TouchableOpacity, StyleSheet, SafeAreaView, Text, Alert, Image } from 'react-native';
+import { TouchableOpacity, StyleSheet, SafeAreaView, View,Text, Alert, Image, ViewBase } from 'react-native';
 import colors from '../assets/colors/colors';
 
 const ChooseRole = ({ navigation }) => {
@@ -8,7 +8,8 @@ const ChooseRole = ({ navigation }) => {
   const [selectedButton, setSelectedButton] = useState('')
 
   return(
-  <SafeAreaView style={styles.container}>
+  
+  <SafeAreaView  style={styles.container}>
       <Text style={styles.title}>
           ¿Qué tipo de cuenta desea tener?
       </Text>
@@ -67,13 +68,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       textAlign: 'center',
       fontSize: 30,
+      
       fontWeight: "bold",
       color: colors.blackText
     },
     boton: {
       backgroundColor: colors.greyText,
       height: 48,
-      width: 327,
+      width: "80%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     botonCompradorPressed: {
       backgroundColor: colors.orangeUI,
       height: 48,
-      width: 327,
+      width: "80%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     botonVendedorPressed: {
       backgroundColor: colors.blueUI,
       height: 48,
-      width: 327,
+      width: "80%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",

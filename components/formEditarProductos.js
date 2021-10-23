@@ -29,7 +29,7 @@ const FormEditarProductos = ({ navigation }) => {
     var vprecio = precio
     var vfecha = fecha
     var vubicacion = ubicacion
-    var id = "616b514a8836de7cc74fd81f"
+    var id = "61738980d641af4045d45795"
     var vvendido = vendido
     // var texto = "Marcar"
 

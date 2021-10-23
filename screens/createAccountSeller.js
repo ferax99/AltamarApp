@@ -64,7 +64,7 @@ const CreateAccountSeller = ({ navigation }) => {
   return(
     <SafeAreaView>
       <ScrollView style ={styles.scrollArea} showsVerticalScrollIndicator={false}>
-
+      <View style={styles.container}>
         <View style={styles.field}>
           <Text style={styles.fieldTitle} >
             Nombre completo
@@ -196,13 +196,88 @@ const CreateAccountSeller = ({ navigation }) => {
             Siguiente
           </Text>
         </TouchableOpacity>
-
+      </View>
       </ScrollView>
 
     </SafeAreaView>
   )
 }
 
+
+
+const styles = StyleSheet.create({
+  scrollArea: {
+    backgroundColor: colors.background,
+  },
+  container : {
+    flex:1, 
+    justifyContent:"center",
+    marginLeft:10,
+    
+    marginRight:10,
+    
+  },
+  field: {
+    alignItems:"flex-start",
+    
+    //width: "100%",
+    height: 72,
+    top: 24,
+    //left: 24,
+    backgroundColor: colors.background,
+  },
+  fieldContraseña: {
+    
+    height: 72,
+    top: 24,
+    //left: 24,
+    marginTop: 20,
+    backgroundColor: colors.background,
+  },
+  fieldTitle: {
+    
+    fontWeight: 'bold',
+    color: colors.blackText,
+    fontSize: 14,
+    alignSelf:"flex-start",
+  },
+  sectionTitle: {
+    fontWeight: 'bold',
+    color: colors.blackText,
+    height: 40,
+    fontSize: 20,
+    left: 24,
+    top: 30,
+    marginBottom: 10,
+    marginTop: 30,
+  },
+  input: {
+    
+    width:"100%",
+    height: 14,
+    borderBottomWidth: 1,
+    borderColor: colors.greyText,
+    color: colors.greyText,
+    fontSize: 12,
+    position: 'absolute',
+    top: 28,
+    bottom: 4,
+  },
+  boton: {
+   
+    backgroundColor: colors.greyText,
+    height: 48,
+    width: "80%",
+    alignItems: 'center',
+    alignSelf: 'center',
+    padding: 15,
+    color: "#FFFFFF",
+    marginTop: 49,
+    marginBottom: 70,
+    borderRadius: 50,
+  },
+});
+/*
 const styles = StyleSheet.create({
   scrollArea: {
     backgroundColor: colors.background,
@@ -266,6 +341,6 @@ const styles = StyleSheet.create({
     marginBottom: 34,
     borderRadius: 49,
   },
-});
+});*/
 
 export default CreateAccountSeller

@@ -51,7 +51,7 @@ const CreateAccountBuyer = ({ navigation }) => {
   return(
     <SafeAreaView >
       <ScrollView style ={styles.scrollArea} showsVerticalScrollIndicator={false}>
-
+        <View style={styles.container}>
         <View style={styles.field}>
           <Text style={styles.fieldTitle} >
             Nombre completo
@@ -137,13 +137,13 @@ const CreateAccountBuyer = ({ navigation }) => {
             secureTextEntry= {true}
           />
         </View>
-
+        
         <TouchableOpacity style={styles.boton} onPress={() => crearUsuario()} >
           <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
             Siguiente
           </Text>
         </TouchableOpacity>
-
+        </View>
       </ScrollView>
 
     </SafeAreaView>
@@ -154,32 +154,41 @@ const styles = StyleSheet.create({
   scrollArea: {
     backgroundColor: colors.background,
   },
+  container : {
+    flex:1, 
+    justifyContent:"center",
+    marginLeft:10,
+    
+    marginRight:10,
+    
+  },
   field: {
-    flex: 1,
-    width: 345,
+    alignItems:"flex-start",
+    
+    //width: "100%",
     height: 72,
     top: 24,
-    left: 24,
+    //left: 24,
     backgroundColor: colors.background,
   },
   fieldContraseña: {
-    flex: 1,
-    width: 345,
+    
     height: 72,
     top: 24,
-    left: 24,
+    //left: 24,
     marginTop: 20,
     backgroundColor: colors.background,
   },
   fieldTitle: {
-    flex: 1,
+    
     fontWeight: 'bold',
     color: colors.blackText,
     fontSize: 14,
+    alignSelf:"flex-start",
   },
   input: {
-    flex: 1,
-    width: 345,
+    
+    width:"100%",
     height: 14,
     borderBottomWidth: 1,
     borderColor: colors.greyText,
@@ -190,10 +199,10 @@ const styles = StyleSheet.create({
     bottom: 4,
   },
   boton: {
-    flex: 1,
+   
     backgroundColor: colors.greyText,
     height: 48,
-    width: 327,
+    width: "80%",
     alignItems: 'center',
     alignSelf: 'center',
     padding: 15,
