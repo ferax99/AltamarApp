@@ -1,0 +1,1 @@
+{"ast":null,"code":"var Server = \"http://localhost:3001\";\nexport default Server;","map":{"version":3,"sources":["/home/danieloaiza/Desktop/Pegado/AltamarApp/serverData.js"],"names":["Server"],"mappings":"AAAA,IAAMA,MAAM,GAAG,uBAAf;AACA,eAAeA,MAAf","sourcesContent":["const Server = \"http://localhost:3001\";\nexport default Server ;"]},"metadata":{},"sourceType":"module"}

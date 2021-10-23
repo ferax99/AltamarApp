@@ -1,13 +1,25 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import {Text,StyleSheet, View} from 'react-native';
+import Temporada from '../components/temporada';
+import colors from '../assets/colors/colors';
+import axios from 'axios';
 
 const Home = ({navigation}) =>{
     const telefono = navigation.getParam("telefono");
+    const [listOfFish, setListOfFish] = useState([]);
+
+    useEffect(() => {
+      const fetchPostList = async () => {
+          const {data} = await axios("http://localhost:3001/readTop")
+          setListOfFish(data)
+      }
+      fetchPostList()
+
+  }, [setListOfFish]);
   return(
     <View style = {styles.container}>
-   
-    <Text >Felicidades {telefono}, has iniciado sesion de manera exitosa! Home estara disponible proximamente al final de la segunda iteracion 
-     </Text>
+      <Temporada lista = {listOfFish}/>
     
      </View>
         
@@ -15,12 +27,11 @@ const Home = ({navigation}) =>{
 };
 const styles = StyleSheet.create({
     container: {
-      marginTop:20,
-      padding:30,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.background,
       flex: 1,    
       justifyContent: 'center',
-      alignContent:'center'
+      alignContent:'center',
+
      
     }});
 
