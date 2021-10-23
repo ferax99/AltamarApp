@@ -15,8 +15,8 @@ import Favoritos from "../screens/favoritos";
 
 
 const HomeStack = createStackNavigator({
-  X:Home,
   ChooseRole: ChooseRole,
+  X:Home,
   "Creando Vendedor": CreateAccountSeller,
   "Creando Comprador": CreateAccountBuyer,
   Login: Login,
@@ -31,7 +31,7 @@ const HomeStack = createStackNavigator({
   Home: Home,
 },
   {
-    // headerMode: 'false',
+    headerMode: 'false',
     defaultNavigationOptions: { headerTitleAlign: 'center' }
 
   });

@@ -246,9 +246,9 @@ const styles = StyleSheet.create({
     color: colors.blackText,
     height: 40,
     fontSize: 20,
-    left: 24,
+    // left: 24,
     top: 30,
-    marginBottom: 10,
+    marginBottom: 20,
     marginTop: 30,
   },
   input: {
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
    
     backgroundColor: colors.greyText,
     height: 48,
-    width: "80%",
+    width: "90%",
     alignItems: 'center',
     alignSelf: 'center',
     padding: 15,
