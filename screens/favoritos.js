@@ -9,6 +9,7 @@ import Axios from "axios";
 import ServerData from '../serverData';
 import { FlatList } from 'react-native-gesture-handler';
 import userData from '../local_data/userData.json';
+import colors from '../assets/colors/colors';
 
 const SwitchOp = [
     {label:'contactos',value:'Contactos'},
@@ -112,7 +113,7 @@ const Favoritos = ({navigation}) =>{
                 <TextInput
                 style = {styles.search}
                 value={search}
-                placeholder="   Buscar"
+                placeholder="Buscar"
                 onChangeText = {(text)=>searchFilter(text)}
                 />
                 <Image  style = {styles.ima} source={require('../assets/img/search-icon.png')} />
@@ -178,21 +179,22 @@ const styles = StyleSheet.create({
        width:"100%",
    },
    search:{
-        marginLeft:20,
         marginBottom:22,
         marginTop:17,
         height:40,
-        width:"90%",
+        width:"100%",
         backgroundColor:"white",
-        borderRadius:14,
+        borderRadius:48,
+        paddingLeft: 20
         
 
    },
    ima:{
-    width:35,
-    height:35,
+    width:15,
+    height:15,
     marginRight:20,
-    marginTop:20,
+    marginTop:30,
+    right:"45%"
     },
     row:{
         flexDirection:"row",
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     container: {
       
       padding:30,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.background,
       flex: 1,    
       justifyContent: 'flex-start',
       alignContent:'center'

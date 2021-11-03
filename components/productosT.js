@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     margin:10,
     borderRadius:10,    
     backgroundColor:colors.whiteButtons,
-    
+    elevation: 5,
     flexDirection: "row",
     flexWrap:"nowrap",
     
