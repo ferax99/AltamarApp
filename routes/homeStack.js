@@ -10,11 +10,12 @@ import CreateAccountBuyer from "../screens/createAccountBuyer";
 import MyProducts from "../screens/misProductos"
 import AddProducts from "../screens/addProducts";
 import EditProducts from "../screens/editProducts";
-import { defineAnimation } from "react-native-reanimated";
 import Favoritos from "../screens/favoritos";
+import Perfil from "../screens/perfil";
 
 
 const HomeStack = createStackNavigator({
+  Perfil:Perfil,
   X:Home,
   ChooseRole: ChooseRole,
   "Creando Vendedor": CreateAccountSeller,
