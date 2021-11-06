@@ -4,10 +4,9 @@ import { StyleSheet, View, Text, Image} from "react-native";
 import colors from "../assets/colors/colors"
 
 const ItemCatalogo = ({producto, peces}) =>{
-    console.log(peces["Sardina Azul"].foto)
     return(
         <View style = {styles.contenedor} key = {producto._id}>
-            <Image style={styles.pez} source = {{uri:""}}/>
+            <Image style={styles.pez} source = {{uri:"https://www3.gobiernodecanarias.org/medusa/mediateca/ecoescuela/wp-content/uploads/sites/2/2013/11/35-Sardina.png"}}/>
             <Text  style={styles.tipo}>
                 {producto.tipo}
             </Text>
