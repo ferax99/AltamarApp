@@ -15,24 +15,24 @@ import Perfil from "../screens/perfil";
 
 
 const HomeStack = createStackNavigator({
-  Perfil:Perfil,
-  X:Home,
-  ChooseRole: ChooseRole,
+  Perfil: Perfil,
   "Creando Vendedor": CreateAccountSeller,
+  ChooseRole: ChooseRole,
   "Creando Comprador": CreateAccountBuyer,
   Login: Login,
- 
+  X: Home,
+
   Editor: EditProducts,
-  Favoritos:Favoritos,
+  Favoritos: Favoritos,
   Info: Info,
   LoginPw: LoginPw,
-  
+
   "Mis productos": MyProducts,
   "Añadir productos": AddProducts,
   Home: Home,
 },
   {
-    // headerMode: 'false',
+    //headerMode: 'false',
     defaultNavigationOptions: { headerTitleAlign: 'center' }
 
   });

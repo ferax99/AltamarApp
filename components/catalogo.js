@@ -1,23 +1,52 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native";
+import colors from "../assets/colors/colors";
+import ItemCatalogo from "./itemCatalogo";
 
-const Catalogo = () =>{
-    return(
-        <View style = {styles.contenedor}>
-<Text>
-    Catalogo
-</Text>
-        </View>
+const Catalogo = ({ publicaciones, peces }) => {
+    //console.log(peces)
+    const lista = () => {
+        return (
+            <View style={styles.contenedor} >
+                <Image />
+                {publicaciones.map(order => order.map(elem =>
+                    <View key={elem._id} >
+                        {/* {console.log(elem)} */}
+                        <ItemCatalogo producto={elem} peces={peces} />
+
+                    </View>
+                )
+                )}
+            </View>
+        )
+    }
+    return (
+
+        <ScrollView>
+            <SafeAreaView style={styles.contenedore}>
+                {lista()}
+            </SafeAreaView>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    contenedor:{
-        flex:1,
-        flexDirection:"row",
-        flexWrap: "wrap",
+    contenedor: {
+        backgroundColor: colors.background,
         width: "100%",
-        backgroundColor:"red",
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    contenedore: {
+        backgroundColor: colors.blueUI,
+        width: "100%",
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    item: {
+
+        backgroundColor: colors.greyText,
+
     }
 })
 
