@@ -10,13 +10,10 @@ const FilterPrice = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.cajaPrecios}>
                 <Text style={styles.text}>
-                    ₡950
+                    ₡950 - ₡10 000
                 </Text>
-                <Text style={styles.textDivider}>
-                    -
-                </Text>
-                <Text style={styles.text}>
-                    ₡10 000
+                <Text style={styles.textPromedio}>
+                    Precio promedio ₡4 525
                 </Text>
             </View>
             <TouchableOpacity
@@ -57,7 +54,7 @@ const styles = StyleSheet.create({
         height: 119,
         borderRadius: 10,
         backgroundColor: colors.whiteButtons,
-        flexDirection: "row",
+        // flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         marginTop: "20%",
@@ -68,11 +65,10 @@ const styles = StyleSheet.create({
         color: colors.blackText,
         fontSize: 36,
     },
-    textDivider: {
+    textPromedio: {
         fontWeight: "bold",
-        color: colors.blackText,
-        fontSize: 36,
-        marginHorizontal: 10,
+        color: colors.greyText,
+        fontSize: 14,
     },
 });
 
