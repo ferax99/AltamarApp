@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     boton: {
       backgroundColor: colors.greyText,
       height: 48,
-      width: "80%",
+      width: "90%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     botonCompradorPressed: {
       backgroundColor: colors.orangeUI,
       height: 48,
-      width: "80%",
+      width: "90%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     botonVendedorPressed: {
       backgroundColor: colors.blueUI,
       height: 48,
-      width: "80%",
+      width: "90%",
       alignItems: 'center',
       padding: 15,
       color: "#FFFFFF",

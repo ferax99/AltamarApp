@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
    
     backgroundColor: colors.greyText,
     height: 48,
-    width: "80%",
+    width: "90%",
     alignItems: 'center',
     alignSelf: 'center',
     padding: 15,
