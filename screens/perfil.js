@@ -10,7 +10,7 @@ import UserInfo from "../components/userInfo.js";
 import Contactar from "../components/contactar";
 
 
-const Perfil = () => {
+const Perfil = ({ navigation }) => {
     const [publicaciones, setPublicaciones] = useState([]);
     const [peces, setPeces] = useState([]);
 
@@ -72,7 +72,7 @@ const Perfil = () => {
     return (
         <View style={styles.general}>
             <UserInfo/>
-            <Contactar/>
+            <Contactar navigation={navigation}/>
             <Image
                 style={styles.image}
                 source={require('../assets/img/catalogo.png')}
