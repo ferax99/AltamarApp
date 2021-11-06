@@ -12,11 +12,14 @@ import AddProducts from "../screens/addProducts";
 import EditProducts from "../screens/editProducts";
 import { defineAnimation } from "react-native-reanimated";
 import Favoritos from "../screens/favoritos";
+import Perfil from "../screens/editUserP";
+import KK from "../screens/perfil"
 
 
 const HomeStack = createStackNavigator({
-  
-  Home: Home,
+  //X:Perfil,
+  Perfil: KK,
+  //Home: Home,
   Login: Login,
   "Mis productos": MyProducts,
   Favoritos:Favoritos,
@@ -25,7 +28,6 @@ const HomeStack = createStackNavigator({
   X:Home,
   "Creando Vendedor": CreateAccountSeller,
   "Creando Comprador": CreateAccountBuyer,
-  Editor: EditProducts,
   LoginPw: LoginPw,
   
   "Añadir productos": AddProducts,
