@@ -8,7 +8,7 @@ const FilterSelection = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <TouchableOpacity
                 style={styles.botonFiltro}
-                onPress={() => navigation.navigate("Búsqueda")} >
+                onPress={() => navigation.navigate("Rango de pago")} >
                 <Image
                     style={styles.moneyFilterIcon}
                     source={require('../assets/img/moneyIcon.png')}

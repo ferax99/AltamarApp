@@ -16,6 +16,7 @@ import SearchResult from "../screens/searchResult";
 import Perfil from "../screens/perfil"
 import FilterSelection from "../screens/filterSelection"
 import FilterLocation from "../screens/filterLocation"
+import FilterPrice from "../screens/filterPrice";
 
 
 const HomeStack = createStackNavigator({
@@ -33,6 +34,7 @@ const HomeStack = createStackNavigator({
   Info: Info,
   LoginPw: LoginPw,
   "Ubicación": FilterLocation,
+  "Rango de pago": FilterPrice,
   "Mis productos": MyProducts,
 },
   {
