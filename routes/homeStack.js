@@ -15,15 +15,12 @@ import Favoritos from "../screens/favoritos";
 
 
 const HomeStack = createStackNavigator({
-<<<<<<< HEAD
   
   Home: Home,
   Login: Login,
   "Mis productos": MyProducts,
   Favoritos:Favoritos,
   Info: Info,
-=======
->>>>>>> 7c1327f80489cefd52c9fda129a28e68fe7e92b0
   ChooseRole: ChooseRole,
   X:Home,
   "Creando Vendedor": CreateAccountSeller,
@@ -35,11 +32,7 @@ const HomeStack = createStackNavigator({
  
 },
   {
-<<<<<<< HEAD
     //headerMode: 'false',
-=======
-    headerMode: 'false',
->>>>>>> 7c1327f80489cefd52c9fda129a28e68fe7e92b0
     defaultNavigationOptions: { headerTitleAlign: 'center' }
 
   });
