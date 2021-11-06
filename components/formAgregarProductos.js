@@ -10,7 +10,7 @@ import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-
+import userData from '../local_data/userData.json';
 
 const FormAgregarProductos = ({ navigation }) => {
 
@@ -36,7 +36,7 @@ const FormAgregarProductos = ({ navigation }) => {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
-                telefono: "2",
+                telefono: userData.telefono,
                 tipo: tipo,
                 cantidad: cantidad,
                 precio: precio,
@@ -79,7 +79,7 @@ const FormAgregarProductos = ({ navigation }) => {
                             Tipo de Producto
                         </Text>
                         <Text style={styles.texto}>
-                            Cantidad
+                            Cantidad (KG)
                         </Text>
                         <Text style={styles.texto}>
                             Precio x Kilo
@@ -122,9 +122,7 @@ const FormAgregarProductos = ({ navigation }) => {
                                 keyboardType='numeric'
                                 style={styles.input}
                             />
-                            <Text style={styles.etiqueta}>
-                                KG
-                            </Text>
+                            
                         </View>
                         <TextInput
                             onChangeText={(vprecio) => { setPrecio(vprecio) }}
@@ -177,6 +175,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         flex: 1,
+        
         alignContent: "flex-end"
     },
     texto: {

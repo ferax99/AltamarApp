@@ -12,9 +12,9 @@ import Moment from 'moment';
 import colors from "../assets/colors/colors";
 
 
-const FormEditarProductos = ({ navigation }) => {
+const FormEditarProductos = ({ navigation ,id}) => {
 
-
+    console.log("######id###"+id);
     const countries = ["Sandina azul", "Pargo", "Marlin blanco"]
     const [listOfProd, setListOfProd] = useState([]);
     const [tipo, setTipo] = useState("")
@@ -29,7 +29,6 @@ const FormEditarProductos = ({ navigation }) => {
     var vprecio = precio
     var vfecha = fecha
     var vubicacion = ubicacion
-    var id = "61738980d641af4045d45795"
     var vvendido = vendido
     // var texto = "Marcar"
 

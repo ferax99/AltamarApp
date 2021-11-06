@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     container: {
-      padding:30,
+      
       backgroundColor: colors.backgroundColor,
       flex: 1,     
     },

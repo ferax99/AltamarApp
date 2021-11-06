@@ -1,17 +1,50 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+
 import {View, Text, StyleSheet, Image,} from "react-native";
 import { SafeAreaView } from 'react-navigation';
+import Axios from "axios";
 import colors from '../assets/colors/colors';
+import Server from "../serverData";
+import { TouchableOpacity } from "react-native-gesture-handler";
+const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png" ;
 
-const ProductosT = ({ruta, tipo}) => {
+const ProductosT = ({ tipo}) => {
+  const [foto, setFoto] = useState('');
+    const [obid,setObid] =useState('');
+    const [state, setState] = useState({});
+    useEffect(() => {
+        fetchData();
+        return () => {
+            setState({});
+        }
+    }, []);
+
+    const fetchData = () => {
+        Axios.post(Server + "/getFotoPez", { nombre:tipo }
+        ).then((response) => {
+            if(response.data!="False"){
+            setFoto(response.data);}
+            else{
+                setFoto(sinConexion);
+            }
+            //console.log(response.data)
+        }).catch(() => {
+            console.log("ERROR");
+            setFoto(sinConexion);
+
+        });
+    }
+
+
+
   return (
-    <SafeAreaView style={styles.container}>
+    <TouchableOpacity style={styles.container}>
         <View>
-            <Image  style = {styles.ima} source={ruta} />   
+            <Image  style = {styles.ima} source={foto} />   
         </View>
         <Text style = {styles.tipo}>{tipo}</Text>
         
-    </SafeAreaView>
+    </TouchableOpacity>
   );
 };
 

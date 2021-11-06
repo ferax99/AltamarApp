@@ -4,6 +4,7 @@ import {Text,StyleSheet, View} from 'react-native';
 import Temporada from '../components/temporada';
 import colors from '../assets/colors/colors';
 import axios from 'axios';
+import Navbar from '../components/navbar';
 
 const Home = ({navigation}) =>{
     const telefono = navigation.getParam("telefono");
@@ -20,7 +21,7 @@ const Home = ({navigation}) =>{
   return(
     <View style = {styles.container}>
       <Temporada lista = {listOfFish}/>
-    
+      <Navbar navigation={navigation} num="2" />
      </View>
         
   );
@@ -29,8 +30,6 @@ const styles = StyleSheet.create({
     container: {
       backgroundColor: colors.background,
       flex: 1,    
-      justifyContent: 'center',
-      alignContent:'center',
 
      
     }});

@@ -5,7 +5,6 @@ import Axios from "axios";
 import Server from "../serverData";
 import colors from '../assets/colors/colors';
 
-
 const Login = ({ navigation }) => {
 
 
@@ -89,7 +88,9 @@ const Login = ({ navigation }) => {
           - Términos de servicio
         </Text>
       </Text>
-    </SafeAreaView>
+      
+      </SafeAreaView>
+     
   );
 };
 

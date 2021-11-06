@@ -24,15 +24,15 @@ class SkipButton extends Component {
 const styles = StyleSheet.create({
     boton: {
         backgroundColor: colors.whiteButtons,
-        width: 327,
-        height: 56,
+        width: "80%",
+       
         alignItems: 'center',
         alignSelf: 'center',
         color: colors.blackText,
         marginTop: 8,
         borderRadius: 50,
         borderWidth: 2,
-        top: 430
+        top: "50%"
 
     },
     texto: {
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 20,
         top: "20%",
+        margin:15,
         justifyContent: 'center'
     },
 });
