@@ -13,26 +13,30 @@ import EditProducts from "../screens/editProducts";
 import { defineAnimation } from "react-native-reanimated";
 import Favoritos from "../screens/favoritos";
 import SearchResult from "../screens/searchResult";
+import Perfil from "../screens/perfil"
+import FilterSelection from "../screens/filterSelection"
+import FilterLocation from "../screens/filterLocation"
 
 
 const HomeStack = createStackNavigator({
+  "Filtros": FilterSelection,
   Home: Home,
-  SearchResult: SearchResult,
+  "Búsqueda": SearchResult,
+  Perfil: Perfil,
+  "Añadir productos": AddProducts,
   "Creando Vendedor": CreateAccountSeller,
   "Creando Comprador": CreateAccountBuyer,
   Login: Login,
   ChooseRole: ChooseRole, 
   Editor: EditProducts,
   Favoritos: Favoritos,
- 
   Info: Info,
   LoginPw: LoginPw,
-  
+  "Ubicación": FilterLocation,
   "Mis productos": MyProducts,
-  "Añadir productos": AddProducts,
 },
   {
-    headerMode: 'false',
+    // headerMode: 'false',
     defaultNavigationOptions: { headerTitleAlign: 'center' }
 
   });

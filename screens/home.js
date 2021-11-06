@@ -4,7 +4,7 @@ import { TextInput, StyleSheet, View, Image, SafeAreaView } from 'react-native';
 import Temporada from '../components/temporada';
 import colors from '../assets/colors/colors';
 import axios from 'axios';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Server from '../serverData'
 
 const Home = ({ navigation }) => {
   const telefono = navigation.getParam("telefono");
@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     const fetchPostList = async () => {
-      const { data } = await axios("http://localhost:3001/readTop")
+      const { data } = await axios(Server+"/readTop")
       setListOfFish(data)
     }
     fetchPostList()
@@ -30,7 +30,7 @@ const Home = ({ navigation }) => {
           value={search}
           placeholder="Buscar"
           onChangeText={(search) => setSearch(search)}
-          onSubmitEditing={() => navigation.navigate('SearchResult')}
+          onSubmitEditing={() => navigation.navigate('Búsqueda',{search: ValueSearch})}
         />
         <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
       </View>
