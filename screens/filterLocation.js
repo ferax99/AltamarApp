@@ -4,9 +4,12 @@ import { StyleSheet, SafeAreaView, View, Image, TextInput } from 'react-native';
 import colors from '../assets/colors/colors';
 
 const FilterLocation = ({ navigation }) => {
+    var search = navigation.getParam("search");
+    const filtroPrecioMax = navigation.getParam("precioMax");
+    const filtroPrecioMin = navigation.getParam("precioMin");
 
-    const [search, setSearch] = useState('')
-    var ValueSearch = search;
+    const [ubicacion, setUbicacion] = useState('')
+    var ValueUbicacion = ubicacion;
 
     return (
 
@@ -14,10 +17,10 @@ const FilterLocation = ({ navigation }) => {
             <View style={styles.row}>
                 <TextInput
                     style={styles.search}
-                    value={search}
+                    value={ubicacion}
                     placeholder="¿De dónde quieres el producto?"
-                    onChangeText={(search) => setSearch(search)}
-                    onSubmitEditing={() => navigation.navigate('Búsqueda', { search: ValueSearch })}
+                    onChangeText={(ubicacion) => setUbicacion(ubicacion)}
+                    onSubmitEditing={() => navigation.push('Búsqueda', { ubicacion: ValueUbicacion, search: search, precioMax: filtroPrecioMax, precioMin: filtroPrecioMin })}
                 />
                 <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
             </View>

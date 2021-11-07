@@ -1,28 +1,20 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, SafeAreaView, View, Image, Text, TouchableOpacity } from 'react-native';
 import colors from '../assets/colors/colors';
+import RangeSlider from "../components/RangeSlider";
 
 const FilterPrice = ({ navigation }) => {
-
+    var search = navigation.getParam("search");
+    const filtroUbicacion = navigation.getParam("ubicacion");
     return (
 
         <SafeAreaView style={styles.container}>
-            <View style={styles.cajaPrecios}>
-                <Text style={styles.text}>
-                    ₡950 - ₡10 000
-                </Text>
-                <Text style={styles.textPromedio}>
-                    Precio promedio ₡4 525
-                </Text>
+
+            <View style={styles.slider}>
+                <RangeSlider from={0} to={10000} navigation={navigation} search={search} ubicacion={filtroUbicacion} />
             </View>
-            <TouchableOpacity
-                style={styles.boton}
-                onPress={() => navigation.navigate("Búsqueda")} >
-                <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
-                    Listo
-                </Text>
-            </TouchableOpacity>
+
         </SafeAreaView>
 
     )
@@ -69,6 +61,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.greyText,
         fontSize: 14,
+    },
+    slider: {
+        width: "90%",
+        marginTop: "50%",
     },
 });
 

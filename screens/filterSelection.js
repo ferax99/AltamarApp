@@ -3,12 +3,16 @@ import { TouchableOpacity, StyleSheet, SafeAreaView, View, Text, Alert, Image, V
 import colors from '../assets/colors/colors';
 
 const FilterSelection = ({ navigation }) => {
+    var search = navigation.getParam("search");
+    const filtroUbicacion = navigation.getParam("ubicacion");
+    const filtroPrecioMax = navigation.getParam("precioMax");
+    const filtroPrecioMin = navigation.getParam("precioMin");
     return (
 
         <SafeAreaView style={styles.container}>
             <TouchableOpacity
                 style={styles.botonFiltro}
-                onPress={() => navigation.navigate("Rango de pago")} >
+                onPress={() => navigation.navigate("Rango de pago", { search: search, ubicacion: filtroUbicacion })} >
                 <Image
                     style={styles.moneyFilterIcon}
                     source={require('../assets/img/moneyIcon.png')}
@@ -23,7 +27,7 @@ const FilterSelection = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.botonFiltro}
-                onPress={() => navigation.navigate("Ubicación")} >
+                onPress={() => navigation.navigate("Ubicación", { search: search, precioMax: filtroPrecioMax, precioMin: filtroPrecioMin })} >
                 <Image
                     style={styles.locationFilterIcon}
                     source={require('../assets/img/locationIcon.png')}
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
         width: 8,
         height: 13,
         marginLeft: "50%",
-        
+
     },
 });
 

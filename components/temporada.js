@@ -6,7 +6,6 @@ import { FlatList } from 'react-native-gesture-handler';
 
 
 const Temporada = ({lista}) =>{
-   console.log(lista)
    
   return(
 <SafeAreaView style = {styles.container} >
