@@ -18,8 +18,8 @@ import KK from "../screens/perfil"
 
 const HomeStack = createStackNavigator({
   //X:Perfil,
+  Home: Home,
   Perfil: KK,
-  //Home: Home,
   Login: Login,
   "Mis productos": MyProducts,
   Favoritos:Favoritos,

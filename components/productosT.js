@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png" ;
 
 const ProductosT = ({ tipo}) => {
-  const [foto, setFoto] = useState('');
+  const [foto, setFoto] = useState('https://www.pixsy.com/wp-content/uploads/2021/04/ben-sweet-2LowviVHZ-E-unsplash-1.jpeg');
     const [obid,setObid] =useState('');
     const [state, setState] = useState({});
     useEffect(() => {
@@ -40,7 +40,7 @@ const ProductosT = ({ tipo}) => {
   return (
     <TouchableOpacity style={styles.container}>
         <View>
-            <Image  style = {styles.ima} source={foto} />   
+            <Image  style = {styles.ima} source={{uri:foto}} />   
         </View>
         <Text style = {styles.tipo}>{tipo}</Text>
         
@@ -50,13 +50,14 @@ const ProductosT = ({ tipo}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width:"auto",
+    width:"90%",
     margin:10,
     borderRadius:10,    
     backgroundColor:colors.whiteButtons,
     
     flexDirection: "row",
     flexWrap:"nowrap",
+    
     
   },
   

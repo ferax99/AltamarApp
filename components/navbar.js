@@ -58,7 +58,7 @@ const Navbar = ({navigation,num}) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: "fixed",
+    
     bottom: 0,
     width:"100%",
    
