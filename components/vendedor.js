@@ -1,53 +1,44 @@
 import React from "react";
-import { Image, StyleSheet, View, Text } from "react-native";
-import colors from "../assets/colors/colors";
+import { StyleSheet, Text, View, Image } from "react-native";
+import colors from "../assets/colors/colors"
+import ContactarProducto from "./contactarProducto";
 
-const UserInfo = () => {
+const Vendedor = () => {
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
                 <View >
                     <Text style={styles.nombre}>
-                        Marta
+                        César
                     </Text>
                     <Text style={styles.apellido}>
-                        Porras
+                        Ramírez
                     </Text>
                 </View>
-                <Image style={styles.favorito} source={require("../assets/img/fav.png")} />
+                <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
 
             </View>
-
-            <View style={styles.detalles}>
-                <Image style={styles.iconUbicacion} source={require("../assets/img/ubicacion.png")} />
-                <Text style={styles.detalleUbicacion}>
-                    Desaparados, San José
-                </Text>
-            </View>
-            {/* <View style={styles.detallesTelefono}>
-                <Image style={styles.iconTelefono} source={require("../assets/img/telefono.png")} />
-                <Text style={styles.detalleTelefono}>
-                    8737 1397
-                </Text>
-            </View> */}
-
+            <Image style={styles.boton} source={require("../assets/img/botonCatalogo.png")} />
+            <ContactarProducto />
         </View>
     )
 }
 const styles = StyleSheet.create({
     contenedor: {
-        marginBottom: 15,
-        backgroundColor: colors.orangeUI
+        backgroundColor: colors.whiteButtons,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        height: "60%"
     },
     conNombre: {
         flexDirection: "row",
-        justifyContent:"space-between",
-        marginRight:50,
-        alignItems:"center"
+        justifyContent: "space-between",
+        marginRight: 50,
+        alignItems: "center"
     },
     nombre: {
         fontWeight: "bold",
-        color: colors.whiteButtons,
+        color: colors.blackText,
         fontSize: 36,
         marginLeft: 54,
         marginTop: 18,
@@ -55,9 +46,9 @@ const styles = StyleSheet.create({
     },
     nombres: {
         fontWeight: "bold",
-        color: colors.whiteButtons,
+        color: colors.blackText,
         fontSize: 36,
-        marginLeft: 54,
+        marginLeft: 20,
         marginTop: 18,
 
 
@@ -65,7 +56,7 @@ const styles = StyleSheet.create({
     apellido: {
         fontWeight: "bold",
         marginTop: -10,
-        color: colors.whiteButtons,
+        color: colors.blackText,
         fontSize: 36,
         marginLeft: 54,
 
@@ -100,6 +91,13 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
 
     },
+    boton: {
+        width: 123,
+        height: 29,
+        resizeMode: "contain",
+        marginLeft: 50,
+        marginTop: 10
+    },
     favorito: {
         width: 52,
         height: 43,
@@ -114,4 +112,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default UserInfo
+export default Vendedor

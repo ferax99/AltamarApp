@@ -71,8 +71,8 @@ const Perfil = ({ navigation }) => {
     // }
     return (
         <View style={styles.general}>
-            <UserInfo/>
-            <Contactar navigation={navigation}/>
+            <UserInfo />
+            <Contactar navigation={navigation} />
             <Image
                 style={styles.image}
                 source={require('../assets/img/catalogo.png')}
@@ -96,7 +96,7 @@ const Perfil = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     general: {
-        flex:1,
+        flex: 1,
         backgroundColor: colors.background,
     },
     contenedor: {
