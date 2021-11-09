@@ -40,7 +40,7 @@ const CreateAccountSeller = ({ navigation }) => {
   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
   const crearUsuario = () => {
-    if(!reg.test(correo)) {
+    if(!reg.test(correo) && correo!=='') {
       Alert.alert('Correo inválido', 'Verifique que su dirección de correo está bien escrita', [{ text: 'OK' }]);
     } else if(!(contraseña===verifContraseña)) {
       Alert.alert('Las contraseñas no coinciden', 'Asegurese de que su verificación de contraseña coincide con su contraseña', [{ text: 'OK' }]);
