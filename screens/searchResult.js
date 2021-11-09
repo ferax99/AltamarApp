@@ -8,7 +8,6 @@ import colors from '../assets/colors/colors'
 
 const SearchResult = ({ navigation }) => {
   var search = navigation.getParam("search");
-  // search.charAt(0).toUpperCase();
   const filtroUbicacion = navigation.getParam("ubicacion");
   const filtroPrecioMax = navigation.getParam("precioMax");
   const filtroPrecioMin = navigation.getParam("precioMin");

@@ -20,13 +20,13 @@ import FilterPrice from "../screens/filterPrice";
 
 
 const HomeStack = createStackNavigator({
+  "Creando Comprador": CreateAccountBuyer,
+  "Creando Vendedor": CreateAccountSeller,
   Home: Home,
   "Búsqueda": SearchResult,
   "Filtros": FilterSelection,
   Perfil: Perfil,
   "Añadir productos": AddProducts,
-  "Creando Vendedor": CreateAccountSeller,
-  "Creando Comprador": CreateAccountBuyer,
   Login: Login,
   ChooseRole: ChooseRole, 
   Editor: EditProducts,
