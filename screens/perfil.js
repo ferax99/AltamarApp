@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, Image } from "react-native";
 import { useState, useEffect } from "react/cjs/react.development";
-import ItemCatalogo from "../components/itemCatalogo";
 import UserData from "../userData";
 import Server from "../serverData";
 import colors from "../assets/colors/colors";
@@ -81,16 +80,6 @@ const Perfil = ({ navigation }) => {
                 <Catalogo publicaciones={publicaciones} peces={peces} />
             </ScrollView>
         </View>
-        // <View style={styles.contenedorw }>
-        //     <View>
-        //         <Text contenedor>
-        //             Hola
-        //         </Text>
-        //     </View>
-        // <SafeAreaView style={styles.contenedorw }>
-        //     {lista()}
-        // </SafeAreaView>
-        // </View>
 
     )
 }
