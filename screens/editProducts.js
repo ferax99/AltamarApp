@@ -10,36 +10,26 @@ import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-import UserData from "../userData";
+
 
 const EditProducts = ({ navigation }) => {
 
-    const countries = ["Sandina azul", "Pargo", "Marlin blanco"]
-    const [listOfProd, setListOfProd] = useState([]);
-   
+    const [listOfProd, setListOfProd] = useState([]);   
     const [estado, setEstado] = useState("")
-    var vtipo = tipo
-    var vcantidad = cantidad
-    var vprecio = precio
-    var vfecha = fecha
-    var vubicacion = ubicacion
-    var vvendido = true
-    // var texto = "Marcar"
     const datos = navigation.getParam("datos");
-    const id = "6187185f8fbc42c31cd3830d";
-    
+    const id = datos._id;
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
     const [precio, setPrecio] = useState(0)
     const [fecha, setFecha] = useState("")
     const [ubicacion, setUbicacion] = useState("")
     useEffect(() => {
-        //setCantidad(datos.cantidad);
-        //setFecha(datos.fecha);
-        //setTipo(datos.tipo);
-        //setPrecio(datos.precio);
-        //setUbicacion(datos.localizacion);
-        //setEstado(datos.estado);
+        setCantidad(datos.cantidad );
+        setFecha(datos.fecha);
+        setTipo(datos.tipo);
+        setPrecio(datos.precio);
+        setUbicacion(datos.localizacion);
+        setEstado(datos.estado);
         const fetchPostList = async () => {
             const {data} = await Axios(Server+"/readPeces")
             setListOfProd(data)
@@ -47,9 +37,10 @@ const EditProducts = ({ navigation }) => {
         fetchPostList()
 
         }, [setListOfProd])
-    console.log(listOfProd)
+    //console.log(listOfProd)
     let peces = listOfProd.map(order => order.nombre)
-    console.log(peces)
+    
+
     const setEstadoServer = (estadoTemp) => {
         Axios.put(Server + "/updateEstado", { id:id,estado:estadoTemp }
         ).then((response) => {
@@ -142,7 +133,7 @@ const EditProducts = ({ navigation }) => {
                                     <FontAwesome name="chevron-down" color={"#444"} size={18} />
                                 );
                             }}
-                            //defaultButtonText={datos.tipo}
+                            defaultButtonText={datos.tipo}
                             
 
                             dropdownStyle={styles.dropdown1DropdownStyle}
@@ -154,7 +145,8 @@ const EditProducts = ({ navigation }) => {
                             <TextInput
                                 onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
                                 placeholder="00,00"
-                                value={cantidad}
+                                value={cantidad.toString()}
+                                
                                 style={styles.input}
                                 keyboardType='numeric'
                             />
@@ -166,7 +158,7 @@ const EditProducts = ({ navigation }) => {
                             onChangeText={(vprecio) => { setPrecio(vprecio) }}
                             style={styles.input}
                             placeholder="₡0.000" 
-                            value={precio}
+                            value={precio.toString()}
                             keyboardType='numeric'/>
                         <TextInput
                             onChangeText={(vfecha) => { setFecha(vfecha) }}
@@ -209,6 +201,7 @@ const EditProducts = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop:20,
         paddingTop: 50,
         flex: 1,
         flexDirection: "column",

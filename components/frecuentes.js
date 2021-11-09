@@ -6,69 +6,94 @@ import colors from '../assets/colors/colors.js';
 import { FlatList } from 'react-native-gesture-handler';
 import Server from '../serverData';
 import ProductosF from "./productosF";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Frecuentes = () => {
-    const [datos, setDatos] = useState([{}]);
+    const [datos, setDatos] = useState([]);
     const [listo, setListo] = useState(0);
 
     useEffect(() => {
-        fetchData();
+        //guarda("Pargo");
+        carga();
     }, []);
 
-   
+    const guarda =async(tipo)=>{
+        try{
+            let x = await AsyncStorage.getItem("historial");
+            if (x==null){
+                x = [tipo];
+                const historial = JSON.stringify(x)
+                await AsyncStorage.setItem("historial",historial);
+                console.log("guardado")
+            }
+            else{
+                let datos = JSON.parse(x)
+                if(datos.length >6){
+                    datos.shift();
+                   
+                }
+                datos.push(tipo);
+                const historial = JSON.stringify(datos);
+                await AsyncStorage.setItem("historial",historial);
+                console.log("guardado")
 
-    const fetchData = () => {
-        Axios.get(Server + "/getRecomendados/4"
-        ).then((response) => {
+            }
+            
+            
 
-            var val = [];
-            var i = 0;
-            var x = response.data;
-            x.forEach(function (task) {
+        }catch (err){
+            console.log(err)
+        }
 
-                val.push(x[i].publicaciones);
-                i++;
-
-            });
-            setDatos(val);
-            setListo(1);
-
-        }).catch(() => {
-            console.log("ERROR :c");
-
-        });
     }
+
+    const carga =async()=>{
+        try{
+            let x = await AsyncStorage.getItem("historial");
+            const datos = JSON.parse(x)
+            const val = datos.reverse();
+            setDatos(val);
+            setListo(val.length);
+            
+
+        }catch (err){
+            console.log(err)
+        }
+
+    }
+
+   
     return (
         <SafeAreaView style={styles.container} >
             <   ScrollView >
 
                 <Text style={styles.title}  >
-                    Productos Frecuentess
+                    Productos Frecuentess 
                 </Text>
                 <View style={styles.contenedorLista} >
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.contenedorFila}>
                             {
-                                (listo==1) &&
+                                (listo>=2) &&
                                 <View style={styles.grupo}>
-                                    <ProductosF data={datos[0]} />
-                                    <ProductosF data={datos[1]} />
+                                    <ProductosF tipo={datos[0]} />
+                                    <ProductosF tipo={datos[1]} />
                                 </View>
 
                             }
                             {
-                                (listo==1) &&
+                                (listo>=4) &&
                             <View style={styles.grupo}>
-                                <ProductosF data={datos[2]} />
-                                <ProductosF data={datos[3]} />
+                                <ProductosF tipo={datos[2]} />
+                                <ProductosF tipo={datos[3]} />
                             </View>
                                 
                             }
                              {
-                                (listo==1) &&
+                                (listo>=6) &&
                             <View style={styles.grupo}>
-                                <ProductosF data={datos[2]} />
-                                <ProductosF data={datos[3]} />
+                                <ProductosF tipo={datos[4]} />
+                                <ProductosF tipo={datos[5]} />
                             </View>
                                 
                             }

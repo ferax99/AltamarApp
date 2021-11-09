@@ -6,7 +6,7 @@ import Server from "../serverData";
 
 const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png" ;
 const MiProducto = ({ navigation,datos }) => {
-    const [foto, setFoto] = useState('');
+    const [foto, setFoto] = useState(sinConexion);
     const [obid,setObid] =useState('');
     const [state, setState] = useState({});
     useEffect(() => {
@@ -49,7 +49,7 @@ const MiProducto = ({ navigation,datos }) => {
                 }
 
                 <View style={styles.row}>
-                    <TouchableOpacity onPress={() => {navigation.navigate('Editor', { datos })}}>
+                    <TouchableOpacity style={styles.edit}onPress={() => {navigation.navigate('Editor', { datos })}}>
                         <Image style={styles.trash} source={require('../assets/img/edit.png')} />
                     </TouchableOpacity>
                 </View>
@@ -90,6 +90,14 @@ const styles = StyleSheet.create({
         width: 20,
         height: 28,
         resizeMode: "contain",
+        justifyContent: 'flex-end',
+        marginTop: -46,
+        marginRight: 10,
+
+    },
+    edit: {
+        width: 20,
+        height: 23,
         justifyContent: 'flex-end',
         marginTop: -46,
         marginRight: 10,

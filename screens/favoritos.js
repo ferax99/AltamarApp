@@ -19,8 +19,8 @@ const SwitchOp = [
 
 
 
-const tam=Dimensions.get('window').height*(0.59);
-
+//const tam=Dimensions.get('window').height*(0.59);  //por si el navbar no sirve
+const tam=Dimensions.get('window').height;
 const Favoritos = ({ navigation }) => {
     const [tex, setTex] = useState('')
     var Value = tex;
@@ -91,7 +91,7 @@ const Favoritos = ({ navigation }) => {
     const ProductView = ({ item }) => {
 
 
-        //console.log(item);
+        console.log(item);
 
         return (
             <ProductoF ruta={item.img} tipo={item.pez} vendedor={item.nombre} />
@@ -175,7 +175,6 @@ const Favoritos = ({ navigation }) => {
                 
 
                 <View  >
-                    <Navbar navigation={navigation} num="1" />  
                 </View>
                 
 
