@@ -72,7 +72,6 @@ const MyProducts = ({ navigation }) => {
                 </View>
             }
 
-            <Navbar navigation={navigation} num="1" />
 
         </SafeAreaView>
 
@@ -82,6 +81,7 @@ const MyProducts = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     container: {
+        marginTop:30,
         padding: 20,
         backgroundColor: colors.background,
         flex: 1,
