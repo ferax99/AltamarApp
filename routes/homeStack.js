@@ -13,10 +13,11 @@ import EditProducts from "../screens/editProducts";
 import Favoritos from "../screens/favoritos";
 import Perfil from "../screens/perfil";
 import Producto from "../screens/producto";
-
+import MiPerfil from "../screens/miPerfil";
 
 const HomeStack = createStackNavigator({
   Producto:Producto,
+  "Mi Perfil": MiPerfil,
   Perfil: Perfil,
   "Creando Vendedor": CreateAccountSeller,
   ChooseRole: ChooseRole,

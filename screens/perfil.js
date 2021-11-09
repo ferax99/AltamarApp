@@ -50,10 +50,10 @@ const Perfil = ({ navigation }) => {
             });
     }
 
-    //let simpleOrders = publicaciones.map(order => order.map(elem => elem.tipo))
+    let simpleOrders = publicaciones.map(order => order.map(elem => elem.tipo))
 
     let pecera = peces.map(pez => pez)
-    //console.log(peces)
+    console.log(simpleOrders)
 
     // const lista = () => {
     //     return (
