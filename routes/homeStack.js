@@ -17,12 +17,12 @@ import MiPerfil from "../screens/miPerfil";
 import EditarPerfil from "../screens/editUserP";
 
 const HomeStack = createStackNavigator({
-  Perfil: Perfil,
   "Mi Perfil": MiPerfil,
   Producto:Producto,
+  Perfil: Perfil,
   Home: Home,
   Login: Login,
-  EditarPerfil:EditarPerfil,
+  "Editar Perfil":EditarPerfil,
   "Mis productos": MyProducts,
   Favoritos:Favoritos,
   "Creando Vendedor": CreateAccountSeller,

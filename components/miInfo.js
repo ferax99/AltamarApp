@@ -1,6 +1,7 @@
 import React from "react";
-import { View , Text, StyleSheet, Image} from "react-native";
+import { View , Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 import colors from "../assets/colors/colors";
+
 
 const MiInfo = ({navigation}) =>{
     return(
@@ -14,7 +15,10 @@ const MiInfo = ({navigation}) =>{
                         Porras
                     </Text>
                 </View>
-                <Image style={styles.favorito} source={require("../assets/img/engrane.png")} />
+                <TouchableOpacity onPress={()=>navigation.navigate("Editar Perfil")}>
+                <Image style={styles.editar} source={require("../assets/img/engrane.png")} />
+
+                </TouchableOpacity>
 
             </View>
 
@@ -100,9 +104,9 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
 
     },
-    favorito: {
-        width: 52,
-        height: 43,
+    editar: {
+        width: 30,
+        height: 30,
         resizeMode: "contain"
 
     },
