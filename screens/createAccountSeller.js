@@ -108,6 +108,10 @@ const CreateAccountSeller = ({ navigation }) => {
             />
           </View>
 
+          <Text style={telefono==='' ? styles.infoMessageInvisible : styles.infoMessageVisible} >
+            Asegurese de que el número de teléfono es correcto ya que es un dato importante.
+          </Text>
+
           <View style={styles.field}>
             <Text style={styles.fieldTitle} >
               Ubicación Habitacional
@@ -297,6 +301,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   errorMessageInvisible: {
+    color: colors.background,
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  infoMessageVisible: {
+    color: colors.blueUI,
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  infoMessageInvisible: {
     color: colors.background,
     fontSize: 10,
     fontWeight: 'bold',
