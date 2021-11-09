@@ -10,28 +10,29 @@ import CreateAccountBuyer from "../screens/createAccountBuyer";
 import MyProducts from "../screens/misProductos"
 import AddProducts from "../screens/addProducts";
 import EditProducts from "../screens/editProducts";
-import { defineAnimation } from "react-native-reanimated";
 import Favoritos from "../screens/favoritos";
-import Perfil from "../screens/editUserP";
-import KK from "../screens/perfil"
-
+import Perfil from "../screens/perfil";
+import Producto from "../screens/producto";
+import MiPerfil from "../screens/miPerfil";
+import EditarPerfil from "../screens/editUserP";
 
 const HomeStack = createStackNavigator({
-  //X:Perfil,
   Home: Home,
-  Perfil: KK,
   Login: Login,
+  EditarPerfil:EditarPerfil,
   "Mis productos": MyProducts,
   Favoritos:Favoritos,
-  Info: Info,
-  ChooseRole: ChooseRole,
-  X:Home,
+  Producto:Producto,
+  "Mi Perfil": MiPerfil,
+  Perfil: Perfil,
   "Creando Vendedor": CreateAccountSeller,
   "Creando Comprador": CreateAccountBuyer,
+  Info: Info,
+  ChooseRole: ChooseRole,
   LoginPw: LoginPw,
-  
+  Editor: EditProducts,
   "Añadir productos": AddProducts,
- 
+
 },
   {
     //headerMode: 'false',

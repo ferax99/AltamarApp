@@ -21,6 +21,10 @@ const SwitchOp = [
 
 const tam=Dimensions.get('window').height*(0.59);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
 const Favoritos = ({ navigation }) => {
     const [tex, setTex] = useState('')
     var Value = tex;
@@ -34,7 +38,11 @@ const Favoritos = ({ navigation }) => {
     useEffect(() => {
         fetchProductos();
         fetchContactos();
+<<<<<<< HEAD
+
+=======
         console.log(windowHeight);
+>>>>>>> main
 
         return () => {
 
@@ -89,10 +97,17 @@ const Favoritos = ({ navigation }) => {
         )
     }
     const ProductView = ({ item }) => {
+<<<<<<< HEAD
 
 
         //console.log(item);
 
+=======
+
+
+        //console.log(item);
+
+>>>>>>> main
         return (
             <ProductoF ruta={item.img} tipo={item.pez} vendedor={item.nombre} />
         )
@@ -103,6 +118,78 @@ const Favoritos = ({ navigation }) => {
 
 
     return (
+<<<<<<< HEAD
+        <SafeAreaView style={styles.container} >
+
+            <Text style={styles.title}  >
+                Favoritos
+            </Text>
+            <View >
+                <View style={styles.contenedorSw}>
+                    <View style={styles.row}>
+
+                        <TextInput
+                            style={styles.search}
+                            value={search}
+                            placeholder="   Buscar"
+                            onChangeText={(text) => searchFilter(text)}
+                        />
+                        <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
+                    </View>
+                    <SwitchSelector
+                        textColor={'#838383'}
+                        buttonColor={"#EE7333"}
+                        selectedColor={"#FFFFFF"}
+                        backgroundColor={"rgba(131, 131, 131, 0.12)"}
+                        height={43}
+
+                        options={SwitchOp}
+                        initial={0}
+                        onPress={(Value) => { setTex(Value); }}
+                    />
+                </View>
+            </View>
+            <View style={styles.contenedorLista}>
+
+                <SafeAreaView>
+                    {
+                        (tex == "Productos") &&
+
+                        <FlatList
+                            nestedScrollEnabled
+                            data={productos}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={ProductView}
+                        />
+
+
+
+                    }
+                    {
+                        (tex != "Productos") &&
+                        <FlatList
+                            nestedScrollEnabled
+                            data={filteredData}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={ContactView}
+                        />
+
+                    }
+
+
+                </SafeAreaView>
+
+
+
+
+            </View>
+
+
+
+        </SafeAreaView>
+
+
+=======
        
             <SafeAreaView style={styles.container}  >
                 <View>
@@ -183,6 +270,7 @@ const Favoritos = ({ navigation }) => {
             
 
         
+>>>>>>> main
 
     );
 };
@@ -212,10 +300,19 @@ const styles = StyleSheet.create({
 
     },
     contenedorLista: {
+<<<<<<< HEAD
+
+        width: "100%",
+        margin: "auto",
+        marginTop: 10,
+        marginBottom: 30,
+        justifyContent: 'center',
+=======
         width: "100%",
         marginTop: 10,
         marginBottom: 30,
         justifyContent: 'flex-end',
+>>>>>>> main
     },
     title: {
         marginTop: "5%",
@@ -229,8 +326,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         flex: 1,
         justifyContent: 'flex-start',
+<<<<<<< HEAD
+        alignContent: 'center'
+=======
         alignContent: 'center',
         backgroundColor: "white"
+>>>>>>> main
 
     },
     boton: {

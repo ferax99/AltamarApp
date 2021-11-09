@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import { ReactDom } from "react-dom";
-import { useNavigation } from '@react-navigation/native'
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState} from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, Text, TextInput, Alert, View } from 'react-native';
-import { event } from "react-native-reanimated";
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Axios from "axios";
@@ -15,7 +12,6 @@ import userData from '../local_data/userData.json';
 const FormAgregarProductos = ({ navigation }) => {
 
     const countries = ["Corvina", "Pargo", "Atún"]
-    const [listOfProd, setListOfProd] = useState([]);
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
     const [precio, setPrecio] = useState(0)
