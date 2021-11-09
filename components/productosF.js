@@ -8,8 +8,8 @@ import Server from "../serverData";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png" ;
 
-const ProductosT = ({ tipo}) => {
-  const [foto, setFoto] = useState('https://www.pixsy.com/wp-content/uploads/2021/04/ben-sweet-2LowviVHZ-E-unsplash-1.jpeg');
+const ProductosF = ({ data}) => {
+  const [foto, setFoto] = useState('https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png');
     const [obid,setObid] =useState('');
     const [state, setState] = useState({});
     useEffect(() => {
@@ -20,7 +20,7 @@ const ProductosT = ({ tipo}) => {
     }, []);
 
     const fetchData = () => {
-        Axios.post(Server + "/getFotoPez", { nombre:tipo }
+        Axios.post(Server + "/getFotoPez", {nombre: data.tipo }
         ).then((response) => {
             if(response.data!="False"){
             setFoto(response.data);}
@@ -40,9 +40,9 @@ const ProductosT = ({ tipo}) => {
   return (
     <TouchableOpacity style={styles.container}>
         <View>
-            <Image  style = {styles.ima} source={{uri:foto}} />   
+            <Image  style = {styles.ima} source={require("../assets/peces/dorado.jpg")} />   
         </View>
-        <Text style = {styles.tipo}>{tipo}</Text>
+        <Text style = {styles.tipo}>{data.tipo}</Text>
         
     </TouchableOpacity>
   );
@@ -54,16 +54,13 @@ const styles = StyleSheet.create({
     margin:10,
     borderRadius:10,    
     backgroundColor:colors.whiteButtons,
-    
-    flexDirection: "row",
-    flexWrap:"nowrap",
-    
+    justifyContent:"center"
     
   },
   
   ima:{
-    width:80,
-    height:60,
+    width:85,
+    height:85,
     marginVertical:10,
     resizeMode:"contain",
     justifyContent:"flex-start",
@@ -72,11 +69,9 @@ const styles = StyleSheet.create({
     color:"#0C1722",
     fontWeight:"bold",
     fontSize:14,
-    marginTop:35,
-    marginLeft:20,
+   
     textAlign:"center",
-    paddingRight:10,
   },
 });
 
-export default ProductosT;
+export default ProductosF;

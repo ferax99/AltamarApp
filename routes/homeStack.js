@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, StackRouter } from "react-navigation";
 import Login from '../screens/login';
 import Info from "../screens/info";
 import LoginPw from "../screens/loginPw";
@@ -14,25 +14,25 @@ import Favoritos from "../screens/favoritos";
 import Perfil from "../screens/perfil";
 import Producto from "../screens/producto";
 import MiPerfil from "../screens/miPerfil";
+import EditarPerfil from "../screens/editUserP";
 
 const HomeStack = createStackNavigator({
+  Home: Home,
+  Login: Login,
+  EditarPerfil:EditarPerfil,
+  "Mis productos": MyProducts,
+  Favoritos:Favoritos,
   Producto:Producto,
   "Mi Perfil": MiPerfil,
   Perfil: Perfil,
   "Creando Vendedor": CreateAccountSeller,
-  ChooseRole: ChooseRole,
   "Creando Comprador": CreateAccountBuyer,
-  Login: Login,
-  X: Home,
-
-  Editor: EditProducts,
-  Favoritos: Favoritos,
   Info: Info,
+  ChooseRole: ChooseRole,
   LoginPw: LoginPw,
-
-  "Mis productos": MyProducts,
+  Editor: EditProducts,
   "Añadir productos": AddProducts,
-  Home: Home,
+
 },
   {
     //headerMode: 'false',
@@ -40,5 +40,5 @@ const HomeStack = createStackNavigator({
 
   });
 
-export default createAppContainer(HomeStack);
 
+export default createAppContainer(HomeStack);

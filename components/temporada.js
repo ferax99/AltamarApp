@@ -6,7 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 
 const Temporada = ({lista}) =>{
-   console.log(lista)
+  // console.log(lista)
    
   return(
 <SafeAreaView style = {styles.container} >
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     container: {
-      padding:30,
+      
       backgroundColor: colors.backgroundColor,
       flex: 1,     
     },
