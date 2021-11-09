@@ -13,8 +13,7 @@ const Frecuentes = () => {
     const [listo, setListo] = useState(0);
 
     useEffect(() => {
-        //fetchData();
-        //guarda("Salmon");
+        //guarda("Pargo");
         carga();
     }, []);
 
@@ -63,27 +62,7 @@ const Frecuentes = () => {
 
     }
 
-    const fetchData = () => {
-        Axios.get(Server + "/getRecomendados/4"
-        ).then((response) => {
-
-            var val = [];
-            var i = 0;
-            var x = response.data;
-            x.forEach(function (task) {
-
-                val.push(x[i].publicaciones);
-                i++;
-
-            });
-            setDatos(val);
-            setListo(1);
-
-        }).catch(() => {
-            console.log("ERROR :c");
-
-        });
-    }
+   
     return (
         <SafeAreaView style={styles.container} >
             <   ScrollView >
