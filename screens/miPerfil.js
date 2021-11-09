@@ -3,10 +3,10 @@ import { View } from "react-native";
 import MiInfo from "../components/miInfo";
 
 
-const MiPerfil=()=>{
+const MiPerfil=({ navigation })=>{
     return(
         <View>
-            <MiInfo/>
+            <MiInfo navigation={navigation}/>
         </View>
     )
 }
