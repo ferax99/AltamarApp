@@ -10,7 +10,7 @@ import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-
+import UserData from "../userData";
 
 const EditProducts = ({ navigation }) => {
 
@@ -26,7 +26,7 @@ const EditProducts = ({ navigation }) => {
     var vvendido = true
     // var texto = "Marcar"
     const datos = navigation.getParam("datos");
-    const id = datos._id;
+    const id = "6187185f8fbc42c31cd3830d";
     
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
@@ -34,14 +34,22 @@ const EditProducts = ({ navigation }) => {
     const [fecha, setFecha] = useState("")
     const [ubicacion, setUbicacion] = useState("")
     useEffect(() => {
-        setCantidad(datos.cantidad);
-        setFecha(datos.fecha);
-        setTipo(datos.tipo);
-        setPrecio(datos.precio);
-        setUbicacion(datos.localizacion);
-        setEstado(datos.estado);
-    }, []);
+        //setCantidad(datos.cantidad);
+        //setFecha(datos.fecha);
+        //setTipo(datos.tipo);
+        //setPrecio(datos.precio);
+        //setUbicacion(datos.localizacion);
+        //setEstado(datos.estado);
+        const fetchPostList = async () => {
+            const {data} = await Axios(Server+"/readPeces")
+            setListOfProd(data)
+        }
+        fetchPostList()
 
+        }, [setListOfProd])
+    console.log(listOfProd)
+    let peces = listOfProd.map(order => order.nombre)
+    console.log(peces)
     const setEstadoServer = (estadoTemp) => {
         Axios.put(Server + "/updateEstado", { id:id,estado:estadoTemp }
         ).then((response) => {
@@ -118,7 +126,7 @@ const EditProducts = ({ navigation }) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <SelectDropdown
-                            data={countries}
+                            data={peces}
                             onSelect={(selectedItem, index) => {
                                 setTipo(selectedItem)
                             }}
@@ -134,7 +142,7 @@ const EditProducts = ({ navigation }) => {
                                     <FontAwesome name="chevron-down" color={"#444"} size={18} />
                                 );
                             }}
-                            defaultButtonText={datos.tipo}
+                            //defaultButtonText={datos.tipo}
                             
 
                             dropdownStyle={styles.dropdown1DropdownStyle}
