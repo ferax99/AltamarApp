@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { TextInput, StyleSheet, View, Image, SafeAreaView } from 'react-native';
 import Temporada from '../components/temporada';
+import Recomendado from '../components/recomendado';
 import colors from '../assets/colors/colors';
 import axios from 'axios';
 import Server from '../serverData'
@@ -35,9 +36,15 @@ const Home = ({ navigation }) => {
         <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
       </View>
 
-      <View style={styles.productosT}>
+      <View style={styles.container}>
+      <ScrollView>
+        <Frecuentes />
         <Temporada lista={listOfFish} />
-      </View>
+        <Recomendado />
+
+      </ScrollView>
+
+    </View>
 
     </SafeAreaView>
 

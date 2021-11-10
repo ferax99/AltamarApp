@@ -1,21 +1,17 @@
-import React, { Component } from "react";
-import { ReactDom } from "react-dom";
-import { useNavigation } from '@react-navigation/native'
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState} from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, Text, TextInput, Alert, View } from 'react-native';
-import { event } from "react-native-reanimated";
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-
+import userData from '../local_data/userData.json';
 
 const FormAgregarProductos = ({ navigation }) => {
 
     const countries = ["Corvina", "Pargo", "Atún"]
-    const [listOfProd, setListOfProd] = useState([]);
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
     const [precio, setPrecio] = useState(0)
@@ -36,7 +32,7 @@ const FormAgregarProductos = ({ navigation }) => {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
-                telefono: "2",
+                telefono: userData.telefono,
                 tipo: tipo,
                 cantidad: cantidad,
                 precio: precio,
@@ -79,7 +75,7 @@ const FormAgregarProductos = ({ navigation }) => {
                             Tipo de Producto
                         </Text>
                         <Text style={styles.texto}>
-                            Cantidad
+                            Cantidad (KG)
                         </Text>
                         <Text style={styles.texto}>
                             Precio x Kilo
@@ -122,9 +118,7 @@ const FormAgregarProductos = ({ navigation }) => {
                                 keyboardType='numeric'
                                 style={styles.input}
                             />
-                            <Text style={styles.etiqueta}>
-                                KG
-                            </Text>
+                            
                         </View>
                         <TextInput
                             onChangeText={(vprecio) => { setPrecio(vprecio) }}
@@ -177,6 +171,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         flex: 1,
+        
         alignContent: "flex-end"
     },
     texto: {

@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, StackRouter } from "react-navigation";
 import Login from '../screens/login';
 import Info from "../screens/info";
 import LoginPw from "../screens/loginPw";
@@ -43,5 +43,5 @@ const HomeStack = createStackNavigator({
 
   });
 
-export default createAppContainer(HomeStack);
 
+export default createAppContainer(HomeStack);
