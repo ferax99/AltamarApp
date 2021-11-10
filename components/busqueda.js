@@ -3,14 +3,14 @@ import { View, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native"
 import colors from "../assets/colors/colors";
 import ItemBusqueda from "./itemBusqueda";
 
-const Busqueda = ({ productos }) => {
+const Busqueda = ({ productos, navigation }) => {
     const lista = () => {
         return (
             <View style={styles.contenedor} >
                 <Image />
                 {productos.map(order => order.map(elem =>
                     <View key={elem._id} >
-                        <ItemBusqueda producto={elem} />
+                        <ItemBusqueda producto={elem} navigation={navigation} />
 
                     </View>
                 )

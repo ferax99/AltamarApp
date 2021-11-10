@@ -19,7 +19,12 @@ import EditarPerfil from "./screens/editUserP";
 import Prueba from './screens/prueba';
 import Prueba2 from './screens/prueba2';
 import SearchResult from './screens/searchResult';
+import FilterSelection from './screens/filterSelection';
+import FilterPrice from './screens/filterPrice';
+import FilterLocation from './screens/filterLocation';
+
 const Stack = createNativeStackNavigator();
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -54,7 +59,34 @@ const App = () => {
         <Stack.Screen
           name="Búsqueda"
           component={SearchResult}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="Filtros"
+          component={FilterSelection}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="Rango de pago"
+          component={FilterPrice}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="Ubicación"
+          component={FilterLocation}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+          }}
         />
         <Stack.Screen
           name="ChooseRole"
@@ -71,7 +103,8 @@ const App = () => {
           component={CreateAccountSeller}
           options={{
             title: "Creando Cuenta",
-            headerShown: true
+            headerShown: true,
+            headerTitleAlign: 'center'
           }}
         />
         <Stack.Screen
@@ -86,7 +119,10 @@ const App = () => {
         <Stack.Screen
           name="Mis productos"
           component={MyProducts}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
         
         <Stack.Screen
@@ -113,13 +149,17 @@ const App = () => {
         <Stack.Screen
           name="Prueba"
           component={Prueba}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Prueba2"
           component={Prueba2}
-          options={({ route }) => ({ title: route.params.titulo }),{
+          options={({ route }) => ({ title: route.params.titulo }), {
             headerShown: true,
+            headerTitleAlign: 'center'
           }}
         />
       </Stack.Navigator>

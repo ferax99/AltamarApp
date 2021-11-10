@@ -1,18 +1,24 @@
 import React from 'react';
+import { useState, useEffect } from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, View, Text, Alert, Image, ViewBase } from 'react-native';
 import colors from '../assets/colors/colors';
 
-const FilterSelection = ({ navigation }) => {
-    var search = navigation.getParam("search");
-    const filtroUbicacion = navigation.getParam("ubicacion");
-    const filtroPrecioMax = navigation.getParam("precioMax");
-    const filtroPrecioMin = navigation.getParam("precioMin");
+const FilterSelection = ({ navigation, route }) => {
+
+    const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
+
+    // useEffect(() => {
+    //     navigation.setOptions({
+    //       title: titulo,
+    //     });
+    //   }, []);
+
     return (
 
         <SafeAreaView style={styles.container}>
             <TouchableOpacity
                 style={styles.botonFiltro}
-                onPress={() => navigation.navigate("Rango de pago", { search: search, ubicacion: filtroUbicacion })} >
+                onPress={() => navigation.navigate("Rango de pago", { search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin, filtroUbicacion: filtroUbicacion })} >
                 <Image
                     style={styles.moneyFilterIcon}
                     source={require('../assets/img/moneyIcon.png')}
@@ -27,7 +33,7 @@ const FilterSelection = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.botonFiltro}
-                onPress={() => navigation.navigate("Ubicación", { search: search, precioMax: filtroPrecioMax, precioMin: filtroPrecioMin })} >
+                onPress={() => navigation.navigate("Ubicación", { search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin, filtroUbicacion: filtroUbicacion })} >
                 <Image
                     style={styles.locationFilterIcon}
                     source={require('../assets/img/locationIcon.png')}
@@ -42,7 +48,7 @@ const FilterSelection = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.boton}
-                onPress={() => navigation.navigate("Búsqueda")} >
+                onPress={() => navigation.push("Búsqueda", { search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin, filtroUbicacion: filtroUbicacion })} >
                 <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
                     Listo
                 </Text>

@@ -40,32 +40,41 @@ const CreateAccountSeller = ({ navigation }) => {
   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
   const crearUsuario = () => {
-    if(!reg.test(correo) && correo!=='') {
-      Alert.alert('Correo inválido', 'Verifique que su dirección de correo está bien escrita', [{ text: 'OK' }]);
-    } else if(!(contraseña===verifContraseña)) {
-      Alert.alert('Las contraseñas no coinciden', 'Asegurese de que su verificación de contraseña coincide con su contraseña', [{ text: 'OK' }]);
-    } else {
-      Axios.post(Server + "/crearUsuario", {
-        nombre: nombre,
-        clave: contraseña,
-        cedula: cedula,
-        telefono: telefono,
-        ubicacion: ubicacion,
-        correo: correo,
-        rol: 'vendedor',
-        whatsapp: whatsapp,
-        telegram: telegram,
-        simpe: simpe,
-      }).then((response) => {
-        console.log(response.data);
-        if (response.data == "Falta") {
-          Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
+    Axios.post(Server + "/verificarNum", { telefono: telefono }).then(
+      (response) => {
+        console.log(response.data)
+        if (response.data === "True") {
+          Alert.alert('Número registrado', 'El número de teléfono ingresado ya se encuentra registrado en la aplicación', [{ text: 'OK' }]);
+        } else {
+          if (!reg.test(correo) && correo !== '') {
+            Alert.alert('Correo inválido', 'Verifique que su dirección de correo está bien escrita', [{ text: 'OK' }]);
+          } else if (!(contraseña === verifContraseña)) {
+            Alert.alert('Las contraseñas no coinciden', 'Asegurese de que su verificación de contraseña coincide con su contraseña', [{ text: 'OK' }]);
+          } else {
+            Axios.post(Server + "/crearUsuario", {
+              nombre: nombre,
+              clave: contraseña,
+              cedula: cedula,
+              telefono: telefono,
+              ubicacion: ubicacion,
+              correo: correo,
+              rol: 'vendedor',
+              whatsapp: whatsapp,
+              telegram: telegram,
+              simpe: simpe,
+            }).then((response) => {
+              console.log(response.data);
+              if (response.data == "Falta") {
+                Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
+              }
+              if (response.data == "Success") {
+                navigation.navigate('Mis productos')
+              }
+            });
+          }
         }
-        if (response.data == "Success") {
-          navigation.navigate('Mis productos')
-        }
-      });
-    }
+      }
+    )
   };
 
   return (
@@ -108,7 +117,7 @@ const CreateAccountSeller = ({ navigation }) => {
             />
           </View>
 
-          <Text style={telefono==='' ? styles.infoMessageInvisible : styles.infoMessageVisible} >
+          <Text style={telefono === '' ? styles.infoMessageInvisible : styles.infoMessageVisible} >
             Asegurese de que el número de teléfono es correcto ya que es un dato importante.
           </Text>
 
@@ -136,7 +145,7 @@ const CreateAccountSeller = ({ navigation }) => {
             />
           </View>
 
-          <Text style={reg.test(correo) || correo==='' ? styles.errorMessageInvisible : styles.errorMessageVisible} >
+          <Text style={reg.test(correo) || correo === '' ? styles.errorMessageInvisible : styles.errorMessageVisible} >
             La dirección de corrrreo no es válida.
           </Text>
 

@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View, Image, TextInput } from 'react-native';
 import colors from '../assets/colors/colors';
 
-const FilterLocation = ({ navigation }) => {
-    var search = navigation.getParam("search");
-    const filtroPrecioMax = navigation.getParam("precioMax");
-    const filtroPrecioMin = navigation.getParam("precioMin");
+const FilterLocation = ({ navigation, route }) => {
+    const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
 
     const [ubicacion, setUbicacion] = useState('')
     var ValueUbicacion = ubicacion;
@@ -20,7 +18,7 @@ const FilterLocation = ({ navigation }) => {
                     value={ubicacion}
                     placeholder="¿De dónde quieres el producto?"
                     onChangeText={(ubicacion) => setUbicacion(ubicacion)}
-                    onSubmitEditing={() => navigation.push('Búsqueda', { ubicacion: ValueUbicacion, search: search, precioMax: filtroPrecioMax, precioMin: filtroPrecioMin })}
+                    onSubmitEditing={() => navigation.push('Filtros', { filtroUbicacion: ValueUbicacion, search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin })}
                 />
                 <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
             </View>
