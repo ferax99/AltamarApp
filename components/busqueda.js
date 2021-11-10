@@ -26,7 +26,7 @@ const Busqueda = ({ productos, navigation }) => {
                 <Image />
                 {productos.map(order => order.map(elem =>
                     <View key={elem._id}>
-                        <ItemBusqueda producto={elem} />
+                        <ItemBusqueda producto={elem} navigation={navigation} />
 
                     </View>
                 )

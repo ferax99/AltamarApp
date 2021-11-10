@@ -2,15 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react/cjs/react.development";
 import { StyleSheet, View, Text, Image } from "react-native";
 import colors from "../assets/colors/colors"
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
 import Server from "../serverData"
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png";
 
-const ItemBusqueda = ({ producto }) => {
-    const navigation = useNavigation();
+const ItemBusqueda = ({ producto, navigation }) => {
+    // const navigation = useNavigation();
     const [foto, setFoto] = useState(sinConexion);
     const [numVendedor, setNumVendedor] = useState("");
 

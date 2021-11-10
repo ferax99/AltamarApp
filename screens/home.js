@@ -81,7 +81,6 @@ const Home = ({ navigation }) => {
         <Frecuentes />
         <Temporada lista={listOfFish} />
         <Recomendado />
-
       </ScrollView>
 
 

@@ -11,9 +11,7 @@ import Contactar from "../components/contactar";
 
 
 const Perfil = ({ navigation, route }) => {
-    //const {numVendedor} = route.params
-    const numVendedor="2"
-    console.log(numVendedor)
+    const {vendedor} = route.params
     const [publicaciones, setPublicaciones] = useState([]);
     const [peces, setPeces] = useState([]);
 
@@ -28,19 +26,17 @@ const Perfil = ({ navigation, route }) => {
 
     const fetchPeces = () => {
         const api = Server + "/readPeces";
-        //console.log(api)
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {
                 let iterableResponse = Object.values(responseJson)
-                //iterableResponse.map(item => console.log(item));
                 setPeces(iterableResponse);
             }).catch((error) => {
                 console.log(error);
             });
     }
     const fetchPublicaciones = () => {
-        const api = Server + "/pubNum/" + numVendedor;
+        const api = Server + "/pubNum/" + vendedor[0];
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -51,20 +47,16 @@ const Perfil = ({ navigation, route }) => {
             });
     }
 
-    let simpleOrders = publicaciones.map(order => order.tipo)
-    console.log(publicaciones)
-    let pecera = peces.map(pez => pez)
-    console.log(simpleOrders)
     return (
         <View style={styles.general}>
-            <UserInfo />
-            <Contactar navigation={navigation} />
+            <UserInfo vendedor={vendedor}/>
+            <Contactar navigation={navigation} vendedor={vendedor} />
             <Image
                 style={styles.image}
                 source={require('../assets/img/catalogo.png')}
             />
             <ScrollView contentContainerStyle={styles.contenedor}>
-                <Catalogo publicaciones={publicaciones} navigation={navigation} numVendedor={numVendedor}/>
+                <Catalogo publicaciones={publicaciones} navigation={navigation} numVendedor={vendedor[0]}/>
             </ScrollView>
         </View>
 

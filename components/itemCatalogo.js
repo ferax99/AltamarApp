@@ -39,7 +39,6 @@ const ItemCatalogo = ({ producto, navigation, numVendedor}) => {
                 foto:foto,
                 numVendedor:numVendedor
             })
-            console.log("Me manoseo")
         }
         
     return (

@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png";
 import { useNavigation } from '@react-navigation/native';
 
-const ProductosT = ({ tipo }) => {
+const ProductosT = ({ ruta, tipo }) => {
   const [foto, setFoto] = useState(sinConexion);
   const [obid, setObid] = useState('');
   const [state, setState] = useState({});
@@ -24,7 +24,7 @@ const ProductosT = ({ tipo }) => {
   }, []);
 
   const fetchImg = () => {
-    Axios.post(Server + "/getFotoPez", { nombre: tipo }
+    Axios.post(Server + "/getFotoPez", { nombre: tipo.nombre }
     ).then((response) => {
       if (response.data != "False") {
         setFoto(response.data);
@@ -42,9 +42,9 @@ const ProductosT = ({ tipo }) => {
 
 
   return (
-    <TouchableOpacity style={styles.container}
+    <TouchableOpacity style={styles.container} key={tipo._id}
       onPress={() => navigation.navigate('Búsqueda', {
-        search: tipo,
+        search: tipo.nombre,
         filtroUbicacion: '',
         filtroPrecioMax: '',
         filtroPrecioMin: ''
@@ -52,7 +52,7 @@ const ProductosT = ({ tipo }) => {
       <View>
         <Image style={styles.ima} source={{ uri: foto }} />
       </View>
-      <Text style={styles.tipo}>{tipo}</Text>
+      <Text style={styles.tipo}>{tipo.nombre}</Text>
 
     </TouchableOpacity>
   );

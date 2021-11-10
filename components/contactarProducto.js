@@ -5,7 +5,9 @@ import { useState, useEffect } from "react/cjs/react.development";
 import colors from "../assets/colors/colors"
 import Server from "../serverData"
 import { Linking } from 'react-native'
-const ContactarProducto = ({ navigation, numVendedor }) => {
+
+
+const ContactarProducto = ({ navigation, vendedor }) => {
     const [redes, setRedes] = useState([]);
     useEffect(() => {
         fetchRedes();
@@ -16,13 +18,11 @@ const ContactarProducto = ({ navigation, numVendedor }) => {
     }, [])
 
     const fetchRedes = () => {
-        const api = Server + "/readRedes/" + numVendedor;
-        //console.log(api)
+        const api = Server + "/readRedes/" + vendedor[0];
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {
                 let iterableResponse = Object.values(responseJson)
-                //iterableResponse.map(item => console.log(item));
                 setRedes(iterableResponse);
             }).catch((error) => {
                 console.log(error);
@@ -30,7 +30,7 @@ const ContactarProducto = ({ navigation, numVendedor }) => {
     }
     const copiar = () => {
         Alert.alert('¡UY!', 'Debes crear el contacto y buscarlo en telegram', [{ text: 'OK' }]);
-        Linking.openURL(`tel:${numVendedor}`)
+        Linking.openURL(`tel:${vendedor[0]}`)
     }
     const mostrarMetodos = () => {
         return (
@@ -44,11 +44,10 @@ const ContactarProducto = ({ navigation, numVendedor }) => {
         )
     }
     const mostrarContactos = () => {
-        //console.log(redes.map(red => red[0].telegram === "" ? false : true).pop())
         return (
             <View style={styles.contenedor}>
                 {((redes.map(red => red[0].whatsapp === "" ? false : true).pop())) &&
-                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + numVendedor)}>
+                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + vendedor[0])}>
                         <Image style={styles.icon} source={require("../assets/img/iwhatsapp.png")} />
                     </TouchableOpacity>}
 
@@ -57,7 +56,7 @@ const ContactarProducto = ({ navigation, numVendedor }) => {
                         <Image style={styles.icon} source={require("../assets/img/itelegram.png")} />
                     </TouchableOpacity>}
 
-                <TouchableOpacity onPress={() => Linking.openURL(`tel:${numVendedor}`)}>
+                <TouchableOpacity onPress={() => Linking.openURL(`tel:${vendedor[0]}`)}>
                     <Image style={styles.icon} source={require("../assets/img/llamar.png")} />
                 </TouchableOpacity>
             </View>

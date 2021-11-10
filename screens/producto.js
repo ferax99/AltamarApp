@@ -7,7 +7,7 @@ import Server from "../serverData"
 
 const Producto = ({ route, navigation }) => {
     const { producto, foto, numVendedor } = route.params
-    const [vendedor, setVendedor] = useState("");
+    const [vendedor, setVendedor] = useState([]);
     useEffect(() => {
         fetchVendedor();
         
@@ -15,19 +15,23 @@ const Producto = ({ route, navigation }) => {
     const fetchVendedor = () => {
         Axios.get(Server + "/getVendedor/" + producto._id
         ).then((response) => {
-let a = Object.values(response.data)
+            let a = Object.values(response.data)
             setVendedor(a);
 
         }).catch(() => {
             console.log("ERROR");
         });
     }
-
-    return (
-        <View>
-            <Pescado navigation={navigation} producto={producto} foto={foto} numVendedor={vendedor.telefono} />
-            <Vendedor navigation={navigation} vendedor={vendedor} />
-        </View>
-    )
+    
+    if (vendedor[1]!==undefined) {
+        return (
+            <View>
+                <Pescado navigation={navigation} producto={producto} foto={foto} numVendedor={vendedor.telefono} />
+                <Vendedor navigation={navigation} vendedor={vendedor} />
+            </View>
+        )
+    } else {
+        return(null)
+    }
 }
 export default Producto

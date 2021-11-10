@@ -2,16 +2,17 @@ import React from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import colors from "../assets/colors/colors";
 
-const UserInfo = () => {
+const UserInfo = ({vendedor}) => {
+    const nombre = vendedor[1].split(" ")
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
                 <View >
                     <Text style={styles.nombre}>
-                        Marta
+                        {nombre[0]}
                     </Text>
                     <Text style={styles.apellido}>
-                        Porras
+                        {nombre[1]}
                     </Text>
                 </View>
                 <Image style={styles.favorito} source={require("../assets/img/fav.png")} />
@@ -21,7 +22,7 @@ const UserInfo = () => {
             <View style={styles.detalles}>
                 <Image style={styles.iconUbicacion} source={require("../assets/img/ubicacion.png")} />
                 <Text style={styles.detalleUbicacion}>
-                    Desaparados, San José
+                    {vendedor[2]}
                 </Text>
             </View>
             {/* <View style={styles.detallesTelefono}>
