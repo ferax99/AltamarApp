@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
         <Recomendado />
       </ScrollView>
 
-z
+
     </SafeAreaView>
 
   );

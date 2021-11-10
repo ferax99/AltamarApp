@@ -30,6 +30,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+<Stack.Screen
+    name="Home"
+    component={Home}
+    options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
+  />
         <Stack.Screen
           name="Creando Vendedor"
           component={CreateAccountSeller}
@@ -39,6 +44,14 @@ const App = () => {
             headerTitleAlign: 'center'
           }}
         />
+          <Stack.Screen
+            name="Mis productos"
+            component={MyProducts}
+            options={{
+              headerShown: true,
+              headerTitleAlign: 'center'
+            }}
+          />
         <Stack.Screen
           name="Creando Comprador"
           component={CreateAccountBuyer}
@@ -58,11 +71,7 @@ const App = () => {
           component={AddProducts}
           options={({ route }) => ({ title: route.params.titulo }), { headerShown: true,headerTitleAlign: 'center', }}
         />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
-        />
+        
         <Stack.Screen
           name="Perfil"
           component={Perfil}
@@ -123,14 +132,6 @@ const App = () => {
           name="LoginPw"
           component={LoginPw}
           options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Mis productos"
-          component={MyProducts}
-          options={{
-            headerShown: true,
-            headerTitleAlign: 'center'
-          }}
         />
 
         <Stack.Screen

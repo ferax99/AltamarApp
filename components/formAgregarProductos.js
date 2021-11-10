@@ -62,7 +62,7 @@ const FormAgregarProductos = ({ navigation, numVendedor }) => {
                     Alert.alert('La inserción falló', 'Tenemos problemas', [{ text: 'OK' }]);
                 }
                 if (response.data == "True") {
-                    navigation.navigate('Mis productos',{numVendedor:numVendedor})
+                    navigation.push('Mis productos',{numVendedor:numVendedor})
                 }
 
             });
