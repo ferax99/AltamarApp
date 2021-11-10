@@ -9,29 +9,29 @@ import Server from '../serverData'
 const FilterPrice = ({ navigation, route }) => {
     const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
 
-    const [max, setMax] = useState('');
+    // const [max, setMax] = useState('');
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const fetchMax = async () => {
-            const { data } = await axios(Server + "/readMaxP")
-            if (data !== "empty") {
-                let Max = Object.values(data)
-                setMax(Max)
-            } else {
-                Alert.alert('Producto no encontrado', 'No existen productos que coincidan', [{ text: 'OK' }]);
-                navigation.navigate("Home")
-            }
-        }
-        fetchMax()
-    }, []);
+    //     const fetchMax = async () => {
+    //         const { data } = await axios(Server + "/readMaxP")
+    //         if (data !== "empty") {
+    //             let Max = Object.values(data)
+    //             setMax(Max)
+    //         } else {
+    //             Alert.alert('Producto no encontrado', 'No existen productos que coincidan', [{ text: 'OK' }]);
+    //             navigation.navigate("Home")
+    //         }
+    //     }
+    //     fetchMax()
+    // }, []);
 
     return (
 
         <SafeAreaView style={styles.container}>
 
             <View style={styles.slider}>
-                <RangeSlider from={0} to={max[0]} navigation={navigation} route={route} />
+                <RangeSlider from={0} to={10000} navigation={navigation} route={route} />
             </View>
 
         </SafeAreaView>
