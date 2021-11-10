@@ -107,7 +107,7 @@ const SearchResult = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={styles.contenedor}>
-        <Busqueda productos={productos} />
+        <Busqueda productos={productos} navigation={navigation}/>
       </ScrollView>
     </View>
   );

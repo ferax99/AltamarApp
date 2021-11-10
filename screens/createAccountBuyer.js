@@ -31,29 +31,38 @@ const CreateAccountBuyer = ({ navigation }) => {
   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
   const crearUsuario = () => {
-    if(!reg.test(correo) && correo!=='') {
-      Alert.alert('Correo inválido', 'Verifique que su dirección de correo está bien escrita', [{ text: 'OK' }]);
-    } else if(!(contraseña===verifContraseña)) {
-      Alert.alert('Las contraseñas no coinciden', 'Asegurese de que su verificación de contraseña coincide con su contraseña', [{ text: 'OK' }]);
-    } else {
-      Axios.post(Server + "/crearUsuario", {
-        nombre: nombre,
-        clave: contraseña,
-        cedula: cedula,
-        telefono: telefono,
-        ubicacion: ubicacion,
-        correo: correo,
-        rol: 'comprador',
-      }).then((response) => {
-        console.log(response.data);
-        if (response.data == "Falta") {
-          Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
+    Axios.post(Server + "/verificarNum", {telefono: telefono}).then(
+      (response) => {
+        console.log(response.data)
+        if (response.data==="True") {
+          Alert.alert('Número registrado', 'El número de teléfono ingresado ya se encuentra registrado en la aplicación', [{ text: 'OK' }]);
+        } else {
+          if(!reg.test(correo) && correo!=='') {
+            Alert.alert('Correo inválido', 'Verifique que su dirección de correo está bien escrita', [{ text: 'OK' }]);
+          } else if(!(contraseña===verifContraseña)) {
+            Alert.alert('Las contraseñas no coinciden', 'Asegurese de que su verificación de contraseña coincide con su contraseña', [{ text: 'OK' }]);
+          } else {
+            Axios.post(Server + "/crearUsuario", {
+              nombre: nombre,
+              clave: contraseña,
+              cedula: cedula,
+              telefono: telefono,
+              ubicacion: ubicacion,
+              correo: correo,
+              rol: 'comprador',
+            }).then((response) => {
+              console.log(response.data);
+              if (response.data == "Falta") {
+                Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
+              }
+              if (response.data == "Success") {
+                navigation.navigate('Home')
+              }
+            });
+          }
         }
-        if (response.data == "Success") {
-          navigation.navigate('Home')
-        }
-      });
-    }
+      }
+    )
   };
   return (
     <SafeAreaView >
