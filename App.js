@@ -23,12 +23,18 @@ import FilterSelection from './screens/filterSelection';
 import FilterPrice from './screens/filterPrice';
 import FilterLocation from './screens/filterLocation';
 
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
+        />
         <Stack.Screen
             name="Perfil"
             component={Perfil}
@@ -41,11 +47,6 @@ const App = () => {
           options={{ headerShown: false }}
         />
       
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
-        />
         <Stack.Screen
           name="Login"
           component={Login}
