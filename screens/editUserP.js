@@ -22,7 +22,7 @@ const EditUserP = ({ navigation }) => {
     var vrol = rol
     // var texto = "Marcar"
     const datos = navigation.getParam("datos");
-    const id = "61825d1f599b3bb01ed58494";
+    const id = UserData.id;
     
     const [nombre, setNombre] = useState("")
     const [clave, setClave] = useState("")

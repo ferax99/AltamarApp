@@ -10,7 +10,10 @@ import UserInfo from "../components/userInfo.js";
 import Contactar from "../components/contactar";
 
 
-const Perfil = ({ navigation }) => {
+const Perfil = ({ navigation, route }) => {
+    //const {numVendedor} = route.params
+    const numVendedor="2"
+    console.log(numVendedor)
     const [publicaciones, setPublicaciones] = useState([]);
     const [peces, setPeces] = useState([]);
 
@@ -37,38 +40,21 @@ const Perfil = ({ navigation }) => {
             });
     }
     const fetchPublicaciones = () => {
-        const api = Server + "/readProd/" + UserData.id;
-        //console.log(api)
+        const api = Server + "/pubNum/" + numVendedor;
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {
-                let iterableResponse = Object.values(responseJson)
-                //iterableResponse.map(item => console.log(item));
+                let iterableResponse=responseJson.map(item => Object.values(item));
                 setPublicaciones(iterableResponse);
             }).catch((error) => {
                 console.log(error);
             });
     }
 
-    let simpleOrders = publicaciones.map(order => order.map(elem => elem.tipo))
-
+    let simpleOrders = publicaciones.map(order => order.tipo)
+    console.log(publicaciones)
     let pecera = peces.map(pez => pez)
     console.log(simpleOrders)
-
-    // const lista = () => {
-    //     return (
-    //         <View>
-    //             {publicaciones.map(order => order.map(elem =>
-    //             <View key = {elem._id} >
-    //                 {console.log(elem)}
-    //                 <ItemCatalogo producto={elem} pecera = {pecera}/>
-
-    //             </View>
-    //             )
-    //             )}
-    //         </View>
-    //     )
-    // }
     return (
         <View style={styles.general}>
             <UserInfo />
@@ -78,7 +64,7 @@ const Perfil = ({ navigation }) => {
                 source={require('../assets/img/catalogo.png')}
             />
             <ScrollView contentContainerStyle={styles.contenedor}>
-                <Catalogo publicaciones={publicaciones} peces={peces} />
+                <Catalogo publicaciones={publicaciones} navigation={navigation} numVendedor={numVendedor}/>
             </ScrollView>
         </View>
 

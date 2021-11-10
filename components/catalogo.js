@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native"
 import colors from "../assets/colors/colors";
 import ItemCatalogo from "./itemCatalogo";
 
-const Catalogo = ({ publicaciones, peces }) => {
+const Catalogo = ({ publicaciones, navigation, numVendedor }) => {
     //console.log(peces)
     const lista = () => {
         return (
@@ -12,7 +12,7 @@ const Catalogo = ({ publicaciones, peces }) => {
                 {publicaciones.map(order => order.map(elem =>
                     <View key={elem._id} >
                         {/* {console.log(elem)} */}
-                        <ItemCatalogo producto={elem} peces={peces} />
+                        <ItemCatalogo producto={elem} navigation={navigation} numVendedor={numVendedor}/>
 
                     </View>
                 )

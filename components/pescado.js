@@ -2,25 +2,28 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import colors from "../assets/colors/colors"
 
-const Pescado = () => {
+const Pescado = ({navigation, producto, foto}) => {
     return (
         <View style={styles.contenedor}>
-            <Image style={styles.image} source={{ uri: "http://tiburonesypeces.com/wp-content/uploads/2021/03/Cynoscion-regalis_sombra-1024x277.png"}} />
+            <Image style={styles.image} source={{ uri: foto}} />
             <View style={styles.conPez}>
                 <View>
                     <Text style={styles.tituloPez}>
-                        Corvina Reina
+                        {producto.tipo}
                     </Text>
                 </View>
-                <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
+
+                 <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: numVendedor }}>
+                    <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
+                </TouchableOpacity>
             </View>
             <View style={styles.conDetalles}>
 
                 <Text style={styles.detalles}>
-                    Cañas, Guanacaste
+                    {producto.localizacion}
                 </Text>
                 <Text style={styles.detalles}>
-                    ₡950 x kilo
+                    ₡{producto.precio} x kilo
                 </Text>
             </View>
         </View>

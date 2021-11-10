@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../assets/colors/colors"
 import ContactarProducto from "./contactarProducto";
 
-const Vendedor = () => {
+const Vendedor = ({ navigation, numVendedor }) => {
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
@@ -15,10 +16,15 @@ const Vendedor = () => {
                         Ramírez
                     </Text>
                 </View>
-                <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
+                <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: numVendedor }}>
+                    <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
+                </TouchableOpacity>
 
             </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: numVendedor }}>
+
             <Image style={styles.boton} source={require("../assets/img/botonCatalogo.png")} />
+                </TouchableOpacity>
             <ContactarProducto />
         </View>
     )

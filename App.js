@@ -25,6 +25,18 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+            name="Perfil"
+            component={Perfil}
+            options={{ headerShown: true,
+            headerTitleAlign: "center" }}
+          />
+        <Stack.Screen
+          name="Producto"
+          component={Producto}
+          options={{ headerShown: false }}
+        />
+      
+        <Stack.Screen
           name="Home"
           component={Home}
           options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
@@ -76,11 +88,7 @@ const App = () => {
           component={MyProducts}
           options={{ headerShown: true }}
         />
-        <Stack.Screen
-          name="Mi producto"
-          component={AddProducts}
-          options={{ headerShown: false }}
-        />
+        
         <Stack.Screen
           name="Editar Producto"
           component={EditProducts}
@@ -91,16 +99,7 @@ const App = () => {
           component={Favoritos}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Perfil"
-          component={Perfil}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Producto"
-          component={Producto}
-          options={{ headerShown: false }}
-        />
+
         <Stack.Screen
           name="Mi Perfil"
           component={MiPerfil}
