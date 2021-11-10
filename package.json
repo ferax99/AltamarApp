@@ -8,8 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "expo": "~42.0.1",
@@ -22,6 +25,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-date-picker": "^4.1.0",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-pager-view": "5.0.12",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
@@ -30,8 +34,7 @@
     "react-native-web": "^0.17.1",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "rn-range-slider": "^2.1.1",
-    "@react-native-async-storage/async-storage": "~1.15.0"
+    "rn-range-slider": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

@@ -1,14 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { TextInput, StyleSheet, View, Image, SafeAreaView } from 'react-native';
+import { TextInput, StyleSheet, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Temporada from '../components/temporada';
 import Recomendado from '../components/recomendado';
 import colors from '../assets/colors/colors';
 import axios from 'axios';
 import Server from '../serverData'
+import Frecuentes from '../components/frecuentes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({ navigation }) => {
-  const telefono = navigation.getParam("telefono");
+  // const telefono = navigation.getParam("telefono");
   const [listOfFish, setListOfFish] = useState([]);
 
   const [search, setSearch] = useState('')
@@ -16,27 +18,62 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     const fetchPostList = async () => {
-      const { data } = await axios(Server+"/readTop")
+      const { data } = await axios(Server + "/readTop")
       setListOfFish(data)
     }
     fetchPostList()
 
   }, [setListOfFish]);
+
+  const guarda = async (tipo) => {
+    try {
+      let x = await AsyncStorage.getItem("historial");
+      if (x == null) {
+        x = [tipo];
+        const historial = JSON.stringify(x)
+        await AsyncStorage.setItem("historial", historial);
+        console.log("guardado")
+      }
+      else {
+        let datos = JSON.parse(x)
+        if (datos.length > 6) {
+          datos.shift();
+
+        }
+        datos.push(tipo);
+        const historial = JSON.stringify(datos);
+        await AsyncStorage.setItem("historial", historial);
+        console.log("guardado")
+
+      }
+
+
+
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.row}>
-
         <TextInput
           style={styles.search}
           value={search}
           placeholder="Buscar"
           onChangeText={(search) => setSearch(search)}
-          onSubmitEditing={() => navigation.navigate('Búsqueda',{search: ValueSearch})}
+          onSubmitEditing={() => {guarda(search); navigation.navigate('Búsqueda', {
+            search: ValueSearch,
+            titulo: ValueSearch,
+            filtroUbicacion: '',
+            filtroPrecioMax: '',
+            filtroPrecioMin: ''
+          })}}
         />
         <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
       </View>
 
-      <View style={styles.container}>
       <ScrollView>
         <Frecuentes />
         <Temporada lista={listOfFish} />
@@ -44,7 +81,6 @@ const Home = ({ navigation }) => {
 
       </ScrollView>
 
-    </View>
 
     </SafeAreaView>
 
@@ -53,7 +89,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background,
-    padding: 30,
+    // padding: 30,
     flex: 1,
     justifyContent: 'flex-start',
     alignContent: 'center',
@@ -61,13 +97,12 @@ const styles = StyleSheet.create({
 
   },
   search: {
-    marginBottom: 22,
     marginTop: 17,
     height: 40,
     width: "100%",
     backgroundColor: "white",
     borderRadius: 48,
-    paddingLeft: 20
+    paddingLeft: 20,
 
 
   },
@@ -80,13 +115,14 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+    padding: 30,
 
   },
   productosT: {
     height: "30%",
     marginHorizontal: -45,
     flex: 1,
-    
+
   }
 });
 

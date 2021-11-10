@@ -6,11 +6,12 @@ import Busqueda from '../components/busqueda'
 import colors from '../assets/colors/colors'
 
 
-const SearchResult = ({ navigation }) => {
-  var search = navigation.getParam("search");
-  const filtroUbicacion = navigation.getParam("ubicacion");
-  const filtroPrecioMax = navigation.getParam("precioMax");
-  const filtroPrecioMin = navigation.getParam("precioMin");
+const SearchResult = ({ navigation, route }) => {
+  const { search, titulo, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
+  // var search = navigation.getParam("search");
+  // const filtroUbicacion = navigation.getParam("ubicacion");
+  // const filtroPrecioMax = navigation.getParam("precioMax");
+  // const filtroPrecioMin = navigation.getParam("precioMin");
 
   const [productos, setProductos] = useState([]);
 
@@ -56,13 +57,13 @@ const SearchResult = ({ navigation }) => {
       }
     }
 
-    if (filtroUbicacion !== undefined && filtroPrecioMax === undefined && filtroPrecioMin === undefined) {
+    if (filtroUbicacion !== '' && filtroPrecioMax === '' && filtroPrecioMin === '') {
       fetchUbicacion()
     }
-    else if (filtroUbicacion === undefined && filtroPrecioMax !== undefined && filtroPrecioMin !== undefined) {
+    else if (filtroUbicacion === '' && filtroPrecioMax !== '' && filtroPrecioMin !== '') {
       fetchRango()
     }
-    else if (filtroUbicacion !== undefined && filtroPrecioMax !== undefined && filtroPrecioMin !== undefined) {
+    else if (filtroUbicacion !== '' && filtroPrecioMax !== '' && filtroPrecioMin !== '') {
       fetchDobleFiltro()
     } else {
       fetchTipo()

@@ -4,15 +4,15 @@ import {TouchableOpacity, StyleSheet,Image, Button, View, SafeAreaView, Text,Tex
 import Axios from "axios";
 import Server from "../serverData";
 
-const Login = ({navigation}) =>{
+const Login = ({navigation, route}) =>{
 
-  
+  const {telefono} = route.params;
   
   const [listOfProd, setListOfProd] = useState([]);
 
   const [tex, setTex] = useState('')
   var Value = tex;
-  const telefono = navigation.getParam("telefono");
+  // const telefono = navigation.getParam("telefono");
   useEffect(() => {
     Axios.get(Server+"/read"
     ).then((response)=>{
@@ -31,7 +31,7 @@ const Login = ({navigation}) =>{
     }).then((response) => {console.log(response.data);
    
     if(response.data == "True"){
-      navigation.navigate('Home',{telefono:telefono});
+      navigation.navigate('Home');
     }
     else{
         Alert.alert('Clave incorrecta', 'Digite la clave de nuevo', [{text: 'OK'}]);

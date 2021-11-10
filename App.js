@@ -18,11 +18,17 @@ import MiPerfil from "./screens/miPerfil";
 import EditarPerfil from "./screens/editUserP";
 import Prueba from './screens/prueba';
 import Prueba2 from './screens/prueba2';
+import SearchResult from './screens/searchResult';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
+        />
         <Stack.Screen
           name="Login"
           component={Login}
@@ -34,9 +40,9 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
+          name="Búsqueda"
+          component={SearchResult}
+          options={{ headerShown: true }}
         />
         <Stack.Screen
           name="ChooseRole"
@@ -44,7 +50,7 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Password"
+          name="LoginPw"
           component={LoginPw}
           options={{ headerShown: false }}
         />

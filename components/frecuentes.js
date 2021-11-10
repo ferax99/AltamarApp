@@ -17,35 +17,35 @@ const Frecuentes = () => {
         carga();
     }, []);
 
-    const guarda =async(tipo)=>{
-        try{
-            let x = await AsyncStorage.getItem("historial");
-            if (x==null){
-                x = [tipo];
-                const historial = JSON.stringify(x)
-                await AsyncStorage.setItem("historial",historial);
-                console.log("guardado")
-            }
-            else{
-                let datos = JSON.parse(x)
-                if(datos.length >6){
-                    datos.shift();
+    // const guarda =async(tipo)=>{
+    //     try{
+    //         let x = await AsyncStorage.getItem("historial");
+    //         if (x==null){
+    //             x = [tipo];
+    //             const historial = JSON.stringify(x)
+    //             await AsyncStorage.setItem("historial",historial);
+    //             console.log("guardado")
+    //         }
+    //         else{
+    //             let datos = JSON.parse(x)
+    //             if(datos.length >6){
+    //                 datos.shift();
                    
-                }
-                datos.push(tipo);
-                const historial = JSON.stringify(datos);
-                await AsyncStorage.setItem("historial",historial);
-                console.log("guardado")
+    //             }
+    //             datos.push(tipo);
+    //             const historial = JSON.stringify(datos);
+    //             await AsyncStorage.setItem("historial",historial);
+    //             console.log("guardado")
 
-            }
+    //         }
             
             
 
-        }catch (err){
-            console.log(err)
-        }
+    //     }catch (err){
+    //         console.log(err)
+    //     }
 
-    }
+    // }
 
     const carga =async()=>{
         try{
@@ -68,7 +68,7 @@ const Frecuentes = () => {
             <   ScrollView >
 
                 <Text style={styles.title}  >
-                    Productos Frecuentess 
+                    Búsquedas Frecuentes
                 </Text>
                 <View style={styles.contenedorLista} >
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -115,7 +115,7 @@ const Frecuentes = () => {
 };
 const styles = StyleSheet.create({
     contenedorLista: {
-        marginTop: -15,
+        marginTop: -30,
         flexDirection: "column",
         elevation: 100,
 

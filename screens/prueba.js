@@ -17,7 +17,7 @@ const Prueba = ({ navigation }) => {
             <Text>{text}</Text>
 
             <TouchableOpacity onPress={()=>navigation.navigate("Prueba2", { titulo:text })}>
-                <Text>Me cago en edy</Text>
+                <Text>Siguiente</Text>
                 </TouchableOpacity>
         </View>
     )

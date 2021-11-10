@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     backgroundColor: colors.whiteButtons,
-    justifyContent: "center"
+    justifyContent: "center",
+    elevation: 5
 
   },
 

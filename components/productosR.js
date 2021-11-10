@@ -119,9 +119,11 @@ const styles = StyleSheet.create({
   container: {
     width: windowWidth * 0.9,
     margin: 10,
+    marginLeft: 20,
     borderRadius: 10,
     backgroundColor: colors.whiteButtons,
     flexDirection: "row",
+    elevation: 5,
 
   },
 
