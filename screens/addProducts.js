@@ -1,10 +1,11 @@
 import React from 'react';
 import FormAgregarProductos from '../components/formAgregarProductos';
 
-const AddProducts = ({ navigation }) => {
+const AddProducts = ({ route, navigation }) => {
+  const {numVendedor}= route.params
   
   return (
-      <FormAgregarProductos navigation={navigation}/>
+      <FormAgregarProductos navigation={navigation} numVendedor={numVendedor}/>
   )
 
 }

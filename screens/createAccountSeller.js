@@ -68,7 +68,7 @@ const CreateAccountSeller = ({ navigation }) => {
                 Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
               }
               if (response.data == "Success") {
-                navigation.navigate('Mis productos')
+                navigation.navigate('Mis productos',{numVendedor:telefono})
               }
             });
           }

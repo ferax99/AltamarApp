@@ -1,5 +1,5 @@
 import React from "react";
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, Text, TextInput, Alert, View } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -9,20 +9,37 @@ import Moment from 'moment';
 import colors from "../assets/colors/colors";
 import userData from '../local_data/userData.json';
 
-const FormAgregarProductos = ({ navigation }) => {
-
-    const countries = ["Corvina", "Pargo", "Atún"]
+const FormAgregarProductos = ({ navigation, numVendedor }) => {
+    
+    const [listOfProd, setListOfProd] = useState([]);
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
     const [precio, setPrecio] = useState(0)
     const [fecha, setFecha] = useState("")
     const [ubicacion, setUbicacion] = useState("")
 
+    // const countries = ["Corvina", "Pargo", "Atún"]
+    // const [tipo, setTipo] = useState("")
+    // const [cantidad, setCantidad] = useState(0)
+    // const [precio, setPrecio] = useState(0)
+    // const [fecha, setFecha] = useState("")
+    // const [ubicacion, setUbicacion] = useState("")
+
     var vtipo = tipo
     var vcantidad = cantidad
     var vprecio = precio
     var vfecha = fecha
     var vubicacion = ubicacion
+
+    useEffect(() => {
+        const fetchPostList = async () => {
+            const { data } = await Axios(Server + "/readPeces")
+            setListOfProd(data)
+        }
+        fetchPostList()
+
+    }, [setListOfProd])
+    let peces = listOfProd.map(order => order.nombre)
 
     const insertarProducto = () => {
         if (Moment(fecha, 'DD/MM/YYYY', true).isValid() == false) {
@@ -32,20 +49,20 @@ const FormAgregarProductos = ({ navigation }) => {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
-                telefono: userData.telefono,
+                telefono: numVendedor,
                 tipo: tipo,
                 cantidad: cantidad,
                 precio: precio,
                 fecha: fecha,
                 localizacion: ubicacion,
-                vendido: false,
+                estado: "activo",
             }).then((response) => {
                 console.log(response.data);
                 if (response.data == "False") {
                     Alert.alert('La inserción falló', 'Tenemos problemas', [{ text: 'OK' }]);
                 }
                 if (response.data == "True") {
-                    navigation.navigate('Mis productos')
+                    navigation.navigate('Mis productos',{numVendedor:numVendedor})
                 }
 
             });
@@ -88,7 +105,7 @@ const FormAgregarProductos = ({ navigation }) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <SelectDropdown
-                            data={countries}
+                            data={peces}
                             onSelect={(selectedItem, index) => {
                                 setTipo(selectedItem)
                             }}
@@ -118,7 +135,7 @@ const FormAgregarProductos = ({ navigation }) => {
                                 keyboardType='numeric'
                                 style={styles.input}
                             />
-                            
+
                         </View>
                         <TextInput
                             onChangeText={(vprecio) => { setPrecio(vprecio) }}
@@ -171,7 +188,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         flex: 1,
-        
+
         alignContent: "flex-end"
     },
     texto: {

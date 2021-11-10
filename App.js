@@ -31,27 +31,52 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={Home}
-          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
+          name="Creando Vendedor"
+          component={CreateAccountSeller}
+          options={{
+            title: "Creando Cuenta",
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
-            name="Perfil"
-            component={Perfil}
-            options={{ headerShown: true,
-            headerTitleAlign: "center" }}
-          />
-        <Stack.Screen
-          name="Producto"
-          component={Producto}
-          options={{ headerShown: false }}
+          name="Creando Comprador"
+          component={CreateAccountBuyer}
+          options={{
+            title: "Creando Cuenta",
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
-      
         <Stack.Screen
           name="Login"
           component={Login}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Añadir productos"
+          component={AddProducts}
+          options={({ route }) => ({ title: route.params.titulo }), { headerShown: true,headerTitleAlign: 'center', }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={({ route }) => ({ title: route.params.titulo }), { headerShown: false }}
+        />
+        <Stack.Screen
+          name="Perfil"
+          component={Perfil}
+          options={{
+            headerShown: true,
+            headerTitleAlign: "center"
+          }}
+        />
+        <Stack.Screen
+          name="Producto"
+          component={Producto}
+          options={{ headerShown: false }}
+        />
+
         <Stack.Screen
           name="Info"
           component={Info}
@@ -100,24 +125,6 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Creando Vendedor"
-          component={CreateAccountSeller}
-          options={{
-            title: "Creando Cuenta",
-            headerShown: true,
-            headerTitleAlign: 'center'
-          }}
-        />
-        <Stack.Screen
-          name="Creando Comprador"
-          component={CreateAccountBuyer}
-          options={{
-            title: "Creando Cuenta",
-            headerShown: true,
-            headerTitleAlign: 'center'
-          }}
-        />
-        <Stack.Screen
           name="Mis productos"
           component={MyProducts}
           options={{
@@ -125,7 +132,7 @@ const App = () => {
             headerTitleAlign: 'center'
           }}
         />
-        
+
         <Stack.Screen
           name="Editar Producto"
           component={EditProducts}

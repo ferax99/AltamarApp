@@ -15,7 +15,9 @@ import { Dimensions } from 'react-native';
 const tam=Dimensions.get('window').height*(0.76);
 
 
-const MyProducts = ({ navigation }) => {
+const MyProducts = ({ route, navigation }) => {
+    const {numVendedor} = route.params
+    console.log(numVendedor)
     const [listOfProd, setListOfProd] = useState([]);
     const [telefono, setTelefono] = useState('');
     const [datos, setDatos] = useState([{}]);
@@ -33,7 +35,7 @@ const MyProducts = ({ navigation }) => {
 
     }, []);
     const fetchData = () => {
-        Axios.post(Server + "/getMyProducts", { telefono: userData.telefono }
+        Axios.post(Server + "/getMyProducts", { telefono: numVendedor }
         ).then((response) => {
             setDatos(response.data.publicaciones);
             //console.log(response.data.publicaciones);
@@ -67,7 +69,7 @@ const MyProducts = ({ navigation }) => {
             }
             {vacio &&
                 <View>
-                    <AddButton navigation={navigation} />
+                    <AddButton navigation={navigation} numVendedor={numVendedor}/>
                     <SkipButton navigation={navigation} mensaje={"Omitir"} />
                 </View>
             }

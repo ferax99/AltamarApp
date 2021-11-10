@@ -1,30 +1,27 @@
 import React, { Component } from "react";
 import { ReactDom } from "react-dom";
-import { useNavigation } from '@react-navigation/native' 
+import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity, StyleSheet, Image, Button, View, SafeAreaView, Text, TextInput, Alert, ScrollView } from 'react-native';
 import colors from "../assets/colors/colors";
 
-class AddButton extends Component {
-    
-    render() {
-        const {navigation} = this.props
-        return (
-                <TouchableOpacity
-                    style={styles.agregar}
-                    onPress={() => navigation.navigate('Añadir productos')}>
-                    <View>
-                        <Image
-                            style={styles.imagen}
-                            source={require('../assets/img/addButton.png')} />
-                    </View>
-                    <Text style={styles.texto}>
-                        Agregá tu primer producto
-                    </Text>
-                </TouchableOpacity>
-        )
-    }
-
+const AddButton = ({navigation, numVendedor}) => {
+    return (
+        <TouchableOpacity
+            style={styles.agregar}
+            onPress={() => navigation.navigate('Añadir productos',{numVendedor:numVendedor})}>
+            <View>
+                <Image
+                    style={styles.imagen}
+                    source={require('../assets/img/addButton.png')} />
+            </View>
+            <Text style={styles.texto}>
+                Agregá tu primer producto
+            </Text>
+        </TouchableOpacity>
+    )
 }
+
+
 
 const styles = StyleSheet.create({
     agregar: {
