@@ -91,7 +91,8 @@ const App = () => {
           component={CreateAccountSeller}
           options={{
             title: "Creando Cuenta",
-            headerShown: true
+            headerShown: true,
+            headerTitleAlign: 'center'
           }}
         />
         <Stack.Screen
@@ -106,7 +107,10 @@ const App = () => {
         <Stack.Screen
           name="Mis productos"
           component={MyProducts}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Mi producto"
@@ -146,13 +150,17 @@ const App = () => {
         <Stack.Screen
           name="Prueba"
           component={Prueba}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Prueba2"
           component={Prueba2}
           options={({ route }) => ({ title: route.params.titulo }), {
             headerShown: true,
+            headerTitleAlign: 'center'
           }}
         />
       </Stack.Navigator>
