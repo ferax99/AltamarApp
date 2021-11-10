@@ -9,7 +9,8 @@ import RailSelected from "./RailSelected";
 import Thumb from "./Thumb";
 import colors from "../../assets/colors/colors";
 
-const RangeSlider = ({ from, to, navigation, search, ubicacion }) => {
+const RangeSlider = ({ from, to, navigation, route }) => {
+  const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
   const [low, setLow] = useState(from);
   const [high, setHigh] = useState(to);
 
@@ -93,7 +94,7 @@ const RangeSlider = ({ from, to, navigation, search, ubicacion }) => {
       />
       <TouchableOpacity
         style={styles.boton}
-        onPress={() => navigation.push("Búsqueda", { precioMax: high, precioMin: low, ubicacion: ubicacion, search: search })} >
+        onPress={() => navigation.push("Filtros", { filtroPrecioMax: high, filtroPrecioMin: low, filtroUbicacion: filtroUbicacion, search: search })} >
         <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
           Listo
         </Text>

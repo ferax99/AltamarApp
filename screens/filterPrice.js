@@ -3,16 +3,35 @@ import { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, SafeAreaView, View, Image, Text, TouchableOpacity } from 'react-native';
 import colors from '../assets/colors/colors';
 import RangeSlider from "../components/RangeSlider";
+import axios from 'axios'
+import Server from '../serverData'
 
-const FilterPrice = ({ navigation }) => {
-    var search = navigation.getParam("search");
-    const filtroUbicacion = navigation.getParam("ubicacion");
+const FilterPrice = ({ navigation, route }) => {
+    const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
+
+    const [max, setMax] = useState('');
+
+    useEffect(() => {
+
+        const fetchMax = async () => {
+            const { data } = await axios(Server + "/readMaxP")
+            if (data !== "empty") {
+                let Max = Object.values(data)
+                setMax(Max)
+            } else {
+                Alert.alert('Producto no encontrado', 'No existen productos que coincidan', [{ text: 'OK' }]);
+                navigation.navigate("Home")
+            }
+        }
+        fetchMax()
+    }, []);
+
     return (
 
         <SafeAreaView style={styles.container}>
 
             <View style={styles.slider}>
-                <RangeSlider from={0} to={10000} navigation={navigation} search={search} ubicacion={filtroUbicacion} />
+                <RangeSlider from={0} to={max[0]} navigation={navigation} route={route} />
             </View>
 
         </SafeAreaView>

@@ -65,7 +65,6 @@ const Home = ({ navigation }) => {
           onChangeText={(search) => setSearch(search)}
           onSubmitEditing={() => {guarda(search); navigation.navigate('Búsqueda', {
             search: ValueSearch,
-            titulo: ValueSearch,
             filtroUbicacion: '',
             filtroPrecioMax: '',
             filtroPrecioMin: ''

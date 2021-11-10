@@ -7,15 +7,16 @@ import colors from '../assets/colors/colors'
 
 
 const SearchResult = ({ navigation, route }) => {
-  const { search, titulo, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
-  // var search = navigation.getParam("search");
-  // const filtroUbicacion = navigation.getParam("ubicacion");
-  // const filtroPrecioMax = navigation.getParam("precioMax");
-  // const filtroPrecioMin = navigation.getParam("precioMin");
 
+  const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
+
+    navigation.setOptions({
+      title: search,
+    });
+
     const fetchTipo = async () => {
       const { data } = await axios(Server + "/BuscaProducto/" + search)
       if (data !== "empty") {
@@ -98,7 +99,7 @@ const SearchResult = ({ navigation, route }) => {
         </View>
         <TouchableOpacity
           style={styles.filterButton}
-          onPress={() => navigation.navigate("Filtros", { search: search, precioMax: filtroPrecioMax, precioMin: filtroPrecioMin, ubicacion: filtroUbicacion })} >
+          onPress={() => navigation.navigate("Filtros", { search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin, filtroUbicacion: filtroUbicacion })} >
           <Image
             style={styles.filterIcon}
             source={require('../assets/img/filter.png')}
