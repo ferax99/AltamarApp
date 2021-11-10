@@ -3,10 +3,9 @@ import { View, StyleSheet, Text, Image, TouchableOpacity, Alert } from "react-na
 import Clipboard from '@react-native-community/clipboard';
 import { useState, useEffect } from "react/cjs/react.development";
 import colors from "../assets/colors/colors"
-import UserData from "../userData"
 import Server from "../serverData"
 import { Linking } from 'react-native'
-const ContactarProducto = ({ navigation }) => {
+const ContactarProducto = ({ navigation, numVendedor }) => {
     const [redes, setRedes] = useState([]);
     useEffect(() => {
         fetchRedes();
@@ -17,7 +16,7 @@ const ContactarProducto = ({ navigation }) => {
     }, [])
 
     const fetchRedes = () => {
-        const api = Server + "/readRedes/" + UserData.telefono;
+        const api = Server + "/readRedes/" + numVendedor;
         //console.log(api)
         fetch(api)
             .then((response) => response.json())
@@ -31,7 +30,7 @@ const ContactarProducto = ({ navigation }) => {
     }
     const copiar = () => {
         Alert.alert('¡UY!', 'Debes crear el contacto y buscarlo en telegram', [{ text: 'OK' }]);
-        Linking.openURL(`tel:${UserData.telefono}`)
+        Linking.openURL(`tel:${numVendedor}`)
     }
     const mostrarMetodos = () => {
         return (
@@ -45,11 +44,11 @@ const ContactarProducto = ({ navigation }) => {
         )
     }
     const mostrarContactos = () => {
-        console.log(redes.map(red => red[0].telegram === "" ? false : true).pop())
+        //console.log(redes.map(red => red[0].telegram === "" ? false : true).pop())
         return (
             <View style={styles.contenedor}>
                 {((redes.map(red => red[0].whatsapp === "" ? false : true).pop())) &&
-                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + UserData.telefono)}>
+                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + numVendedor)}>
                         <Image style={styles.icon} source={require("../assets/img/iwhatsapp.png")} />
                     </TouchableOpacity>}
 
@@ -58,7 +57,7 @@ const ContactarProducto = ({ navigation }) => {
                         <Image style={styles.icon} source={require("../assets/img/itelegram.png")} />
                     </TouchableOpacity>}
 
-                <TouchableOpacity onPress={() => Linking.openURL(`tel:${UserData.telefono}`)}>
+                <TouchableOpacity onPress={() => Linking.openURL(`tel:${numVendedor}`)}>
                     <Image style={styles.icon} source={require("../assets/img/llamar.png")} />
                 </TouchableOpacity>
             </View>

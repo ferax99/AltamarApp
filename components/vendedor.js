@@ -3,25 +3,30 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../assets/colors/colors"
 import ContactarProducto from "./contactarProducto";
+const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png" ;
 
-const Vendedor = ({ navigation, numVendedor }) => {
+const Vendedor = ({ navigation, vendedor }) => {
+    
+ if (vendedor!==undefined) {
+     console.log(vendedor)
+ }
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
                 <View >
                     <Text style={styles.nombre}>
-                        César
+                        {/*lista[0]*/}f
                     </Text>
                     <Text style={styles.apellido}>
-                        Ramírez
+                        {/*lista[1]*/}f
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: numVendedor }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: vendedor.telefono }}>
                     <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
                 </TouchableOpacity>
 
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: numVendedor }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Perfil'), { numVendedor: vendedor.telefono }}>
 
             <Image style={styles.boton} source={require("../assets/img/botonCatalogo.png")} />
                 </TouchableOpacity>

@@ -1,8 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import colors from "../assets/colors/colors"
+import { TouchableOpacity } from "react-native-gesture-handler";
+const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png" ;
 
-const Pescado = ({navigation, producto, foto}) => {
+const Pescado = ({navigation, producto, foto,numVendedor}) => {
     return (
         <View style={styles.contenedor}>
             <Image style={styles.image} source={{ uri: foto}} />
