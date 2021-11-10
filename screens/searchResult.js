@@ -58,7 +58,11 @@ const SearchResult = ({ navigation, route }) => {
       }
     }
 
-    if (filtroUbicacion !== '' && filtroPrecioMax === '' && filtroPrecioMin === '') {
+    if (search === '') {
+      Alert.alert('Producto no encontrado', 'No existen productos que coincidan', [{ text: 'OK' }]);
+      navigation.navigate("Home")
+    }
+    else if (filtroUbicacion !== '' && filtroPrecioMax === '' && filtroPrecioMin === '') {
       fetchUbicacion()
     }
     else if (filtroUbicacion === '' && filtroPrecioMax !== '' && filtroPrecioMin !== '') {
@@ -107,7 +111,7 @@ const SearchResult = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={styles.contenedor}>
-        <Busqueda productos={productos} navigation={navigation}/>
+        <Busqueda productos={productos} navigation={navigation} />
       </ScrollView>
     </View>
   );

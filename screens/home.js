@@ -26,31 +26,35 @@ const Home = ({ navigation }) => {
   }, [setListOfFish]);
 
   const guarda = async (tipo) => {
-    try {
-      let x = await AsyncStorage.getItem("historial");
-      if (x == null) {
-        x = [tipo];
-        const historial = JSON.stringify(x)
-        await AsyncStorage.setItem("historial", historial);
-        console.log("guardado")
-      }
-      else {
-        let datos = JSON.parse(x)
-        if (datos.length > 6) {
-          datos.shift();
-
+    if (tipo==='') {
+      console.log('no guarda')
+    } else {
+      try {
+        let x = await AsyncStorage.getItem("historial");
+        if (x == null) {
+          x = [tipo];
+          const historial = JSON.stringify(x)
+          await AsyncStorage.setItem("historial", historial);
+          console.log("guardado")
         }
-        datos.push(tipo);
-        const historial = JSON.stringify(datos);
-        await AsyncStorage.setItem("historial", historial);
-        console.log("guardado")
-
+        else {
+          let datos = JSON.parse(x)
+          if (datos.length > 6) {
+            datos.shift();
+  
+          }
+          datos.push(tipo);
+          const historial = JSON.stringify(datos);
+          await AsyncStorage.setItem("historial", historial);
+          console.log("guardado")
+  
+        }
+  
+  
+  
+      } catch (err) {
+        console.log(err)
       }
-
-
-
-    } catch (err) {
-      console.log(err)
     }
 
   }

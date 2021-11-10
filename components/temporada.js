@@ -12,7 +12,7 @@ const Temporada = ({lista}) =>{
 <   ScrollView >
 
     <Text style = {styles.title}  >
-        Productos de Temporada
+        Productos de temporada
     </Text>
     <View style = {styles.contenedorLista} >
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

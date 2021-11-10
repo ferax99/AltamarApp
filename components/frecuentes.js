@@ -68,7 +68,7 @@ const Frecuentes = () => {
             <   ScrollView >
 
                 <Text style={styles.title}  >
-                    Búsquedas Frecuentes
+                    Búsquedas frecuentes
                 </Text>
                 <View style={styles.contenedorLista} >
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

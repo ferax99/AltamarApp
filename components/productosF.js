@@ -7,11 +7,14 @@ import colors from '../assets/colors/colors';
 import Server from "../serverData";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png";
+import { useNavigation } from '@react-navigation/native';
 
 const ProductosF = ({ tipo }) => {
   const [foto, setFoto] = useState(sinConexion);
   const [obid, setObid] = useState('');
   const [state, setState] = useState({});
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchImg();
@@ -22,27 +25,35 @@ const ProductosF = ({ tipo }) => {
   }, []);
 
   const fetchImg = () => {
-    Axios.post(Server + "/getFotoPez", { nombre:tipo }
+    Axios.post(Server + "/getFotoPez", { nombre: tipo }
     ).then((response) => {
-        if(response.data!="False"){
-        setFoto(response.data);}
-        else{
-            setFoto(sinConexion);
-        }
-    }).catch(() => {
-        console.log("ERROR");
+      if (response.data != "False") {
+        setFoto(response.data);
+      }
+      else {
         setFoto(sinConexion);
+      }
+    }).catch(() => {
+      console.log("ERROR");
+      setFoto(sinConexion);
 
     });
-}
+  }
 
 
 
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Búsqueda', {
+        search: tipo,
+        filtroUbicacion: '',
+        filtroPrecioMax: '',
+        filtroPrecioMin: ''
+      })}>
       <View>
-        <Image style={styles.ima} source={{uri:foto}}/>
+        <Image style={styles.ima} source={{ uri: foto }} />
       </View>
       <Text style={styles.tipo}>{tipo}</Text>
 

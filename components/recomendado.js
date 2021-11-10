@@ -43,7 +43,7 @@ const Recomendado = () => {
             <   ScrollView >
 
                 <Text style={styles.title}  >
-                    Productos Recomendados
+                    Recomendados
                 </Text>
                 <View style={styles.contenedorLista} >
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
