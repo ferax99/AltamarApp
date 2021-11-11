@@ -2,7 +2,12 @@ import React from 'react';
 import { useState, useEffect } from "react"; 
 import {TouchableOpacity, StyleSheet,Image, Button, View, SafeAreaView, Text,TextInput, Alert,ScrollView } from 'react-native';
 import Axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Server from "../serverData";
+import Vendedor from '../components/vendedor';
+var id ="";
+var nombre="";
+var rol = "";
 
 const Login = ({navigation, route}) =>{
 
@@ -11,9 +16,11 @@ const Login = ({navigation, route}) =>{
   const [listOfProd, setListOfProd] = useState([]);
 
   const [tex, setTex] = useState('')
+
   var Value = tex;
   // const telefono = navigation.getParam("telefono");
   useEffect(() => {
+    fetchUsr()
     Axios.get(Server+"/read"
     ).then((response)=>{
       setListOfProd(response.data);
@@ -31,7 +38,9 @@ const Login = ({navigation, route}) =>{
     }).then((response) => {console.log(response.data);
    
     if(response.data == "True"){
-      navigation.navigate('Home');
+      guardar();
+      navigation.push("FTabBar")
+      console.log("guardado papu")
     }
     else{
         Alert.alert('Clave incorrecta', 'Digite la clave de nuevo', [{text: 'OK'}]);
@@ -40,6 +49,54 @@ const Login = ({navigation, route}) =>{
     
     });
   };
+
+
+  const guardar =async()=>{
+    try{
+      await AsyncStorage.setItem("telefono", telefono);
+      await AsyncStorage.setItem("id", id);
+      await AsyncStorage.setItem("nombre",nombre);
+      await AsyncStorage.setItem("rol",rol);
+      if(rol!="vendedor"){
+        await AsyncStorage.setItem("color","#EE7333");
+      }else{
+        await AsyncStorage.setItem("color","#00A3FF");
+      }
+     
+      
+        
+
+    }catch (err){
+        console.log(err)
+    }
+
+}
+
+
+
+  const fetchUsr = () => {
+    console.log("##"+telefono)
+    Axios.get(Server + "/getUsuario/"+telefono 
+    ).then((response) => {
+        if(response.data!="False"){
+          //setNombre(response.data.nombre);
+          //setId(console.data._id)
+          id = response.data._id;
+          nombre = response.data.nombre;
+          rol = response.data.rol
+          console.log(response.data.nombre)
+
+         
+        }
+        else{
+          console.log("Error al guardar usuario");
+          
+        }
+    }).catch(() => {
+        console.log("Error al guardar usuario");
+
+    });
+    }
 
   return(
   <SafeAreaView style={styles.container}>

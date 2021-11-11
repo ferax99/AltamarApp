@@ -4,6 +4,8 @@ import { TouchableOpacity, StyleSheet, View, SafeAreaView, Text, TextInput, Scro
 import colors from '../assets/colors/colors';
 import Axios from 'axios';
 import Server from '../serverData';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const CreateAccountSeller = ({ navigation }) => {
 
@@ -68,7 +70,8 @@ const CreateAccountSeller = ({ navigation }) => {
                 Alert.alert('Faltan datos', 'Debe completar todos los datos requeridos', [{ text: 'OK' }]);
               }
               if (response.data == "Success") {
-                navigation.navigate('Mis productos',{numVendedor:telefono})
+                saveLocalInfo();
+                navigation.navigate('FTabBar')
               }
             });
           }
@@ -76,6 +79,41 @@ const CreateAccountSeller = ({ navigation }) => {
       }
     )
   };
+
+
+
+  const guardar =async(nom,tel,ids)=>{
+    console.log("datos: "+tel+": "+ids+": "+nom+" XD")
+    try{
+      await AsyncStorage.setItem("telefono", tel);
+      await AsyncStorage.setItem("id", ids);
+      await AsyncStorage.setItem("nombre",nom);
+      await AsyncStorage.setItem("rol","comprador");
+      await AsyncStorage.setItem("color","#00A3FF");
+        
+
+    }catch (err){
+        console.log(err)
+    }
+
+}
+
+
+  const saveLocalInfo = () => {
+    Axios.get(Server + "/getUsuario/"+telefono 
+    ).then((response) => {
+        if(response.data!="False"){
+        guardar(response.data.nombre,response.data.telefono,response.data._id);
+        }
+        else{
+          console.log("Error al guardar usuario");
+          
+        }
+    }).catch(() => {
+        console.log("Error al guardar usuario");
+  
+    });
+    }
 
   return (
     <SafeAreaView>

@@ -5,8 +5,8 @@ import { SectionList, TouchableOpacity, ListItem, StyleSheet, Image, Button, Vie
 import colors from '../assets/colors/colors.js';
 import { FlatList } from 'react-native-gesture-handler';
 import Server from '../serverData';
-import ProductosF from "./productosF";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ProductosF from "./productosF";
 
 const Frecuentes = () => {
     const [datos, setDatos] = useState([]);
@@ -14,6 +14,7 @@ const Frecuentes = () => {
 
     useEffect(() => {
         //guarda("Pargo");
+       
         carga();
     }, []);
 

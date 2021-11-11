@@ -5,7 +5,6 @@ import colors from '../assets/colors/colors';
 import AddButton from '../components/addButton';
 import SkipButton from '../components/skipButton';
 import Axios from "axios";
-import Navbar from '../components/navbar';
 import userData from '../local_data/userData.json';
 import Server from "../serverData";
 import MiProducto from '../components/miProducto';
@@ -15,9 +14,7 @@ import { Dimensions } from 'react-native';
 const tam=Dimensions.get('window').height*(0.76);
 
 
-const MyProducts = ({ route, navigation }) => {
-    const {numVendedor} = route.params
-    console.log(numVendedor)
+const MyProducts = ({ navigation }) => {
     const [listOfProd, setListOfProd] = useState([]);
     const [telefono, setTelefono] = useState('');
     const [datos, setDatos] = useState([{}]);
@@ -27,15 +24,17 @@ const MyProducts = ({ route, navigation }) => {
     const windowHeight = tam;
     useEffect(() => {
 
-        fetchData();
+        const unsubscribe = navigation.addListener('focus', () => {
+           // console.log('Refreshed!');
+            fetchData();
+          });
+          return unsubscribe;
         
-        return () => {
-
-        }
+        
 
     }, []);
     const fetchData = () => {
-        Axios.post(Server + "/getMyProducts", { telefono: numVendedor }
+        Axios.post(Server + "/getMyProducts", { telefono: userData.telefono }
         ).then((response) => {
             setDatos(response.data.publicaciones);
             //console.log(response.data.publicaciones);
@@ -58,7 +57,7 @@ const MyProducts = ({ route, navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {!vacio &&
-                <View style={{ width: "100%",height:windowHeight }}>
+                <View style={{ width: "100%" }}>
                    <FlatList
                                 nestedScrollEnabled
                                 data={datos}
@@ -69,7 +68,7 @@ const MyProducts = ({ route, navigation }) => {
             }
             {vacio &&
                 <View>
-                    <AddButton navigation={navigation} numVendedor={numVendedor}/>
+                    <AddButton navigation={navigation} />
                     <SkipButton navigation={navigation} mensaje={"Omitir"} />
                 </View>
             }

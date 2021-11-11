@@ -12,6 +12,8 @@ import userData from '../local_data/userData.json';
 import colors from '../assets/colors/colors';
 import Navbar from '../components/navbar';
 import { Dimensions } from 'react-native';
+import Server from "../serverData";
+
 
 const SwitchOp = [
     { label: 'contactos', value: 'Contactos' },
@@ -21,7 +23,7 @@ const SwitchOp = [
 
 
 //const tam=Dimensions.get('window').height*(0.59);  //por si el navbar no sirve
-const tam=Dimensions.get('window').height;
+const tam = Dimensions.get('window').height;
 const Favoritos = ({ navigation }) => {
     const [tex, setTex] = useState('')
     var Value = tex;
@@ -30,16 +32,18 @@ const Favoritos = ({ navigation }) => {
     const [productos, setproductos] = useState([]);
     const [search, setsearch] = useState('');
     var prods;
-    const windowHeight = (tam>400)?tam:250;
+    const windowHeight = (tam > 400) ? tam : 250;
 
     useEffect(() => {
-        fetchProductos();
-        fetchContactos();
-        console.log(windowHeight);
 
-        return () => {
 
-        }
+        const unsubscribe = navigation.addListener('focus', () => {
+            console.log('Refreshed!');
+            fetchProductos();
+            fetchContactos();
+
+        });
+        return unsubscribe;
     }, [])
 
 
@@ -59,14 +63,23 @@ const Favoritos = ({ navigation }) => {
             });
     }
 
-
-
     const fetchProductos = () => {
-        const datos = require('../local_data/productosFav.json');
-        prods = datos;
+        Axios.get(ServerData + "/getFavP/" + userData.telefono
+        ).then((response) => {
+            //console.log(response.data)
+            setproductos(response.data.favoritos);
+        }).catch(() => {
+            console.log("ERROR");
 
-        setproductos(datos);
+        });
     }
+    /*
+const fetchProductos = () => {
+    const datos = require('../local_data/productosFav.json');
+    prods = datos;
+
+    setproductos(datos);
+}*/
 
     const searchFilter = (text) => {
         if (text) {
@@ -83,20 +96,21 @@ const Favoritos = ({ navigation }) => {
             setsearch(text);
         }
     }
-
+    
+   
     const ContactView = ({ item }) => {
         return (
             <Contacto nombre={item.nombre} numero={item.telefono} />
         )
     }
-    const ProductView = ({ item }) => {
+    const ProductView = ({ item}) => {
 
-
-        console.log(item);
 
         return (
-            <ProductoF ruta={item.img} tipo={item.pez} vendedor={item.nombre} />
+            <ProductoF id={item}  />
         )
+
+
 
     }
 
@@ -104,42 +118,42 @@ const Favoritos = ({ navigation }) => {
 
 
     return (
-       
-            <SafeAreaView style={styles.container}  >
-                <View>
-                    <Text style={styles.title}  >
-                        Favoritos
-                    </Text>
-                    <View >
-                        <View style={styles.contenedorSw} >
-                            <View style={styles.row} >
 
-                                <TextInput
-                                    style={styles.search}
-                                    value={search}
-                                    placeholder="   Buscar"
-                                    onChangeText={(text) => searchFilter(text)}
-                                />
-                                <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
-                            </View>
-                            <SwitchSelector
-                                textColor={'#838383'}
-                                buttonColor={"#EE7333"}
-                                selectedColor={"#FFFFFF"}
-                                backgroundColor={"rgba(131, 131, 131, 0.12)"}
-                                height={43}
-                                options={SwitchOp}
-                                initial={0}
-                                onPress={(Value) => { setTex(Value); }}
+        <SafeAreaView style={styles.container}  >
+            <View>
+                <Text style={styles.title}  >
+                    Favoritos
+                </Text>
+                <View >
+                    <View style={styles.contenedorSw} >
+                        <View style={styles.row} >
+
+                            <TextInput
+                                style={styles.search}
+                                value={search}
+                                placeholder="   Buscar"
+                                onChangeText={(text) => searchFilter(text)}
                             />
+                            <Image style={styles.ima} source={require('../assets/img/search-icon.png')} />
                         </View>
+                        <SwitchSelector
+                            textColor={'#838383'}
+                            buttonColor={"#EE7333"}
+                            selectedColor={"#FFFFFF"}
+                            backgroundColor={"rgba(131, 131, 131, 0.12)"}
+                            height={43}
+                            options={SwitchOp}
+                            initial={0}
+                            onPress={(Value) => { setTex(Value); }}
+                        />
                     </View>
                 </View>
+            </View>
 
-                <View >
+            <View >
 
-                    <View styles={styles.contenedorLista} >
-                        <View style={{height:windowHeight}}>
+                <View styles={styles.contenedorLista} >
+                    <View style={{ height: windowHeight }}>
                         {
                             (tex == "Productos") &&
 
@@ -164,25 +178,25 @@ const Favoritos = ({ navigation }) => {
                             />
 
                         }
-                        </View>
-
-
                     </View>
 
 
-
-
                 </View>
-                
 
-                <View  >
-                </View>
-                
 
-            </SafeAreaView>
-            
 
-        
+
+            </View>
+
+
+            <View  >
+            </View>
+
+
+        </SafeAreaView>
+
+
+
 
     );
 };
@@ -236,7 +250,7 @@ const styles = StyleSheet.create({
     boton: {
         backgroundColor: '#FFFFFF',
     },
-    
+
 
 
 });

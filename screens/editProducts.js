@@ -12,11 +12,11 @@ import Moment from 'moment';
 import colors from "../assets/colors/colors";
 
 
-const EditProducts = ({ navigation }) => {
+const EditProducts = ({ navigation,route }) => {
 
     const [listOfProd, setListOfProd] = useState([]);   
     const [estado, setEstado] = useState("")
-    const datos = navigation.getParam("datos");
+    const datos = route.params.datos;
     const id = datos._id;
     const [tipo, setTipo] = useState("")
     const [cantidad, setCantidad] = useState(0)
@@ -24,6 +24,7 @@ const EditProducts = ({ navigation }) => {
     const [fecha, setFecha] = useState("")
     const [ubicacion, setUbicacion] = useState("")
     useEffect(() => {
+        
         setCantidad(datos.cantidad );
         setFecha(datos.fecha);
         setTipo(datos.tipo);
@@ -85,7 +86,7 @@ const EditProducts = ({ navigation }) => {
                     Alert.alert('Hubo un problema', 'No se ha podido editar el producto', [{ text: 'OK' }]);
                 }
                 if (response.data == "Updated") {
-                    navigation.pop();window.location.reload(false);
+                    navigation.pop();
                 }
 
             });
@@ -133,7 +134,7 @@ const EditProducts = ({ navigation }) => {
                                     <FontAwesome name="chevron-down" color={"#444"} size={18} />
                                 );
                             }}
-                            defaultButtonText={datos.tipo}
+                            defaultButtonText={datos.tipo.toString()}
                             
 
                             dropdownStyle={styles.dropdown1DropdownStyle}

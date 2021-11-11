@@ -16,26 +16,21 @@ const Temporada = ({ lista }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <   ScrollView  >
-
-                <Text style={styles.title}  >
-                    Productos de temporada
-                </Text>
-                <View style={styles.contenedorLista} >
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <View style={styles.contenedorFila} >
-                            {lista.map((data) => {return(lista2(data))})}
+        <ScrollView>
+            <Text style={styles.title}  >
+                Productos de temporada
+            </Text>
+            <View style={styles.contenedorLista} >
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {lista.map((data) => 
+                        <View key={data.nombre} style={styles.contenedorFila} >
+                            <ProductosT tipo={data}/>
                         </View>
-
-
-                    </ScrollView>
-
-                </View>
-
-
-            </ScrollView>
-
-        </SafeAreaView>
+                    )}
+                </ScrollView>
+            </View>
+        </ScrollView>
+    </SafeAreaView>
 
 
 

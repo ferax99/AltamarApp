@@ -14,13 +14,20 @@ const Login = ({ navigation }) => {
   const [tex, setTex] = useState('')
   var Value = tex;
   useEffect(() => {
-    Axios.get(Server + "/read"
+   
+/*
+
+ Axios.get(Server + "/read"
     ).then((response) => {
       setListOfProd(response.data);
       //setListOfCar(response.data.publicaciones);
     }).catch(() => {
       console.log("ERROR");
     });
+    
+*/
+
+
 
   }, []);
 
@@ -33,11 +40,15 @@ const Login = ({ navigation }) => {
         Alert.alert('El usuario no existe', 'Proceda a crear cuenta', [{ text: 'OK' }]);
       }
       if (response.data == "True") {
+        //await AsyncStorage.setItem("telefono", tex);
         navigation.navigate('LoginPw', { telefono: tex })
+        
       }
 
     });
   };
+ 
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -88,9 +99,9 @@ const Login = ({ navigation }) => {
           - Términos de servicio
         </Text>
       </Text>
-      
-      </SafeAreaView>
-     
+
+    </SafeAreaView>
+
   );
 };
 
