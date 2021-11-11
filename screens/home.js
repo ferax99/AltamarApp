@@ -17,6 +17,7 @@ const Home = ({ navigation }) => {
   var ValueSearch = search;
 
   useEffect(() => {
+
     const fetchPostList = async () => {
       const { data } = await axios(Server + "/readTop")
       setListOfFish(data)

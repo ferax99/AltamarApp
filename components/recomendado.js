@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-
+import { useNavigation } from '@react-navigation/native';
 import { SectionList, TouchableOpacity, ListItem, StyleSheet, Image, Button, View, SafeAreaView, Text, TextInput, Alert, ScrollView } from 'react-native';
 import ProductosR from '../components/productosR';
 import colors from '../assets/colors/colors.js';
@@ -10,12 +10,14 @@ import Server from '../serverData';
 const Recomendado = () => {
     const [datos, setDatos] = useState([{}]);
     const [listo, setListo] = useState(0);
-
+    const navigation = useNavigation();
 
     useEffect(() => {
-
-        fetchData();
-
+       
+            fetchData();
+       
+           
+        
     }, []);
     const fetchData = () => {
         Axios.get(Server + "/getRecomendados/4"

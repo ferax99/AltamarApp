@@ -34,17 +34,21 @@ const ContactarProducto = ({ navigation, vendedor }) => {
         Linking.openURL(`tel:${vendedor[1]}`)
     }
     const mostrarMetodos = () => {
+        try{
         return (
             <View>
                 {((redes.map(red => red[0].simpe === "" ? false : true).pop())) &&
                     <Image style={UserData.rol._W == "comprador" ? styles.iconPagoComprador : styles.iconPagoVendedor} source={require("../assets/img/sinpe.png")} />
                 }
             </View>
+        )}catch(err){
+            console.log("Usuario no tiene redes")
+        }
 
-
-        )
+        
     }
     const mostrarContactos = () => {
+        try{
         return (
             <View style={styles.contenedor}>
                 {((redes.map(red => red[0].whatsapp === "" ? false : true).pop())) &&
@@ -61,7 +65,14 @@ const ContactarProducto = ({ navigation, vendedor }) => {
                     <Image style={styles.icon} source={require("../assets/img/llamar.png")} />
                 </TouchableOpacity>
             </View>
-        )
+        )}catch(err){
+            console.log("usuario no tiene redes")
+            return(
+                <TouchableOpacity onPress={() => Linking.openURL(`tel:${vendedor[1]}`)}>
+                    <Image style={styles.icon} source={require("../assets/img/llamar.png")} />
+                </TouchableOpacity>
+            )
+        }
     }
 
 

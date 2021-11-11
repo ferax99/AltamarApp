@@ -16,6 +16,7 @@ const ProductoF = ({ id }) => {
     const [state, setState] = useState({});
     const [vendedor, setVendedor] = useState("");
     const [producto, setProducto] = useState("");
+    const [mostrar, setMostrar] = useState(0);
     useEffect(() => {
 
         getPublicacion();
@@ -74,16 +75,19 @@ const ProductoF = ({ id }) => {
     }
 
     const marcarNoFav = () => {
+        setMostrar(1);
         console.log("borrado")
         Axios.delete(Server + "/deleteFav", { data: { favorito: id, telefono: userData.telefono._W } }
         ).then((response) => {
-            //console.log(response.data)
         }).catch(() => {
             console.log("ERROR");
         });
     }
 
     return (
+        
+            <View>
+                {(mostrar===0)&&
         <SafeAreaView style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Producto', { producto: producto, foto: foto})}>
                 <Text style={styles.tipo}>{producto.tipo}</Text>
@@ -101,7 +105,8 @@ const ProductoF = ({ id }) => {
 
             </View>
 
-        </SafeAreaView>
+        </SafeAreaView> }
+        </View>
     );
 };
 const styles = StyleSheet.create({

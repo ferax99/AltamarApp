@@ -16,8 +16,11 @@ const Frecuentes = () => {
 
     useEffect(() => {
         //guarda("Pargo");
+        const unsubscribe = navigation.addListener('focus', () => {
+            carga();
+        });
+        return unsubscribe;
        
-        carga();
     }, []);
 
     // const guarda =async(tipo)=>{

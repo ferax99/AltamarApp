@@ -4,6 +4,7 @@ import { TouchableOpacity, StyleSheet, View, SafeAreaView, Text, TextInput, Scro
 import colors from '../assets/colors/colors';
 import Axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Updates from 'expo-updates';
 
 import Server from '../serverData';
 const CreateAccountBuyer = ({ navigation }) => {
@@ -60,6 +61,7 @@ const CreateAccountBuyer = ({ navigation }) => {
                 saveLocalInfo();
                 tablaProductos()
                 navigation.navigate('FTabBar')
+                Updates.reloadAsync();
               }
             });
           }

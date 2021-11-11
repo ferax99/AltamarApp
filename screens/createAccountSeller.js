@@ -5,6 +5,7 @@ import colors from '../assets/colors/colors';
 import Axios from 'axios';
 import Server from '../serverData';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Updates from 'expo-updates';
 
 
 
@@ -74,6 +75,7 @@ const CreateAccountSeller = ({ navigation }) => {
                 saveLocalInfo();
                 tablaProductos()
                 navigation.navigate('FTabBar')
+                Updates.reloadAsync();
               }
             });
           }

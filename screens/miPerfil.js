@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../assets/colors/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserData from "../userData"
+import * as Updates from 'expo-updates';
 
 
 const MiPerfil = ({ navigation }) => {
@@ -14,16 +15,14 @@ const MiPerfil = ({ navigation }) => {
         try {
 
             // await AsyncStorage.setItem("rol","vendedor");
-
-
             await AsyncStorage.removeItem("telefono");
             await AsyncStorage.removeItem("id");
             await AsyncStorage.removeItem("nombre");
             await AsyncStorage.removeItem("rol");
             await AsyncStorage.removeItem("ubicacion");
             await AsyncStorage.removeItem("cedula");
-
             await AsyncStorage.removeItem("color");
+            Updates.reloadAsync();
 
         } catch (err) {
             console.log(err)
@@ -39,7 +38,7 @@ const MiPerfil = ({ navigation }) => {
             </ScrollView>
             <TouchableOpacity
                 style={UserData.rol._W == "comprador" ? styles.botonComprador : styles.botonVendedor}
-                onPress={() => console.log("me manoseo")} >
+                onPress={() => vaciar()} >
                 <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
                     Cerrar sesión
                 </Text>

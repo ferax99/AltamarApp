@@ -22,12 +22,15 @@ const ProductosR = ({ data }) => {
   const [tipo, setTipo] = useState("");
   const [esFav, setEsFav] = useState(0);
   const [listo,setListo] = useState(0);
+
   useEffect(() => {
+    
     if(data){
       setTipo(data.tipo);
       fetchImg();
       isFav();
-      setListo(1);
+      setListo(1)
+      
   }
     
     
@@ -66,6 +69,7 @@ const ProductosR = ({ data }) => {
   }
   const marcarFav =()=>{
     setEsFav(1)
+    setListo(0)
     
     Axios.post(Server + "/InsertaFavProd", { favorito:data._id , telefono:userData.telefono._W}
     ).then((response) => {

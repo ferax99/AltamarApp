@@ -113,7 +113,10 @@ const fetchProductos = () => {
 
 
     }
-
+    const togle =()=>{
+        fetchProductos();
+            fetchContactos();
+    }
 
 
 
@@ -141,7 +144,7 @@ const fetchProductos = () => {
                             height={43}
                             options={SwitchOp}
                             initial={0}
-                            onPress={(Value) => { setTex(Value); }}
+                            onPress={(Value) => { setTex(Value);togle(); }}
                         />
                     </View>
                 </View>
