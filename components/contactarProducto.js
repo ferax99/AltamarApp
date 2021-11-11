@@ -5,6 +5,7 @@ import { useState, useEffect } from "react/cjs/react.development";
 import colors from "../assets/colors/colors"
 import Server from "../serverData"
 import { Linking } from 'react-native'
+import UserData from "../userData";
 
 
 const ContactarProducto = ({ navigation, vendedor }) => {
@@ -36,7 +37,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
         return (
             <View>
                 {((redes.map(red => red[0].simpe === "" ? false : true).pop())) &&
-                    <Image style={styles.iconPago} source={require("../assets/img/sinpe.png")} />
+                    <Image style={UserData.rol._W == "comprador" ? styles.iconPagoComprador : styles.iconPagoVendedor} source={require("../assets/img/sinpe.png")} />
                 }
             </View>
 
@@ -70,7 +71,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
                 Métodos de Pago
             </Text>
             <View style={styles.contenedor}>
-                <Image style={styles.iconPago} source={require("../assets/img/efectivo.png")} />
+                <Image style={UserData.rol._W == "comprador" ? styles.iconPagoComprador : styles.iconPagoVendedor} source={require("../assets/img/efectivo.png")} />
                 {mostrarMetodos()}
             </View>
             <Text style={styles.titulo}>
@@ -110,11 +111,19 @@ const styles = StyleSheet.create({
         height: 53,
         resizeMode: "contain"
     },
-    iconPago: {
+    iconPagoComprador: {
         marginRight: 20,
         width: 52,
         height: 36,
-        resizeMode: "contain"
+        resizeMode: "contain",
+        tintColor:colors.orangeUI,
+    },
+    iconPagoVendedor: {
+        marginRight: 20,
+        width: 52,
+        height: 36,
+        resizeMode: "contain",
+        tintColor: colors.blueUI,
     }
 
 })

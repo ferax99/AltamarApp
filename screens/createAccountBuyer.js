@@ -77,6 +77,8 @@ const CreateAccountBuyer = ({ navigation }) => {
       await AsyncStorage.setItem("nombre",nom);
       await AsyncStorage.setItem("rol","comprador");
       await AsyncStorage.setItem("color",colors.orangeUI);
+      await AsyncStorage.setItem("ubicacion",ubicacion);
+      await AsyncStorage.setItem("cedula",cedula);
       
       
     }catch (err){

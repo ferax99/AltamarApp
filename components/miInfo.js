@@ -5,13 +5,12 @@ import colors from "../assets/colors/colors";
 import UserData from "../userData"
 import Axios from "axios"
 import Server from "../serverData"
-import Frecuentes from "../components/frecuentes"
 
 
 const MiInfo = ({ navigation }) => {
     const [datos, setDatos] = useState({});
     const [lista, setLista] = useState([]);
-
+console.log(UserData.color._W)
     useEffect(() => {
 
 
@@ -43,50 +42,49 @@ const MiInfo = ({ navigation }) => {
     }
     return (
         <View>
-        <View style={styles.contenedor}>
-            <View style={styles.conNombre}>
-                <View >
-                    <Text style={styles.nombre}>
-                        {lista[0]}
-                    </Text>
-                    <Text style={styles.apellido}>
-                        {lista[1]}
+            <View style={UserData.rol._W == "comprador" ? styles.contenedorComprador : styles.contenedorVendedor}>
+                <View style={styles.conNombre}>
+                    <View >
+                        <Text style={styles.nombre}>
+                            {lista[0]}
+                        </Text>
+                        <Text style={styles.apellido}>
+                            {lista[1]}
+                        </Text>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate("Editar Perfil")}>
+                        <Image style={styles.editar} source={require("../assets/img/engrane.png")} />
+
+                    </TouchableOpacity>
+
+                </View>
+
+                <View style={styles.detalles}>
+                    <Image style={styles.iconUbicacion} source={require("../assets/img/ubicacion.png")} />
+                    <Text style={styles.detalleUbicacion}>
+                        {datos.ubicacion}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate("Editar Perfil")}>
-                    <Image style={styles.editar} source={require("../assets/img/engrane.png")} />
+                <View style={styles.detallesTelefono}>
+                    <Image style={styles.iconTelefono} source={require("../assets/img/telefono.png")} />
+                    <Text style={styles.detalleTelefono}>
+                        {datos.telefono}
+                    </Text>
+                </View>
 
-                </TouchableOpacity>
 
             </View>
-
-            <View style={styles.detalles}>
-                <Image style={styles.iconUbicacion} source={require("../assets/img/ubicacion.png")} />
-                <Text style={styles.detalleUbicacion}>
-                    {datos.ubicacion}
-                </Text>
-            </View>
-            <View style={styles.detallesTelefono}>
-                <Image style={styles.iconTelefono} source={require("../assets/img/telefono.png")} />
-                <Text style={styles.detalleTelefono}>
-                    {datos.telefono}
-                </Text>
-            </View>
-
-
-        </View>
-            
-        <ScrollView>
-
-        <Frecuentes />
-</ScrollView>
         </View>
     )
 }
 const styles = StyleSheet.create({
-    contenedor: {
+    contenedorVendedor: {
         marginBottom: 15,
-        backgroundColor: UserData.color._W
+        backgroundColor: colors.blueUI
+    },
+    contenedorComprador: {
+        marginBottom: 15,
+        backgroundColor: colors.orangeUI
     },
     conNombre: {
         flexDirection: "row",

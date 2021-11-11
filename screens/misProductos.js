@@ -73,7 +73,7 @@ const MyProducts = ({ navigation }) => {
             {vacio &&
                 <View>
                     <AddButton navigation={navigation} />
-                    <SkipButton navigation={navigation} mensaje={"Omitir"} />
+                   
                 </View>
             }
 

@@ -91,6 +91,8 @@ const CreateAccountSeller = ({ navigation }) => {
       await AsyncStorage.setItem("nombre",nom);
       await AsyncStorage.setItem("rol","vendedor");
       await AsyncStorage.setItem("color",colors.blueUI);
+      await AsyncStorage.setItem("ubicacion",ubicacion);
+      await AsyncStorage.setItem("cedula",cedula);
         
 
     }catch (err){

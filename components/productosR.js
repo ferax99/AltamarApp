@@ -6,20 +6,22 @@ import Axios from "axios";
 import colors from '../assets/colors/colors';
 import Server from "../serverData";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from '@react-navigation/native';
+
 import { Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
-import userData from '../local_data/userData.json';
+import userData from '../userData';
 
-const sinConexion = "https://3.bp.blogspot.com/-d6krKQ4Jp0Y/XJvpi8vCdpI/AAAAAAAAJcg/wfSjA28SGBwZpV70m6X_M82rsJOWrPEpQCEwYBhgL/s1600/Nemo%2B1.png" ;
+const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png" ;
 
 
 const ProductosR = ({ data }) => {
+  const navigation = useNavigation();
   const [foto, setFoto] = useState(sinConexion);
   const [state, setState] = useState({});
   const [tipo, setTipo] = useState("");
   const [esFav, setEsFav] = useState(0);
   const [listo,setListo] = useState(0);
-  //console.log(data);
   useEffect(() => {
     if(data){
       setTipo(data.tipo);
@@ -50,7 +52,7 @@ const ProductosR = ({ data }) => {
   
   
   const isFav = () => {
-    Axios.post(Server + "/getFavProd", { id:data._id , telefono:userData.telefono}
+    Axios.post(Server + "/getFavProd", { id:data._id , telefono:userData.telefono._W}
     ).then((response) => {
      
      if(response.data==true){
@@ -65,7 +67,7 @@ const ProductosR = ({ data }) => {
   const marcarFav =()=>{
     setEsFav(1)
     
-    Axios.post(Server + "/InsertaFavProd", { favorito:data._id , telefono:userData.telefono}
+    Axios.post(Server + "/InsertaFavProd", { favorito:data._id , telefono:userData.telefono._W}
     ).then((response) => {
       //console.log(response.data)
     }).catch(() => {
@@ -77,7 +79,7 @@ const ProductosR = ({ data }) => {
   const marcarNoFav=()=>{
     setEsFav(0);
     
-    Axios.delete(Server + "/deleteFav", { data:  { favorito:data._id , telefono:userData.telefono} }
+    Axios.delete(Server + "/deleteFav", { data:  { favorito:data._id , telefono:userData.telefono._W} }
     ).then((response) => {
       //console.log(response.data)
     }).catch(() => {
@@ -99,13 +101,13 @@ const ProductosR = ({ data }) => {
     <View>
 
       {(listo==1) &&
-      <View style={styles.container}>
-        <TouchableOpacity>
+      <View style={styles.container} key={data._id}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Producto', { producto: data, foto: foto})}>
           <Image style={styles.ima} source={{ uri: foto }} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Producto', { producto: data, foto: foto})}>
           <Text style={styles.tipo}>{tipo}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity >
         <TouchableOpacity style={styles.posi} onPress={() => {toggle()}}  >
           <Image style={esFav ==1? styles.fav : styles.nofav} source={require("../assets/img/favorito.png")} />
         </TouchableOpacity>

@@ -85,11 +85,12 @@ const TabBar = () => {
                     )
                 }} />
             }
-            <Tab.Screen name="buscar" component={HomeRoute}
+            <Tab.Screen name="Buscar" component={HomeRoute}
             options={{
                 headerShown: false ,
+                tabBarColor: 'red',
                 tabBarIcon: ({ focused }) => (
-                    <View style={{alignItems:'center',justifyContent:"center",top:10}}>
+                    <View style={{alignItems:'center',justifyContent:"center",top:10, color:"red"}}>
                         <Image
                         source={require('../assets/img/busqueda2.png')}
                         resizeMode="contain"

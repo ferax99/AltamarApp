@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigation } from '@react-navigation/native';
 import Axios from "axios";
 
 import { SectionList, TouchableOpacity, ListItem, StyleSheet, Image, Button, View, SafeAreaView, Text, TextInput, Alert, ScrollView } from 'react-native';
@@ -9,6 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import ProductosF from "./productosF";
 
 const Frecuentes = () => {
+    const navigation = useNavigation();
     const [datos, setDatos] = useState([]);
     const [listo, setListo] = useState(0);
 

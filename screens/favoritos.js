@@ -8,7 +8,7 @@ import ProductoF from '../components/productoF';
 import Axios from "axios";
 import ServerData from '../serverData';
 import { FlatList } from 'react-native-gesture-handler';
-import userData from '../local_data/userData.json';
+import userData from '../userData';
 import colors from '../assets/colors/colors';
 import Navbar from '../components/navbar';
 import { Dimensions } from 'react-native';
@@ -49,7 +49,7 @@ const Favoritos = ({ navigation }) => {
 
 
     const fetchContactos = () => {
-        const api = ServerData + "/getFav/" + userData.telefono;
+        const api = ServerData + "/getFav/" + userData.telefono._W;
         //console.log(api)
         fetch(api)
             .then((response) => response.json())
@@ -64,7 +64,7 @@ const Favoritos = ({ navigation }) => {
     }
 
     const fetchProductos = () => {
-        Axios.get(ServerData + "/getFavP/" + userData.telefono
+        Axios.get(ServerData + "/getFavP/" + userData.telefono._W
         ).then((response) => {
             //console.log(response.data)
             setproductos(response.data.favoritos);
@@ -121,9 +121,6 @@ const fetchProductos = () => {
 
         <SafeAreaView style={styles.container}  >
             <View>
-                <Text style={styles.title}  >
-                    Favoritos
-                </Text>
                 <View >
                     <View style={styles.contenedorSw} >
                         <View style={styles.row} >

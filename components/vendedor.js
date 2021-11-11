@@ -1,13 +1,24 @@
-import React from "react";
+import React , {useState}from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../assets/colors/colors"
+import UserData from "../userData";
 import ContactarProducto from "./contactarProducto";
 const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png";
 
 const Vendedor = ({ navigation, vendedor }) => {
 
     const nombre = vendedor[1].split(" ")
+    const [esFav, setEsFav] = useState(0);
+
+    const cambio = () => {
+        if (esFav != 0) {
+            setEsFav(0)
+        }
+        else {
+            setEsFav(1)
+        }
+    }
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
@@ -19,16 +30,16 @@ const Vendedor = ({ navigation, vendedor }) => {
                         {nombre[1]}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Perfil', { vendedor: vendedor })}>
-                    <Image style={styles.favorito} source={require("../assets/img/favGris.png")} />
+                <TouchableOpacity onPress={() => cambio()}>
+                    <Image style={esFav == 1 ? styles.fav : styles.nofav} source={require("../assets/img/favGris.png")} />
                 </TouchableOpacity>
 
             </View>
             <TouchableOpacity onPress={() => navigation.navigate('Perfil', { vendedor: vendedor })}>
 
-                <Image style={styles.boton} source={require("../assets/img/botonCatalogo.png")} />
+                <Image style={UserData.rol._W == "comprador" ? styles.botonComprador : styles.botonVendedor} source={require("../assets/img/botonCatalogo.png")} />
             </TouchableOpacity>
-            <ContactarProducto vendedor={vendedor}/>
+            <ContactarProducto vendedor={vendedor} />
         </View>
     )
 }
@@ -100,12 +111,22 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
 
     },
-    boton: {
+    botonComprador: {
         width: 123,
         height: 29,
         resizeMode: "contain",
         marginLeft: 50,
-        marginTop: 10
+        marginTop: 10,
+        tintColor: colors.orangeUI,
+
+    },botonVendedor: {
+        width: 123,
+        height: 29,
+        resizeMode: "contain",
+        marginLeft: 50,
+        marginTop: 10,
+        tintColor: colors.blueUI,
+
     },
     favorito: {
         width: 52,
@@ -118,7 +139,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginBottom: 19,
         marginLeft: 55,
-    }
+    },
+    fav: {
+        width: 52,
+        height: 43,
+        resizeMode: "contain",
+        tintColor: "#ffd700",
+    },
+    nofav: {
+        width: 52,
+        height: 43,
+        resizeMode: "contain",
+        tintColor: colors.greyText,
+    },
+
 
 })
 export default Vendedor
