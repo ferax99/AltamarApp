@@ -55,7 +55,7 @@ const Favoritos = ({ navigation }) => {
             .then((response) => response.json())
             .then((responseJson) => {
 
-                //console.log(responseJson);
+                // console.log(responseJson);
                 setfilteredData(responseJson);
                 setcontactos(responseJson);
             }).catch((error) => {
@@ -96,18 +96,18 @@ const fetchProductos = () => {
             setsearch(text);
         }
     }
-    
-   
+
+
     const ContactView = ({ item }) => {
         return (
-            <Contacto nombre={item.nombre} numero={item.telefono} />
+            <Contacto nombre={item.nombre} numero={item.telefono} id={item._id} />
         )
     }
-    const ProductView = ({ item}) => {
+    const ProductView = ({ item }) => {
 
 
         return (
-            <ProductoF id={item}  />
+            <ProductoF id={item} />
         )
 
 
@@ -202,21 +202,20 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     search: {
-        marginLeft: 20,
-        marginBottom: 22,
-        marginTop: 17,
         height: 40,
-        width: "90%",
+        width: "100%",
         backgroundColor: "white",
-        borderRadius: 14,
-
+        borderRadius: 48,
+        paddingLeft: 20,
+        marginBottom: 40
 
     },
     ima: {
-        width: 35,
-        height: 35,
+        width: 15,
+        height: 15,
         marginRight: 20,
-        marginTop: 20,
+        marginTop: 15,
+        right: "45%",
     },
     row: {
         flexDirection: "row",
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignContent: 'center',
-        backgroundColor: "white"
+        backgroundColor: colors.background
 
     },
     boton: {

@@ -1,9 +1,64 @@
-import React from "react";
-import { Image, StyleSheet, View, Text } from "react-native";
+import React, {useState, useEffect} from "react";
+import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import colors from "../assets/colors/colors";
+import Axios from "axios";
+import Server from "../serverData"
+import UserData from "../userData";
 
-const UserInfo = ({vendedor}) => {
-    const nombre = vendedor[1].split(" ")
+const UserInfo = ({ vendedor }) => {
+    const nombre = vendedor[2].split(" ")
+    const [listo, setListo] = useState(0);
+    const [esFav, setEsFav] = useState(0);
+
+    useEffect(() => {
+        isFav();
+        setListo(1)
+
+
+        return () => {
+        }
+    }, []);
+    const isFav = () => {
+        Axios.post(Server + "/getFavContacto", { id: vendedor[0], telefono: UserData.telefono._W }
+        ).then((response) => {
+
+            if (response.data == true) {
+                setEsFav(1)
+            }
+        }).catch(() => {
+            console.log("ERROR");
+
+        });
+    }
+    const marcarFav = () => {
+        setEsFav(1)
+
+        Axios.post(Server + "/InsertaFav", { favorito: vendedor[0], telefono: UserData.telefono._W }
+        ).then((response) => {
+            // console.log(response.data)
+        }).catch(() => {
+            console.log("ERROR");
+        });
+    }
+    const marcarNoFav = () => {
+        setEsFav(0);
+
+        Axios.delete(Server + "/deleteFavContacto", { data: { favorito: vendedor[0], telefono: UserData.telefono._W } }
+        ).then((response) => {
+            //console.log(response.data)
+        }).catch(() => {
+            console.log("ERROR");
+        });
+
+    }
+    const toggle = () => {
+        if (esFav == 0) {
+            marcarFav();
+        }
+        else {
+            marcarNoFav();
+        }
+    }
     return (
         <View style={styles.contenedor}>
             <View style={styles.conNombre}>
@@ -15,14 +70,16 @@ const UserInfo = ({vendedor}) => {
                         {nombre[1]}
                     </Text>
                 </View>
-                <Image style={styles.favorito} source={require("../assets/img/fav.png")} />
+                <TouchableOpacity onPress={() => { toggle() }}  >
+                    <Image style={esFav == 1 ? styles.fav : styles.nofav} source={require("../assets/img/fav.png")} />
+                </TouchableOpacity>
 
             </View>
 
             <View style={styles.detalles}>
                 <Image style={styles.iconUbicacion} source={require("../assets/img/ubicacion.png")} />
                 <Text style={styles.detalleUbicacion}>
-                    {vendedor[2]}
+                    {vendedor[3]}
                 </Text>
             </View>
             {/* <View style={styles.detallesTelefono}>
@@ -42,9 +99,9 @@ const styles = StyleSheet.create({
     },
     conNombre: {
         flexDirection: "row",
-        justifyContent:"space-between",
-        marginRight:50,
-        alignItems:"center"
+        justifyContent: "space-between",
+        marginRight: 50,
+        alignItems: "center"
     },
     nombre: {
         fontWeight: "bold",
@@ -106,6 +163,18 @@ const styles = StyleSheet.create({
         height: 43,
         resizeMode: "contain"
 
+    },
+    fav: {
+        width: 52,
+        height: 43,
+        resizeMode: "contain",
+        tintColor: "#ffd700",
+    },
+    nofav: {
+        width: 52,
+        height: 43,
+        resizeMode: "contain",
+        tintColor: colors.greyText,
     },
     detallesTelefono: {
         flexDirection: "row",

@@ -15,7 +15,7 @@ const HomeStack = () => {
 
   const [logged, setLogged] = useState(0);
   useEffect(() => {
-    //vaciar();
+    // vaciar();
     load();
   }, []);
 

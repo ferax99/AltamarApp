@@ -36,7 +36,7 @@ const Perfil = ({ navigation, route }) => {
             });
     }
     const fetchPublicaciones = () => {
-        const api = Server + "/pubNum/" + vendedor[0];
+        const api = Server + "/pubNum/" + vendedor[1];
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {

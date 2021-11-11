@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, View, Text, Alert, Image, ViewBase } from 'react-native';
 import colors from '../assets/colors/colors';
+import UserData from '../userData'
 
 const FilterSelection = ({ navigation, route }) => {
 
@@ -47,7 +48,7 @@ const FilterSelection = ({ navigation, route }) => {
                 />
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.boton}
+                style={UserData.rol._W == "comprador" ? styles.botonComprador : styles.botonVendedor}
                 onPress={() => navigation.push("Búsqueda", { search: search, filtroPrecioMax: filtroPrecioMax, filtroPrecioMin: filtroPrecioMin, filtroUbicacion: filtroUbicacion })} >
                 <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
                     Listo
@@ -67,17 +68,25 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         fontFamily: "TT Norms",
     },
-    boton: {
+    botonComprador: {
+        backgroundColor: colors.orangeUI,
+        height: 48,
+        width: "90%",
+        alignItems: 'center',
+        padding: 15,
+        color: "#FFFFFF",
+        marginTop: "100%",
+        borderRadius: 50,
+    },
+    botonVendedor: {
         backgroundColor: colors.blueUI,
         height: 48,
         width: "90%",
         alignItems: 'center',
         padding: 15,
         color: "#FFFFFF",
-        marginTop: 8,
+        marginTop: "100%",
         borderRadius: 50,
-        position: 'absolute',
-        top: "90%",
     },
     botonFiltro: {
         height: 68,

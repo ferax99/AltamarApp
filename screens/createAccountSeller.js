@@ -72,6 +72,7 @@ const CreateAccountSeller = ({ navigation }) => {
               }
               if (response.data == "Success") {
                 saveLocalInfo();
+                tablaProductos()
                 navigation.navigate('FTabBar')
               }
             });
@@ -80,6 +81,17 @@ const CreateAccountSeller = ({ navigation }) => {
       }
     )
   };
+
+  const tablaProductos = () => {
+    Axios.post(Server + "/insertaProductoInicial", { telefono: telefono }
+    ).then((response) => {
+      if (response.data === "Success") {
+        console.log("exito!")
+      }
+    }).catch(() => {
+      console.log("ERROR");
+    });
+  }
 
 
 

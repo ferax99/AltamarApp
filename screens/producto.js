@@ -23,7 +23,7 @@ const Producto = ({ route, navigation }) => {
         });
     }
     
-    if (vendedor[1]!==undefined) {
+    if (vendedor[2]!==undefined) {
         return (
             <View>
                 <Pescado navigation={navigation} producto={producto} foto={foto} numVendedor={vendedor.telefono} />

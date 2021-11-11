@@ -35,7 +35,7 @@ const Pescado = ({ navigation, producto, foto, numVendedor }) => {
 
         Axios.post(Server + "/InsertaFavProd", { favorito: producto._id, telefono: UserData.telefono._W }
         ).then((response) => {
-            //console.log(response.data)
+            // console.log(response.data)
         }).catch(() => {
             console.log("ERROR");
         });

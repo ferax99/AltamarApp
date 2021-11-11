@@ -8,6 +8,7 @@ import Rail from "./Rail";
 import RailSelected from "./RailSelected";
 import Thumb from "./Thumb";
 import colors from "../../assets/colors/colors";
+import UserData from "../../userData";
 
 const RangeSlider = ({ from, to, navigation, route }) => {
   const { search, filtroUbicacion, filtroPrecioMax, filtroPrecioMin } = route.params
@@ -93,7 +94,7 @@ const RangeSlider = ({ from, to, navigation, route }) => {
         onValueChanged={handleValueChange}
       />
       <TouchableOpacity
-        style={styles.boton}
+        style={UserData.rol._W == "comprador" ? styles.botonComprador : styles.botonVendedor}
         onPress={() => navigation.push("Filtros", { filtroPrecioMax: high, filtroPrecioMin: low, filtroUbicacion: filtroUbicacion, search: search })} >
         <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
           Listo
@@ -104,17 +105,25 @@ const RangeSlider = ({ from, to, navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  boton: {
+  botonComprador: {
+    backgroundColor: colors.orangeUI,
+    height: 48,
+    width: "100%",
+    alignItems: 'center',
+    padding: 15,
+    color: "#FFFFFF",
+    marginTop: "20%",
+    borderRadius: 50,
+  },
+  botonVendedor: {
     backgroundColor: colors.blueUI,
     height: 48,
     width: "100%",
     alignItems: 'center',
     padding: 15,
     color: "#FFFFFF",
-    marginTop: "40%",
+    marginTop: "20%",
     borderRadius: 50,
-    position: 'absolute',
-    top: "90%",
   },
 });
 

@@ -19,7 +19,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
     }, [])
 
     const fetchRedes = () => {
-        const api = Server + "/readRedes/" + vendedor[0];
+        const api = Server + "/readRedes/" + vendedor[1];
         fetch(api)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -31,7 +31,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
     }
     const copiar = () => {
         Alert.alert('¡UY!', 'Debes crear el contacto y buscarlo en telegram', [{ text: 'OK' }]);
-        Linking.openURL(`tel:${vendedor[0]}`)
+        Linking.openURL(`tel:${vendedor[1]}`)
     }
     const mostrarMetodos = () => {
         return (
@@ -48,7 +48,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
         return (
             <View style={styles.contenedor}>
                 {((redes.map(red => red[0].whatsapp === "" ? false : true).pop())) &&
-                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + vendedor[0])}>
+                    <TouchableOpacity onPress={() => Linking.openURL('whatsapp://send?&phone=506' + vendedor[1])}>
                         <Image style={styles.icon} source={require("../assets/img/iwhatsapp.png")} />
                     </TouchableOpacity>}
 
@@ -57,7 +57,7 @@ const ContactarProducto = ({ navigation, vendedor }) => {
                         <Image style={styles.icon} source={require("../assets/img/itelegram.png")} />
                     </TouchableOpacity>}
 
-                <TouchableOpacity onPress={() => Linking.openURL(`tel:${vendedor[0]}`)}>
+                <TouchableOpacity onPress={() => Linking.openURL(`tel:${vendedor[1]}`)}>
                     <Image style={styles.icon} source={require("../assets/img/llamar.png")} />
                 </TouchableOpacity>
             </View>

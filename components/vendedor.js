@@ -1,22 +1,66 @@
-import React , {useState}from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../assets/colors/colors"
 import UserData from "../userData";
+import Server from "../serverData"
+import Axios from 'axios'
 import ContactarProducto from "./contactarProducto";
 const sinConexion = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/2048px-Fish_icon_%28The_Noun_Project_27052%29.svg.png";
 
 const Vendedor = ({ navigation, vendedor }) => {
 
-    const nombre = vendedor[1].split(" ")
+    const nombre = vendedor[2].split(" ")
+    const [listo, setListo] = useState(0);
     const [esFav, setEsFav] = useState(0);
 
-    const cambio = () => {
-        if (esFav != 0) {
-            setEsFav(0)
+    useEffect(() => {
+        isFav();
+        setListo(1)
+
+
+        return () => {
+        }
+    }, []);
+    const isFav = () => {
+        Axios.post(Server + "/getFavContacto", { id: vendedor[0], telefono: UserData.telefono._W }
+        ).then((response) => {
+
+            if (response.data == true) {
+                setEsFav(1)
+            }
+        }).catch(() => {
+            console.log("ERROR");
+
+        });
+    }
+    const marcarFav = () => {
+        setEsFav(1)
+
+        Axios.post(Server + "/InsertaFav", { favorito: vendedor[0], telefono: UserData.telefono._W }
+        ).then((response) => {
+            // console.log(response.data)
+        }).catch(() => {
+            console.log("ERROR");
+        });
+    }
+    const marcarNoFav = () => {
+        setEsFav(0);
+
+        Axios.delete(Server + "/deleteFavContacto", { data: { favorito: vendedor[0], telefono: UserData.telefono._W } }
+        ).then((response) => {
+            //console.log(response.data)
+        }).catch(() => {
+            console.log("ERROR");
+        });
+
+    }
+    const toggle = () => {
+        if (esFav == 0) {
+            marcarFav();
         }
         else {
-            setEsFav(1)
+            marcarNoFav();
         }
     }
     return (
@@ -30,7 +74,7 @@ const Vendedor = ({ navigation, vendedor }) => {
                         {nombre[1]}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => cambio()}>
+                <TouchableOpacity onPress={() => toggle()}>
                     <Image style={esFav == 1 ? styles.fav : styles.nofav} source={require("../assets/img/favGris.png")} />
                 </TouchableOpacity>
 
@@ -119,7 +163,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         tintColor: colors.orangeUI,
 
-    },botonVendedor: {
+    }, botonVendedor: {
         width: 123,
         height: 29,
         resizeMode: "contain",
