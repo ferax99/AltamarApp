@@ -34,7 +34,11 @@ const RutasMisProductos = () => {
         component={MyProducts}
         options={{ headerShown: false }}
       />
-
+<Stack.Screen
+        name="Añadir productos"
+        component={AddProducts}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Mi producto"
         component={MiProducto}

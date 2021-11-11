@@ -76,7 +76,7 @@ const CreateAccountBuyer = ({ navigation }) => {
       await AsyncStorage.setItem("id", ids);
       await AsyncStorage.setItem("nombre",nom);
       await AsyncStorage.setItem("rol","comprador");
-      await AsyncStorage.setItem("color","#EE7333");
+      await AsyncStorage.setItem("color",colors.orangeUI);
       
       
     }catch (err){

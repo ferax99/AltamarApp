@@ -7,9 +7,10 @@ import Axios from "axios";
 import Server from "../serverData";
 import Moment from 'moment';
 import colors from "../assets/colors/colors";
-import userData from '../local_data/userData.json';
+import userData from '../userData';
+import UserData from "../userData";
 
-const FormAgregarProductos = ({ navigation, numVendedor }) => {
+const FormAgregarProductos = ({ navigation }) => {
     
     const [listOfProd, setListOfProd] = useState([]);
     const [tipo, setTipo] = useState("")
@@ -49,7 +50,7 @@ const FormAgregarProductos = ({ navigation, numVendedor }) => {
 
             Axios.post(Server + "/insertaProducto", {
                 //Hay que pasarlo por props
-                telefono: numVendedor,
+                telefono: UserData.telefono._W,
                 tipo: tipo,
                 cantidad: cantidad,
                 precio: precio,
@@ -62,7 +63,7 @@ const FormAgregarProductos = ({ navigation, numVendedor }) => {
                     Alert.alert('La inserción falló', 'Tenemos problemas', [{ text: 'OK' }]);
                 }
                 if (response.data == "True") {
-                    navigation.push('Mis productos',{numVendedor:numVendedor})
+                    navigation.pop()
                 }
 
             });
@@ -130,6 +131,7 @@ const FormAgregarProductos = ({ navigation, numVendedor }) => {
                         <View style={styles.fila}>
                             <View style={styles.inputWrap}></View>
                             <TextInput
+                            value={cantidad.toString()}
                                 onChangeText={(vcantidad) => { setCantidad(vcantidad) }}
                                 placeholder="00,00"
                                 keyboardType='numeric'

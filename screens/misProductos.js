@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { RefreshControl,FlatList, ScrollView, StyleSheet, View, SafeAreaView, Text } from 'react-native';
+import { RefreshControl,FlatList, TouchableOpacity, StyleSheet, View, SafeAreaView, Image } from 'react-native';
 import colors from '../assets/colors/colors';
 import AddButton from '../components/addButton';
 import SkipButton from '../components/skipButton';
 import Axios from "axios";
-import userData from '../local_data/userData.json';
+import userData from '../userData';
 import Server from "../serverData";
 import MiProducto from '../components/miProducto';
 import { Dimensions } from 'react-native';
@@ -15,6 +15,7 @@ const tam=Dimensions.get('window').height*(0.76);
 
 
 const MyProducts = ({ navigation }) => {
+    //console.log(userData.telefono._W)
     const [listOfProd, setListOfProd] = useState([]);
     const [telefono, setTelefono] = useState('');
     const [datos, setDatos] = useState([{}]);
@@ -34,7 +35,7 @@ const MyProducts = ({ navigation }) => {
 
     }, []);
     const fetchData = () => {
-        Axios.post(Server + "/getMyProducts", { telefono: userData.telefono }
+        Axios.post(Server + "/getMyProducts", { telefono: userData.telefono._W }
         ).then((response) => {
             setDatos(response.data.publicaciones);
             //console.log(response.data.publicaciones);
@@ -57,13 +58,16 @@ const MyProducts = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {!vacio &&
-                <View style={{ width: "100%" }}>
+                <View style={{ width: "100%", height:"85%"}}>
                    <FlatList
                                 nestedScrollEnabled
                                 data={datos}
                                 keyExtractor={(item, index) => index.toString()}
                                 renderItem={ProductView}
                             /> 
+                            <TouchableOpacity style={styles.conBoton} onPress={() => navigation.push('Añadir productos',{numVendedor:"159"})}>
+                                <Image style={styles.boton} source={require("../assets/img/add.png")}/>
+                            </TouchableOpacity>
                 </View>
             }
             {vacio &&
@@ -82,14 +86,24 @@ const MyProducts = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop:30,
         padding: 20,
         backgroundColor: colors.background,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
         fontFamily: "TT Norms",
+    },boton:{
+        resizeMode:"contain",
+        width:55,
+        height:55,
+        
     },
+    conBoton:{
+        marginTop:-130,
+        alignSelf:"flex-end",
+        backgroundColor: colors.whiteButtons,
+        borderRadius:40
+    }
 
 });
 

@@ -15,7 +15,7 @@ const HomeStack = () => {
 
   const [logged, setLogged] = useState(0);
   useEffect(() => {
-    vaciar();
+    //vaciar();
     load();
   }, []);
 
@@ -39,13 +39,15 @@ const HomeStack = () => {
   const vaciar = async () => {
     try {
       
-      await AsyncStorage.setItem("rol","vendedor");
-      /*
+      // await AsyncStorage.setItem("rol","vendedor");
+      
       
       await AsyncStorage.removeItem("telefono");
       await AsyncStorage.removeItem("id");
       await AsyncStorage.removeItem("nombre");
-      await AsyncStorage.removeItem("rol");*/
+      await AsyncStorage.removeItem("rol");
+      await AsyncStorage.removeItem("color");
+
     } catch (err) {
       console.log(err)
     }

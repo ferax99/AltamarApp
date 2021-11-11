@@ -7,6 +7,7 @@ import Server from '../serverData';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+
 const CreateAccountSeller = ({ navigation }) => {
 
   const [nombre, setNombre] = useState('')
@@ -88,8 +89,8 @@ const CreateAccountSeller = ({ navigation }) => {
       await AsyncStorage.setItem("telefono", tel);
       await AsyncStorage.setItem("id", ids);
       await AsyncStorage.setItem("nombre",nom);
-      await AsyncStorage.setItem("rol","comprador");
-      await AsyncStorage.setItem("color","#00A3FF");
+      await AsyncStorage.setItem("rol","vendedor");
+      await AsyncStorage.setItem("color",colors.blueUI);
         
 
     }catch (err){
