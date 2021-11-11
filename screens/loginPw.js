@@ -5,9 +5,12 @@ import Axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Server from "../serverData";
 import Vendedor from '../components/vendedor';
+import colors from '../assets/colors/colors';
 var id ="";
 var nombre="";
 var rol = "";
+var ubicacion = ""
+var cedula = ""
 
 const Login = ({navigation, route}) =>{
 
@@ -57,19 +60,17 @@ const Login = ({navigation, route}) =>{
       await AsyncStorage.setItem("id", id);
       await AsyncStorage.setItem("nombre",nombre);
       await AsyncStorage.setItem("rol",rol);
-      if(rol!="vendedor"){
-        await AsyncStorage.setItem("color","#EE7333");
-      }else{
-        await AsyncStorage.setItem("color","#00A3FF");
-      }
-     
+      await AsyncStorage.setItem("ubicacion",ubicacion);
+      await AsyncStorage.setItem("cedula",cedula);
       
-        
-
+      if(rol!="vendedor"){
+        await AsyncStorage.setItem("color",colors.blueUI);
+      }else{
+        await AsyncStorage.setItem("color",colors.orangeUI);
+      }
     }catch (err){
         console.log(err)
     }
-
 }
 
 
@@ -84,6 +85,9 @@ const Login = ({navigation, route}) =>{
           id = response.data._id;
           nombre = response.data.nombre;
           rol = response.data.rol
+          ubicacion= response.data.ubicacion
+          cedula= response.data.cedula
+
           console.log(response.data.nombre)
 
          

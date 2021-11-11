@@ -1,15 +1,11 @@
-import React, { Component } from "react";
-import { ReactDom } from "react-dom";
-import { useNavigation } from '@react-navigation/native'
+import React from "react";
 import { useState, useEffect } from "react";
 import { TouchableOpacity, StyleSheet, SafeAreaView, Text, TextInput, Alert, View } from 'react-native';
-import { event } from "react-native-reanimated";
-import SelectDropdown from 'react-native-select-dropdown'
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Axios from "axios";
 import Server from "../serverData";
-import Moment from 'moment';
 import colors from "../assets/colors/colors";
+import UserData from "../userData"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const EditUserP = ({ navigation }) => {
@@ -19,44 +15,48 @@ const EditUserP = ({ navigation }) => {
     var vclave = clave
     var vcedula = cedula
     var vubicacion = ubicacion
-    var vrol = rol
-    // var texto = "Marcar"
-    const datos = navigation.getParam("datos");
-    const id = UserData.id;
     
     const [nombre, setNombre] = useState("")
     const [clave, setClave] = useState("")
     const [cedula, setCedula] = useState("")
-    const [rol, setRol] = useState("")
     const [ubicacion, setUbicacion] = useState("")
     useEffect(() => {
-        //setClave(datos.clave);
-        //setRol(datos.rol);
-        //setTipo(datos.tipo);
-        //setCedula(datos.cedula);
-        //setUbicacion(datos.localizacion);
+        setCedula(UserData.cedula._W);
+        setUbicacion(UserData.ubicacion._W);
+        setNombre(UserData.nombre._W)
     }, []);
 
+    const guardar =async()=>{
+        try{
+      await AsyncStorage.removeItem("cedula");
+      await AsyncStorage.removeItem("nombre");
+      await AsyncStorage.removeItem("ubicacion");
 
+          await AsyncStorage.setItem("nombre",nombre);
+          await AsyncStorage.setItem("ubicacion",ubicacion);
+          await AsyncStorage.setItem("cedula",cedula);
+        }catch (err){
+            console.log(err)
+        }
+    }
     const editarUsuario = () => {
         Axios.put(Server + "/editarUsuario", {
-            //Hay que pasarlo por props
-            id: id,
+            telefono: UserData.telefono._W,
             nombre: nombre,
             clave: clave,
             cedula: cedula,
             ubicacion: ubicacion,
-            rol: "comprador",
         }).then((response) => {
             //console.log(response.data);
             if (response.data == "Failed") {
                 Alert.alert('Hubo un problema', 'No se han podido editar los datos de la cuenta', [{ text: 'OK' }]);
             }
             if (response.data == "Updated") {
-                navigation.pop();window.location.reload(false);
+                navigation.pop();
             }
 
         });
+        guardar()
     };
     
     

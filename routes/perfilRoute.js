@@ -23,6 +23,7 @@ import SearchResult from '../screens/searchResult';
 import FilterSelection from '../screens/filterSelection';
 import FilterPrice from '../screens/filterPrice';
 import FilterLocation from '../screens/filterLocation';
+import HomeRoute from "../routes/homeRoute"
 
 const Stack = createNativeStackNavigator();
 const PerfilRoute = () => {
@@ -38,6 +39,14 @@ const PerfilRoute = () => {
                 name="Editar Perfil"
                 component={EditarPerfil}
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Busquedario"
+                component={HomeRoute}
+                options={{
+                    headerShown: false,
+                    headerTitleAlign: "center"
+                }}
             />
 
         </Stack.Navigator>

@@ -5,7 +5,8 @@ var id="";
 var color=""
 var nombre=""
 var rol= ""
-    
+var ubicacion =""
+var cedula =""
 
 const guardar =async(valor)=>{
     try{
@@ -31,5 +32,5 @@ const guardar =async(valor)=>{
 
 }
 
-const UserData = {id: guardar("id"), telefono: guardar("telefono"), nombre: guardar("nombre"), rol:guardar("rol"), color:guardar("color")}
+const UserData = {id: guardar("id"), telefono: guardar("telefono"), nombre: guardar("nombre"), rol:guardar("rol"), color:guardar("color"), ubicacion:guardar("ubicacion"), cedula:guardar("cedula")}
 export default UserData;

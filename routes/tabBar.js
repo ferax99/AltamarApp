@@ -85,8 +85,9 @@ const TabBar = () => {
                     )
                 }} />
             }
-            <Tab.Screen name="buscar" component={HomeRoute} options={{ headerShown: false }}
+            <Tab.Screen name="buscar" component={HomeRoute}
             options={{
+                headerShown: false ,
                 tabBarIcon: ({ focused }) => (
                     <View style={{alignItems:'center',justifyContent:"center",top:10}}>
                         <Image

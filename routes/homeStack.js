@@ -46,6 +46,9 @@ const HomeStack = () => {
       await AsyncStorage.removeItem("id");
       await AsyncStorage.removeItem("nombre");
       await AsyncStorage.removeItem("rol");
+      await AsyncStorage.removeItem("ubicacion");
+      await AsyncStorage.removeItem("cedula");
+
       await AsyncStorage.removeItem("color");
 
     } catch (err) {
