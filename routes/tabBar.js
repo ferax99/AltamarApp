@@ -57,6 +57,7 @@ const TabBar = () => {
         >
             {(rol != "vendedor") &&
                 <Tab.Screen name=" Favoritos " component={FavoritosRoute} options={{
+                    headerTitleAlign: "center",
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: "center", top: 10 }}>
                             <Image
@@ -76,7 +77,8 @@ const TabBar = () => {
             }
             {
                 (rol == "vendedor") &&
-                <Tab.Screen name="MisProductos " component={RutasMisProductos} options={{
+                <Tab.Screen name="Mis Productos " component={RutasMisProductos} options={{
+                    headerTitleAlign: "center",
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: "center", top: 10 }}>
                             <Image
@@ -117,6 +119,7 @@ const TabBar = () => {
             />
             <Tab.Screen name="Perfil" component={PerfilRoute} options={{ headerShown: false }}
                 options={{
+                    headerTitleAlign: "center",
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: "center", top: 10 }}>
                             <Image

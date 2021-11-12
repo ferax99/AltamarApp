@@ -204,9 +204,10 @@ const styles = StyleSheet.create({
     container: {
         marginTop:20,
         paddingTop: 50,
-        flex: 1,
+        // flex: 1,
         flexDirection: "column",
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        height: 620
     },
     formulario: {
         flex: 1,

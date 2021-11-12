@@ -23,8 +23,10 @@ import FilterSelection from './screens/filterSelection';
 import FilterPrice from './screens/filterPrice';
 import FilterLocation from './screens/filterLocation';
 import HomeStack from "./routes/homeStack"
+import { LogBox } from 'react-native';
 
 const App = () => {
+  LogBox.ignoreAllLogs(true);
   return (
     <HomeStack/>
   );

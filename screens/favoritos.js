@@ -13,6 +13,7 @@ import colors from '../assets/colors/colors';
 import Navbar from '../components/navbar';
 import { Dimensions } from 'react-native';
 import Server from "../serverData";
+import UserData from '../userData';
 
 
 const SwitchOp = [
@@ -49,29 +50,33 @@ const Favoritos = ({ navigation }) => {
 
 
     const fetchContactos = () => {
-        const api = ServerData + "/getFav/" + userData.telefono._W;
-        //console.log(api)
-        fetch(api)
-            .then((response) => response.json())
-            .then((responseJson) => {
-
-                // console.log(responseJson);
-                setfilteredData(responseJson);
-                setcontactos(responseJson);
-            }).catch((error) => {
-                console.log(error);
-            });
+        if (UserData.rol._W==="comprador") {
+            const api = ServerData + "/getFav/" + userData.telefono._W;
+            //console.log(api)
+            fetch(api)
+                .then((response) => response.json())
+                .then((responseJson) => {
+    
+                    // console.log(responseJson);
+                    setfilteredData(responseJson);
+                    setcontactos(responseJson);
+                }).catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 
     const fetchProductos = () => {
-        Axios.get(ServerData + "/getFavP/" + userData.telefono._W
-        ).then((response) => {
-            //console.log(response.data)
-            setproductos(response.data.favoritos);
-        }).catch(() => {
-            console.log("ERROR");
-
-        });
+        if (UserData.rol._W==="comprador") {
+            Axios.get(ServerData + "/getFavP/" + userData.telefono._W
+            ).then((response) => {
+                //console.log(response.data)
+                setproductos(response.data.favoritos);
+            }).catch(() => {
+                console.log("ERROR");
+    
+            });
+        }
     }
     /*
 const fetchProductos = () => {

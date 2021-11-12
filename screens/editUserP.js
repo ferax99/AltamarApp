@@ -112,7 +112,8 @@ const EditUserP = ({ navigation }) => {
                 </View>
             </View>
 
-            <TouchableOpacity style={styles.boton} onPress={() => editarUsuario()} >
+            <TouchableOpacity style={UserData.rol._W == "comprador" ? styles.botonComprador : styles.botonVendedor}
+            onPress={() => editarUsuario()} >
                 <Text style={{ fontWeight: "bold", color: "#FFFFFF" }}>
                     Listo
                 </Text>
@@ -151,42 +152,29 @@ const styles = StyleSheet.create({
         color: colors.blackText,
         margin: 7
     },
-    dropdown1BtnStyle: {
-        //flex:1,
-        width: 174,
-        height: 26,
-        //right: 20,
-        //alignSelf: 'flex-end',
-        marginTop: 5,
-        marginLeft: 5,
-        marginRight: 5,
-        marginBottom: 10,
-        backgroundColor: colors.whiteButtons
-    },
-    boton: {
-        //flex:1,
-        backgroundColor: colors.blueUI,
-        width: 327,
+    botonComprador: {
+        backgroundColor: colors.orangeUI,
         height: 48,
-        bottom: 34,
+        width: "90%",
         alignItems: 'center',
         padding: 15,
         color: "#FFFFFF",
-        marginTop: 8,
+        marginLeft: "5%",
+        // marginTop: "5%",
+        marginBottom: "5%",
         borderRadius: 50,
-        alignSelf: 'center'
-
     },
-    
-    botonText: {
-        fontWeight: "bold", 
-        color: colors.blackText,
-        bottom: 4,
-    },
-    botonTextPressed: {
-        fontWeight: "bold", 
-        color: 'red',
-        bottom: 4,
+    botonVendedor: {
+        backgroundColor: colors.blueUI,
+        height: 48,
+        width: "90%",
+        alignItems: 'center',
+        padding: 15,
+        color: "#FFFFFF",
+        marginLeft: "5%",
+        // marginTop: "5%",
+        marginBottom: "5%",
+        borderRadius: 50,
     },
     input: {
         alignSelf: 'flex-end',
