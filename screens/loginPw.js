@@ -6,6 +6,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Server from "../serverData";
 import Vendedor from '../components/vendedor';
 import colors from '../assets/colors/colors';
+import * as Updates from 'expo-updates';
+
 var id ="";
 var nombre="";
 var rol = "";
@@ -44,6 +46,7 @@ const Login = ({navigation, route}) =>{
       guardar();
       navigation.push("FTabBar")
       console.log("guardado papu")
+      Updates.reloadAsync();
     }
     else{
         Alert.alert('Clave incorrecta', 'Digite la clave de nuevo', [{text: 'OK'}]);
